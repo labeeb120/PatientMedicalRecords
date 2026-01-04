@@ -1,0 +1,88 @@
+@model AdminPortal.Models.NotificationRequest
+@{
+    ViewData["Title"] = "Send Notification";
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="fw-bold"><i class="fas fa-bell me-2"></i>Send Notification</h2>
+        <p class="text-muted">Send notifications to users</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <form asp-action="SendNotification" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    
+                    <div class="mb-3">
+                        <label for="userIds" class="form-label">
+                            <i class="fas fa-users me-2"></i>User IDs (comma-separated)
+                        </label>
+                        <input name="userIds" id="userIds" class="form-control" 
+                               placeholder="e.g., 1, 2, 3" 
+                               value="@(Model?.UserIds != null ? string.Join(", ", Model.UserIds) : "")" required />
+                        <small class="text-muted">Enter user IDs separated by commas</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">
+                            <i class="fas fa-heading me-2"></i>Subject
+                        </label>
+                        <input name="subject" id="subject" class="form-control" 
+                               placeholder="Notification subject" 
+                               value="@Model?.Subject" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="content" class="form-label">
+                            <i class="fas fa-align-left me-2"></i>Content
+                        </label>
+                        <textarea name="content" id="content" class="form-control" rows="5" 
+                                  placeholder="Notification content" required>@Model?.Content</textarea>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i>Send Notification
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Instructions</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        Enter user IDs separated by commas
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        Provide a clear and concise subject
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        Write detailed content for the notification
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        Notifications will be sent to all specified users
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

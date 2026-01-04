@@ -1,0 +1,144 @@
+@model List<AdminPortal.Models.PendingRegistration>
+@{
+    ViewData["Title"] = "Pending Registrations";
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="fw-bold"><i class="fas fa-user-clock me-2"></i>Pending Registrations</h2>
+        <p class="text-muted">Review and approve or reject registration requests</p>
+    </div>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>National ID</th>
+                            <th>Role</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Details</th>
+                            <th>Attachments</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var registration in Model)
+                        {
+                            <tr>
+                                <td>@registration.Id</td>
+                                <td>@registration.NationalId</td>
+                                <td>
+                                    <span class="badge bg-info">@registration.Role</span>
+                                </td>
+                                <td>
+                                    @if (registration.DoctorInfo != null)
+                                    {
+                                        @registration.DoctorInfo.FullName
+                                    }
+                                    else if (registration.PharmacistInfo != null)
+                                    {
+                                        @registration.PharmacistInfo.FullName
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">N/A</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (registration.DoctorInfo != null)
+                                    {
+                                        @registration.DoctorInfo.Email
+                                    }
+                                    else if (registration.PharmacistInfo != null)
+                                    {
+                                        @registration.PharmacistInfo.Email
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">N/A</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (registration.DoctorInfo != null)
+                                    {
+                                        @registration.DoctorInfo.PhoneNumber
+                                    }
+                                    else if (registration.PharmacistInfo != null)
+                                    {
+                                        @registration.PharmacistInfo.PhoneNumber
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">N/A</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (registration.DoctorInfo != null)
+                                    {
+                                        <small>
+                                            <strong>Specialization:</strong> @(registration.DoctorInfo.Specialization ?? "N/A")<br />
+                                            <strong>License:</strong> @registration.DoctorInfo.LicenseNumber<br />
+                                            <strong>Hospital:</strong> @(registration.DoctorInfo.Hospital ?? "N/A")
+                                        </small>
+                                    }
+                                    else if (registration.PharmacistInfo != null)
+                                    {
+                                        <small>
+                                            <strong>License:</strong> @registration.PharmacistInfo.LicenseNumber<br />
+                                            <strong>Pharmacy:</strong> @(registration.PharmacistInfo.PharmacyName ?? "N/A")
+                                        </small>
+                                    }
+                                </td>
+                                <td>
+                                    @if (registration.Attachments != null && registration.Attachments.Any())
+                                    {
+                                        @foreach (var attachment in registration.Attachments)
+                                        {
+                                            <a href="@Url.Action("Download", "Attachments", new { attachmentId = attachment.Id })" 
+                                               class="btn btn-sm btn-outline-primary mb-1" target="_blank">
+                                                <i class="fas fa-download me-1"></i>@attachment.FileName
+                                            </a><br />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">No attachments</span>
+                                    }
+                                </td>
+                                <td>
+                                    <form asp-action="ApproveRegistration" method="post" class="d-inline">
+                                        <input type="hidden" name="userId" value="@registration.Id" />
+                                        <button type="submit" class="btn btn-sm btn-success">
+                                            <i class="fas fa-check me-1"></i>Approve
+                                        </button>
+                                    </form>
+                                    <form asp-action="RejectRegistration" method="post" class="d-inline">
+                                        <input type="hidden" name="userId" value="@registration.Id" />
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to reject this registration?')">
+                                            <i class="fas fa-times me-1"></i>Reject
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        <i class="fas fa-info-circle me-2"></i>No pending registrations at this time.
+    </div>
+}
+

@@ -1,0 +1,170 @@
+@model AdminPortal.Models.UserListResponse
+@{
+    ViewData["Title"] = "Users Management";
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="fw-bold"><i class="fas fa-users me-2"></i>Users Management</h2>
+        <p class="text-muted">Manage system users</p>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" asp-action="Users" class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label">Role</label>
+                <select name="role" class="form-select" asp-items="Html.GetEnumSelectList<AdminPortal.Models.UserRole>()">
+                    <option value="">All Roles</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Status</label>
+                <select name="status" class="form-select" asp-items="Html.GetEnumSelectList<AdminPortal.Models.UserStatus>()">
+                    <option value="">All Statuses</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Page Size</label>
+                <select name="pageSize" class="form-select">
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-filter me-2"></i>Filter
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model != null && Model.Users != null && Model.Users.Any())
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>National ID</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Created At</th>
+                            <th>Last Login</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr>
+                                <td>@user.Id</td>
+                                <td>@user.NationalId</td>
+                                <td>@(user.FullName ?? "N/A")</td>
+                                <td>@(user.Email ?? "N/A")</td>
+                                <td>@(user.PhoneNumber ?? "N/A")</td>
+                                <td>
+                                    <span class="badge bg-info">@user.Role</span>
+                                </td>
+                                <td>
+                                    @if (user.Status == AdminPortal.Models.UserStatus.Approved)
+                                    {
+                                        <span class="badge bg-success">@user.Status</span>
+                                    }
+                                    else if (user.Status == AdminPortal.Models.UserStatus.Pending)
+                                    {
+                                        <span class="badge bg-warning">@user.Status</span>
+                                    }
+                                    else if (user.Status == AdminPortal.Models.UserStatus.Rejected)
+                                    {
+                                        <span class="badge bg-danger">@user.Status</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">@user.Status</span>
+                                    }
+                                </td>
+                                <td>@user.CreatedAt.ToString("yyyy-MM-dd")</td>
+                                <td>@(user.LastLoginAt?.ToString("yyyy-MM-dd") ?? "Never")</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#statusModal@user.Id">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Status Update Modal -->
+                                    <div class="modal fade" id="statusModal@user.Id" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Update User Status</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <form asp-action="UpdateUserStatus" method="post">
+                                                    <div class="modal-body">
+                                                        <input type="hidden" name="UserId" value="@user.Id" />
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Status</label>
+                                                            <select name="Status" class="form-select" 
+                                                                    asp-items="Html.GetEnumSelectList<AdminPortal.Models.UserStatus>()">
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Reason (Optional)</label>
+                                                            <textarea name="Reason" class="form-control" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            
+            @if (Model.TotalPages > 1)
+            {
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                                <a class="page-link" href="?pageNumber=@i&pageSize=@Model.PageSize">@i</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            }
+            
+            <div class="text-muted text-center mt-3">
+                Showing @((Model.PageNumber - 1) * Model.PageSize + 1) to @(Math.Min(Model.PageNumber * Model.PageSize, Model.TotalCount)) of @Model.TotalCount users
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        <i class="fas fa-info-circle me-2"></i>No users found.
+    </div>
+}
+

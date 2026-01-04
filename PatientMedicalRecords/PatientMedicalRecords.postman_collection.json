@@ -1,0 +1,744 @@
+{
+  "info": {
+    "name": "Patient Medical Records API",
+    "description": "مجموعة اختبارات شاملة لنظام السجل الطبي للمريض",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://localhost:7000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register Patient",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nationalId\": \"1234567890\",\n  \"password\": \"Patient123!\",\n  \"confirmPassword\": \"Patient123!\",\n  \"role\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Register Doctor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nationalId\": \"1234567891\",\n  \"password\": \"Doctor123!\",\n  \"confirmPassword\": \"Doctor123!\",\n  \"role\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Register Pharmacist",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nationalId\": \"1234567892\",\n  \"password\": \"Pharmacist123!\",\n  \"confirmPassword\": \"Pharmacist123!\",\n  \"role\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login Patient",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.success) {",
+                  "        pm.collectionVariables.set('token', response.token);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nationalId\": \"1234567890\",\n  \"password\": \"Patient123!\",\n  \"role\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login Doctor",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.success) {",
+                  "        pm.collectionVariables.set('token', response.token);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nationalId\": \"1234567891\",\n  \"password\": \"Doctor123!\",\n  \"role\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login Pharmacist",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    if (response.success) {",
+                  "        pm.collectionVariables.set('token', response.token);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nationalId\": \"1234567892\",\n  \"password\": \"Pharmacist123!\",\n  \"role\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Patient",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patient/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patient", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"أحمد محمد المريض\",\n  \"dateOfBirth\": \"1990-01-01T00:00:00Z\",\n  \"gender\": 1,\n  \"phoneNumber\": \"0501234567\",\n  \"email\": \"ahmed@example.com\",\n  \"address\": \"الرياض، المملكة العربية السعودية\",\n  \"bloodType\": 1,\n  \"weight\": 70.5,\n  \"height\": 175.0,\n  \"emergencyContact\": \"محمد المريض\",\n  \"emergencyPhone\": \"0507654321\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/patient/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patient", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Generate QR Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patient/generate-qr",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patient", "generate-qr"]
+            }
+          }
+        },
+        {
+          "name": "Get Emergency Screen",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patient/emergency-screen",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patient", "emergency-screen"]
+            }
+          }
+        },
+        {
+          "name": "Get Medical Records",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patient/medical-records",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patient", "medical-records"]
+            }
+          }
+        },
+        {
+          "name": "Get Prescriptions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/patient/prescriptions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "patient", "prescriptions"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Doctor",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/doctor/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctor", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"د. محمد أحمد الطبيب\",\n  \"specialization\": \"أمراض القلب\",\n  \"licenseNumber\": \"DOC123456\",\n  \"hospital\": \"مستشفى الملك فهد\",\n  \"phoneNumber\": \"0501234567\",\n  \"email\": \"doctor@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctor/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctor", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Search Patient",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nationalId\": \"1234567890\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctor/search-patient",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctor", "search-patient"]
+            }
+          }
+        },
+        {
+          "name": "Add Medical Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": 1,\n  \"diagnosis\": \"ارتفاع ضغط الدم\",\n  \"notes\": \"المريض يعاني من ارتفاع في ضغط الدم\",\n  \"symptoms\": \"صداع، دوخة\",\n  \"treatment\": \"أدوية خافضة للضغط\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctor/medical-record",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctor", "medical-record"]
+            }
+          }
+        },
+        {
+          "name": "Add Prescription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": 1,\n  \"diagnosis\": \"ارتفاع ضغط الدم\",\n  \"notes\": \"وصفة طبية لخفض ضغط الدم\",\n  \"items\": [\n    {\n      \"medicationName\": \"أملوديبين\",\n      \"dosage\": \"5 مجم\",\n      \"frequency\": \"مرة واحدة يومياً\",\n      \"duration\": \"30 يوم\",\n      \"instructions\": \"يؤخذ مع الطعام\",\n      \"quantity\": 30\n    },\n    {\n      \"medicationName\": \"لوسارتان\",\n      \"dosage\": \"50 مجم\",\n      \"frequency\": \"مرة واحدة يومياً\",\n      \"duration\": \"30 يوم\",\n      \"instructions\": \"يؤخذ في الصباح\",\n      \"quantity\": 30\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/doctor/prescription",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "doctor", "prescription"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pharmacist",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pharmacist/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pharmacist", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"صيدلي أحمد محمد\",\n  \"licenseNumber\": \"PHARM123456\",\n  \"pharmacyName\": \"صيدلية النور\",\n  \"phoneNumber\": \"0501234567\",\n  \"email\": \"pharmacist@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pharmacist/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pharmacist", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Search Prescription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nationalId\": \"1234567890\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pharmacist/search-prescription",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pharmacist", "search-prescription"]
+            }
+          }
+        },
+        {
+          "name": "Check Drug Interactions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": 1,\n  \"medications\": [\"أملوديبين\", \"لوسارتان\", \"وارفارين\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pharmacist/check-drug-interactions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pharmacist", "check-drug-interactions"]
+            }
+          }
+        },
+        {
+          "name": "Dispense Prescription",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prescriptionId\": 1,\n  \"notes\": \"تم صرف الوصفة بنجاح\",\n  \"items\": [\n    {\n      \"prescriptionItemId\": 1,\n      \"dispensed\": true,\n      \"notes\": \"متوفر\"\n    },\n    {\n      \"prescriptionItemId\": 2,\n      \"dispensed\": true,\n      \"notes\": \"متوفر\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pharmacist/dispense-prescription",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pharmacist", "dispense-prescription"]
+            }
+          }
+        },
+        {
+          "name": "Get Medication Suggestions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pharmacist/medication-suggestions?partialName=أمل",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pharmacist", "medication-suggestions"],
+              "query": [
+                {
+                  "key": "partialName",
+                  "value": "أمل"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Users List",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pageNumber\": 1,\n  \"pageSize\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "users"]
+            }
+          }
+        },
+        {
+          "name": "Approve User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 2,\n  \"approved\": true,\n  \"notes\": \"تم التحقق من الهوية\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/approve-user",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "approve-user"]
+            }
+          }
+        },
+        {
+          "name": "Get Audit Logs",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pageNumber\": 1,\n  \"pageSize\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/audit-logs",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "audit-logs"]
+            }
+          }
+        },
+        {
+          "name": "Get Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/statistics",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "statistics"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "QR Code",
+      "item": [
+        {
+          "name": "Validate Access Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"your-qr-token-here\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/qrcode/validate-access",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "qrcode", "validate-access"]
+            }
+          }
+        },
+        {
+          "name": "Request Access",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"your-qr-token-here\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/qrcode/request-access",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "qrcode", "request-access"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

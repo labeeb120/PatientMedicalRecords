@@ -1,0 +1,180 @@
+@model AdminPortal.Models.SystemStatistics
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="fw-bold"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</h2>
+        <p class="text-muted">System overview and statistics</p>
+    </div>
+</div>
+
+@if (Model != null)
+{
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card stat-card text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-white-50 mb-2">Total Users</h6>
+                            <h2 class="mb-0">@Model.TotalUsers</h2>
+                        </div>
+                        <i class="fas fa-users fa-2x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-white-50 mb-2">Active Users</h6>
+                            <h2 class="mb-0">@Model.ActiveUsers</h2>
+                        </div>
+                        <i class="fas fa-user-check fa-2x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card warning text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-white-50 mb-2">Pending Approvals</h6>
+                            <h2 class="mb-0">@Model.PendingApprovals</h2>
+                        </div>
+                        <i class="fas fa-clock fa-2x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-white-50 mb-2">Suspended Users</h6>
+                            <h2 class="mb-0">@Model.SuspendedUsers</h2>
+                        </div>
+                        <i class="fas fa-user-slash fa-2x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-muted mb-2">Total Patients</h6>
+                    <h3 class="mb-0">@Model.TotalPatients</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-muted mb-2">Total Doctors</h6>
+                    <h3 class="mb-0">@Model.TotalDoctors</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-muted mb-2">Total Pharmacists</h6>
+                    <h3 class="mb-0">@Model.TotalPharmacists</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-muted mb-2">Medical Records</h6>
+                    <h3 class="mb-0">@Model.TotalMedicalRecords</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.RoleStats != null && Model.RoleStats.Any())
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Role Statistics</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Role</th>
+                                    <th>Total</th>
+                                    <th>Active</th>
+                                    <th>Pending</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var roleStat in Model.RoleStats)
+                                {
+                                    <tr>
+                                        <td><strong>@roleStat.RoleName</strong></td>
+                                        <td>@roleStat.Count</td>
+                                        <td><span class="badge bg-success">@roleStat.ActiveCount</span></td>
+                                        <td><span class="badge bg-warning">@roleStat.PendingCount</span></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Monthly Statistics</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (Model.MonthlyStats != null && Model.MonthlyStats.Any())
+                        {
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Month</th>
+                                        <th>New Users</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var monthly in Model.MonthlyStats.Take(12))
+                                    {
+                                        <tr>
+                                            <td>@monthly.Month</td>
+                                            <td>@monthly.NewUsers</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p class="text-muted">No monthly statistics available</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-warning">
+        <i class="fas fa-exclamation-triangle me-2"></i>Unable to load statistics. Please try again later.
+    </div>
+}
+
