@@ -11,6 +11,7 @@ namespace PatientMedicalRecords.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    //[Authorize(Roles = "Patient,Doctor,Pharmacist")]
     [Authorize]
     public class PatientController : ControllerBase
     {
@@ -547,7 +548,7 @@ namespace PatientMedicalRecords.Controllers
                 var prescriptions = await _context.Prescriptions
                     .Include(p => p.Doctor)
                     .Include(p => p.PrescriptionItems)
-                    .Where(p => p.PatientId==patient.UserId)
+                    .Where(p => p.PatientId == patient.UserId)
                     .OrderByDescending(p => p.PrescriptionDate)
                     .Select(p => new PrescriptionInfo
                     {

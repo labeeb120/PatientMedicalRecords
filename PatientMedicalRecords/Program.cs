@@ -17,6 +17,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient(); // for NotificationService
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
+builder.Services.AddScoped<IPatientDataService, PatientDataService>();
 
 
 
@@ -83,6 +84,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IQRCodeService, QRCodeService>();
 builder.Services.AddScoped<IDrugInteractionService, DrugInteractionService>();
+
 
 // CORS
 builder.Services.AddCors(options =>

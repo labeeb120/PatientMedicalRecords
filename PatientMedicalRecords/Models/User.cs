@@ -7,7 +7,7 @@ namespace PatientMedicalRecords.Models
     {
         [Key] 
         public int Id { get; set; }
-        [Required][StringLength(10, MinimumLength = 9)]
+        [Required][StringLength(15, MinimumLength = 9)]
         [RegularExpression(@"^\d{9,15}$", ErrorMessage = "الرقم الوطني يجب أن يتكون من 9 أو 15 أرقام فقط")]
         public string NationalId { get; set; } = string.Empty;
 
@@ -15,8 +15,12 @@ namespace PatientMedicalRecords.Models
         public string PasswordHash { get; set; } = string.Empty;
 
         [Required]
+        //26-01-2026 تم الغاء هذا الحقل لانه سيتم التعامل مع الصلاحيات من خلال جدول وسيط بين المستخدم والصلاحيات
         [EnumDataType(typeof(UserStatus))]
         public UserRole Role { get; set; }
+        public virtual ICollection<UserRoleAssignment> Roles { get; set; } = new List<UserRoleAssignment>();
+        //public virtual ICollection<User> Users { get; set; }
+
         [Required]
         [EnumDataType(typeof(UserStatus))]
         public UserStatus Status { get; set; } = UserStatus.Pending;
@@ -39,6 +43,12 @@ namespace PatientMedicalRecords.Models
         public virtual ICollection<AuditLog> AuditLogs { get; set; } = new List<AuditLog>();
         // In User.cs
         public virtual ICollection<UserAttachment> Attachments { get; set; } = new List<UserAttachment>();
+        //26-01-2026تم اضافة هذا السطر لدعم علاقة العديد إلى العديد بين المستخدم والصلاحيات
+        // [ADD THIS LINE to User.cs]
+        //public virtual ICollection<UserRoleAssignment> Roles { get; set; } = new List<UserRoleAssignment>();
+
+
+
 
     }
 }

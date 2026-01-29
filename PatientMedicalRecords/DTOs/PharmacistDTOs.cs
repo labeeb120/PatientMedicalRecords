@@ -201,79 +201,7 @@ namespace PatientMedicalRecords.DTOs
         public string Instructions { get; set; } = string.Empty;
     }
 
-    //*************************************************
-    // DTOs/DrugInteractionDtos.cs
-    //public class DrugInteractionWarning
-    //{
-    //    public string Medication1 { get; set; } = string.Empty; // الاسم الذي أدخله المستخدم
-    //    public string Medication2 { get; set; } = string.Empty;
-    //    public string Severity { get; set; } = string.Empty;
-    //    public string Description { get; set; } = string.Empty;
-    //    public string Recommendation { get; set; } = string.Empty;
-    //}
-
-    //public class DrugInteractionCheckRequest
-    //{
-    //    [Required(ErrorMessage = "معرف المريض مطلوب")]
-    //    public int PatientId { get; set; }
-
-    //    /// <summary>
-    //    /// قائمة أسماء الأدوية كما أدخلها الطبيب (يمكن أن تكون اسم تجاري أو اسم عام)
-    //    /// </summary>
-    //    [Required(ErrorMessage = "قائمة الأدوية مطلوبة")]
-    //    public List<string> Medications { get; set; } = new List<string>();
-    //}
-
-    //public class DrugInteractionCheckResponse
-    //{
-    //    public bool Success { get; set; }
-    //    public string Message { get; set; } = string.Empty;
-    //    public List<DrugInteractionWarning> Warnings { get; set; } = new List<DrugInteractionWarning>();
-    //    public bool HasInteractions { get; set; }
-    //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //public class DrugInteractionWarning
-    //{
-    //    public string Medication1 { get; set; } = string.Empty;
-    //    public string Medication2 { get; set; } = string.Empty;
-    //    public string Severity { get; set; } = string.Empty;
-    //    public string Description { get; set; } = string.Empty;
-    //    public string Recommendation { get; set; } = string.Empty;
-    //}
-
-    //public class DrugInteractionCheckRequest
-    //{
-    //    [Required(ErrorMessage = "معرف المريض مطلوب")]
-    //    public int PatientId { get; set; }
-
-    //    [Required(ErrorMessage = "قائمة الأدوية مطلوبة")]
-    //    public List<string> Medications { get; set; } = new List<string>();
-    //}
-
-    //public class DrugInteractionCheckResponse
-    //{
-    //    public bool Success { get; set; }
-    //    public string Message { get; set; } = string.Empty;
-    //    public List<DrugInteractionWarning> Warnings { get; set; } = new List<DrugInteractionWarning>();
-    //    public bool HasInteractions { get; set; }
-    //}
-
-    // Prescription Search DTOs
+ 
     public class PrescriptionSearchRequest
     {
         /// <summary>
@@ -334,3 +262,82 @@ namespace PatientMedicalRecords.DTOs
         public string Message { get; set; } = string.Empty;
         public PrescriptionStatus NewStatus { get; set; }
     }
+
+
+
+
+
+
+//*************************************************
+// DTOs/DrugInteractionDtos.cs
+//public class DrugInteractionWarning
+//{
+//    public string Medication1 { get; set; } = string.Empty; // الاسم الذي أدخله المستخدم
+//    public string Medication2 { get; set; } = string.Empty;
+//    public string Severity { get; set; } = string.Empty;
+//    public string Description { get; set; } = string.Empty;
+//    public string Recommendation { get; set; } = string.Empty;
+//}
+
+//public class DrugInteractionCheckRequest
+//{
+//    [Required(ErrorMessage = "معرف المريض مطلوب")]
+//    public int PatientId { get; set; }
+
+//    /// <summary>
+//    /// قائمة أسماء الأدوية كما أدخلها الطبيب (يمكن أن تكون اسم تجاري أو اسم عام)
+//    /// </summary>
+//    [Required(ErrorMessage = "قائمة الأدوية مطلوبة")]
+//    public List<string> Medications { get; set; } = new List<string>();
+//}
+
+//public class DrugInteractionCheckResponse
+//{
+//    public bool Success { get; set; }
+//    public string Message { get; set; } = string.Empty;
+//    public List<DrugInteractionWarning> Warnings { get; set; } = new List<DrugInteractionWarning>();
+//    public bool HasInteractions { get; set; }
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//public class DrugInteractionWarning
+//{
+//    public string Medication1 { get; set; } = string.Empty;
+//    public string Medication2 { get; set; } = string.Empty;
+//    public string Severity { get; set; } = string.Empty;
+//    public string Description { get; set; } = string.Empty;
+//    public string Recommendation { get; set; } = string.Empty;
+//}
+
+//public class DrugInteractionCheckRequest
+//{
+//    [Required(ErrorMessage = "معرف المريض مطلوب")]
+//    public int PatientId { get; set; }
+
+//    [Required(ErrorMessage = "قائمة الأدوية مطلوبة")]
+//    public List<string> Medications { get; set; } = new List<string>();
+//}
+
+//public class DrugInteractionCheckResponse
+//{
+//    public bool Success { get; set; }
+//    public string Message { get; set; } = string.Empty;
+//    public List<DrugInteractionWarning> Warnings { get; set; } = new List<DrugInteractionWarning>();
+//    public bool HasInteractions { get; set; }
+//}
+
+// Prescription Search DTOs

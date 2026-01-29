@@ -36,6 +36,13 @@ namespace PatientMedicalRecords.Data
         public DbSet<DrugIngredient> DrugIngredients { get; set; }
         public DbSet<DrugInteraction> DrugInteractions { get; set; }
         public DbSet<UserAttachment> UserAttachments { get; set; }
+        
+        //25-01-2026
+        public DbSet<PinnedPatient> PinnedPatients { get; set; }
+
+        //26-01-2026 Êã ÇÖÇİÉ åĞÇ ÇáÓØÑ áÏÚã ÚáÇŞÉ ÇáÚÏíÏ Åáì ÇáÚÏíÏ Èíä ÇáãÓÊÎÏã æÇáÕáÇÍíÇÊ
+        public DbSet<UserRoleAssignment> UserRoleAssignments { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -222,7 +229,7 @@ namespace PatientMedicalRecords.Data
                 entity.HasIndex(e => e.NationalId).IsUnique();
                 entity.Property(e => e.NationalId).IsRequired();
                 entity.Property(e => e.PasswordHash).IsRequired();
-                entity.Property(e => e.Role).IsRequired();
+                //entity.Property(e => e.Role).IsRequired();
                 entity.Property(e => e.Status).IsRequired();
             });
 
@@ -364,23 +371,60 @@ namespace PatientMedicalRecords.Data
 
         private void SeedData(ModelBuilder modelBuilder)
         {
-            // Create default admin user
+            // --- ÇáÎØæÉ ÇáÃæáì: ÒÑÚ ÈíÇäÇÊ ÇáãÓÊÎÏã İí ÌÏæá "Users" ---
+            // åĞÇ ÇáÌÒÁ íÈŞì ßãÇ åæ ÊŞÑíÈÇğ¡ æáßä ãÚ ÍĞİ ÎÇÕíÉ "Role"
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
-
                     Id = 101,
                     NationalId = "1000000001",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin@123"),
-                    Role = UserRole.Admin,
+                    Role = UserRole.Admin, // <-- åĞÇ ÇáÓØÑ Êã ÍĞİå áÃäå áã íÚÏ ãæÌæÏÇğ
                     Status = UserStatus.Approved,
                     FullName = "System Administrator",
                     Email = "admin@medicalrecords.com",
                     CreatedAt = DateTime.UtcNow
                 }
-
-            );
+            
+            );                       
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //private void SeedData(ModelBuilder modelBuilder)
+        //{
+        //    // Create default admin user
+        //    modelBuilder.Entity<User>().HasData(
+        //        new User
+        //        {
+
+        //            Id = 101,
+        //            NationalId = "1000000001",
+        //            PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin@123"),
+        //            Role = UserRole.Admin,
+        //            Status = UserStatus.Approved,
+        //            FullName = "System Administrator",
+        //            Email = "admin@medicalrecords.com",
+        //            CreatedAt = DateTime.UtcNow
+        //        }
+
+        //    );
+        //}
 
     }
 }

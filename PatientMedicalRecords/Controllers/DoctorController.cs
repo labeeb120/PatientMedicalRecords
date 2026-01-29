@@ -16,19 +16,26 @@ namespace PatientMedicalRecords.Controllers
     {
         private readonly MedicalRecordsDbContext _context;
         private readonly IQRCodeService _qrCodeService;
-        private readonly IDrugInteractionService _drugInteractionService;
+        private readonly IDrugInteractionService _drugInteractionService;        
         private readonly ILogger<DoctorController> _logger;
+        private readonly IPatientDataService _patientDataService;
+        private readonly IJwtService _jwtService;
 
         public DoctorController(
             MedicalRecordsDbContext context,
             IQRCodeService qrCodeService,
-            IDrugInteractionService drugInteractionService,
-            ILogger<DoctorController> logger)
+            IDrugInteractionService drugInteractionService,            
+            ILogger<DoctorController> logger,
+            IPatientDataService patientDataService,
+            IJwtService jwtService
+            )
         {
             _context = context;
             _qrCodeService = qrCodeService;
-            _drugInteractionService = drugInteractionService;
+            _drugInteractionService = drugInteractionService;            
             _logger = logger;
+            _patientDataService = patientDataService;
+            _jwtService = jwtService;
         }
 
         /// <summary>
@@ -119,7 +126,7 @@ namespace PatientMedicalRecords.Controllers
                     });
                 }
 
-                // Update doctor information
+                //Update doctor information
                 doctor.FullName = request.FullName;
                 doctor.Specialization = request.Specialization;
                 doctor.LicenseNumber = request.LicenseNumber;
@@ -130,8 +137,8 @@ namespace PatientMedicalRecords.Controllers
 
                 await _context.SaveChangesAsync();
 
-                // Log the update
-                await LogUserAction(userId.Value, "UPDATE_PROFILE", "تم تحديث ملف الطبيب الشخصي");
+                //Log the update
+               await LogUserAction(userId.Value, "UPDATE_PROFILE", "تم تحديث ملف الطبيب الشخصي");
 
                 var doctorInfo = new DoctorInfo
                 {
@@ -182,18 +189,18 @@ namespace PatientMedicalRecords.Controllers
                     });
                 }
 
-                // البحث حسب NationalId أو PatientCode
-                var patient = await _context.Patients
-                    .Include(p => p.User)
-                    .Include(p => p.Allergies)
-                    .Include(p => p.ChronicDiseases)
-                    .Include(p => p.Surgeries)
-                    .Include(p => p.MedicalRecords)
-                        .ThenInclude(mr => mr.Doctor)
-                    .Include(p => p.Prescriptions)
-                        .ThenInclude(pr => pr.PrescriptionItems)
-                    .FirstOrDefaultAsync(p => p.User.NationalId == request.Identifier
-                                           || p.PatientCode == request.Identifier);
+                //البحث حسب NationalId أو PatientCode
+               var patient = await _context.Patients
+                   .Include(p => p.User)
+                   .Include(p => p.Allergies)
+                   .Include(p => p.ChronicDiseases)
+                   .Include(p => p.Surgeries)
+                   .Include(p => p.MedicalRecords)
+                       .ThenInclude(mr => mr.Doctor)
+                   .Include(p => p.Prescriptions)
+                       .ThenInclude(pr => pr.PrescriptionItems)
+                   .FirstOrDefaultAsync(p => p.User.NationalId == request.Identifier
+                                          || p.PatientCode == request.Identifier);
 
                 if (patient == null)
                 {
@@ -306,9 +313,6 @@ namespace PatientMedicalRecords.Controllers
 
 
 
-
-   
-
         /// <summary>
         /// طلب الوصول للمريض عبر QR Code
         /// </summary>
@@ -350,7 +354,7 @@ namespace PatientMedicalRecords.Controllers
             }
         }
 
-        
+
         [HttpPost("medical-record")]
         public async Task<ActionResult<MedicalRecordResponse>> AddMedicalRecord([FromBody] MedicalRecordRequest request)
         {
@@ -383,9 +387,9 @@ namespace PatientMedicalRecords.Controllers
                 _context.MedicalRecords.Add(medicalRecord);
                 await _context.SaveChangesAsync();
 
-                // Log the action
-                await LogUserAction(userId.Value, "ADD_MEDICAL_RECORD", 
-                    $"تم إضافة سجل طبي جديد للمريض {request.PatientId}");
+                //Log the action
+               await LogUserAction(userId.Value, "ADD_MEDICAL_RECORD",
+                   $"تم إضافة سجل طبي جديد للمريض {request.PatientId}");
 
                 var medicalRecordInfo = new MedicalRecordInfo
                 {
@@ -439,14 +443,15 @@ namespace PatientMedicalRecords.Controllers
                 var userId = GetCurrentUserId();
                 if (userId == null) return Unauthorized();
 
-                // Check for drug interactions
-                var interactionRequest = new DrugInteractionCheckRequest
-                {
-                    PatientId = request.PatientId,
-                     Medications = request.Items
-                        .Select(i => i.MedicationName)
-                        .ToList()
-                };
+                //Check for drug interactions
+
+               var interactionRequest = new DrugInteractionCheckRequest
+               {
+                   PatientId = request.PatientId,
+                   Medications = request.Items
+                       .Select(i => i.MedicationName)
+                       .ToList()
+               };
 
                 var interactionResult = await _drugInteractionService.CheckDrugInteractionsAsync(interactionRequest);
 
@@ -464,7 +469,7 @@ namespace PatientMedicalRecords.Controllers
                 _context.Prescriptions.Add(prescription);
                 await _context.SaveChangesAsync();
 
-                // Add prescription items
+                //Add prescription items
                 foreach (var item in request.Items)
                 {
                     var prescriptionItem = new PrescriptionItem
@@ -484,9 +489,9 @@ namespace PatientMedicalRecords.Controllers
 
                 await _context.SaveChangesAsync();
 
-                // Log the action
-                await LogUserAction(userId.Value, "ADD_PRESCRIPTION", 
-                    $"تم إضافة وصفة طبية جديدة للمريض {request.PatientId}");
+                //Log the action
+               await LogUserAction(userId.Value, "ADD_PRESCRIPTION",
+                   $"تم إضافة وصفة طبية جديدة للمريض {request.PatientId}");
 
                 var prescriptionInfo = new PrescriptionInfo
                 {
@@ -515,8 +520,8 @@ namespace PatientMedicalRecords.Controllers
                 return Ok(new PrescriptionResponse
                 {
                     Success = true,
-                    Message = interactionResult.HasInteractions 
-                        ? "تم إضافة الوصفة الطبية مع تحذيرات التفاعل الدوائي" 
+                    Message = interactionResult.HasInteractions
+                        ? "تم إضافة الوصفة الطبية مع تحذيرات التفاعل الدوائي"
                         : "تم إضافة الوصفة الطبية بنجاح",
                     Prescription = prescriptionInfo
                 });
@@ -559,140 +564,230 @@ namespace PatientMedicalRecords.Controllers
             {
                 _logger.LogError(ex, "Error logging user action {Action} for user {UserId}", action, userId);
             }
+
+
         }
+
+
+
+
+
+
+
+
+        // In Controllers/DoctorController.cs
+        //26-01-2026 تم اضافة هذا الميثود لتفعيل ملف المريض للطبيب
+        // تأكد من حقن IJwtService في المُنشئ (Constructor) الخاص بـ DoctorController
+        // private readonly IJwtService _jwtService;
+        // public DoctorController(..., IJwtService jwtService) { ..., _jwtService = jwtService; }
+
+        //[HttpPost("activate-patient-profile")]
+        //[Authorize(Roles = "Doctor")]//: //# "// فقط الطبيب المسجل دخوله يمكنه تفعيل ملفه"
+        //public async Task<ActionResult<LoginResponse>> ActivatePatientProfile()
+        //{
+        //    // الخطوة 1: الحصول على هوية المستخدم الحالي
+        //    var doctorId = GetCurrentUserId();
+        //    if (doctorId == null)
+        //    {
+        //        return Unauthorized(); // مسار إرجاع 1: غير مصرح به
+        //    }
+
+        //    // الخطوة 2: جلب المستخدم مع أدواره للتأكد من عدم وجود ملف مريض مسبقاً
+        //    var user = await _context.Users
+        //        .Include(u => u.Roles) // مهم جداً لتحميل الأدوار الحالية
+        //        .FirstOrDefaultAsync(u => u.Id == doctorId.Value);
+
+        //    if (user == null)
+        //    {
+        //        return NotFound("User not found."); // مسار إرجاع 2: المستخدم غير موجود
+        //    }
+
+        //    // الخطوة 3: التحقق مما إذا كان دور "المريض" موجوداً بالفعل
+        //    if (user.Roles.Any(assignment => assignment.Role == UserRole.Patient))
+        //    {
+        //        // مسار إرجاع 3: طلب غير صالح لأن الملف موجود
+        //        return BadRequest(new { Success = false, Message = "لديك ملف طبي مفعل بالفعل." });
+        //    }
+
+        //    // --- بداية المنطق الجديد الذي كان ناقصاً ---
+
+        //    // الخطوة 4: إنشاء سجل الملف الشخصي للمريض في جدول `Patients`
+        //    var patientProfile = new Patient
+        //    {
+        //        UserId = user.Id, // الربط بنفس معرف المستخدم
+        //        FullName = user.FullName, // استخدام الاسم الموجود بالفعل في جدول Users
+        //        PatientCode = Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper(), // إنشاء كود فريد للمريض
+        //        CreatedAt = DateTime.UtcNow
+        //        // باقي الحقول مثل فصيلة الدم والطول والوزن ستكون فارغة في البداية
+        //    };
+        //    _context.Patients.Add(patientProfile);
+
+        //    // --- نهاية المنطق الجديد ---
+
+        //    // الخطوة 5: إضافة دور "المريض" الجديد للمستخدم في جدول `UserRoleAssignments`
+        //    user.Roles.Add(new UserRoleAssignment { UserId = user.Id, Role = UserRole.Patient });
+
+        //    // الخطوة 6: حفظ جميع التغييرات (إنشاء المريض وإضافة الدور) في معاملة واحدة
+        //    await _context.SaveChangesAsync();
+
+        //    // الخطوة 7: إعادة إصدار Token جديد يحتوي على الأدوار المحدثة ("Doctor" و "Patient")
+        //    var newAccessToken = _jwtService.GenerateAccessToken(user);
+
+        //    // يمكنك أيضاً التعامل مع Refresh Token هنا إذا كان نظامك يستخدمه
+
+        //    // مسار إرجاع 4: النجاح. هذا هو المسار الذي كان ناقصاً ويسبب خطأ CS0161
+        //    return Ok(new LoginResponse // افترض أن لديك DTO بهذا الاسم لإرجاع التوكن
+        //    {
+        //        Success = true,
+        //        Message = "تم تفعيل ملفك الطبي بنجاح! يمكنك الآن التبديل إليه.",
+        //        Token = newAccessToken,
+        //        // RefreshToken = newRefreshToken
+        //    });
+        //}
+
+
+
+
     }
 }
 
 
-//public async Task<ActionResult<PatientSearchResponse>> SearchPatient([FromBody] PatientSearchRequest request)
-//{
-//    try
-//    {
-//        if (!ModelState.IsValid)
-//        {
-//            return BadRequest(new PatientSearchResponse
-//            {
-//                Success = false,
-//                Message = "البيانات المدخلة غير صحيحة"
-//            });
-//        }
 
-//        var patient = await _context.Patients
-//            .Include(p => p.User)
-//            .Include(p => p.Allergies)
-//            .Include(p => p.ChronicDiseases)
-//            .Include(p => p.Surgeries)
-//            .Include(p => p.MedicalRecords)
-//                .ThenInclude(mr => mr.Doctor)
-//            .Include(p => p.Prescriptions)
-//                .ThenInclude(pr => pr.PrescriptionItems)
-//            .FirstOrDefaultAsync(p => p.User.NationalId == request.NationalId);
 
-//        if (patient == null)
-//        {
-//            return NotFound(new PatientSearchResponse
-//            {
-//                Success = false,
-//                Message = "لم يتم العثور على المريض"
-//            });
-//        }
 
-//        var patientInfo = new PatientMedicalInfo
-//        {
-//            Id = patient.UserId,
-//            FullName = patient.FullName,
-//            DateOfBirth = patient.DateOfBirth,
-//            Gender = patient.Gender,
-//            BloodType = patient.BloodType,
-//            Weight = patient.Weight,
-//            Height = patient.Height,
-//            EmergencyContact = patient.EmergencyContact,
-//            EmergencyPhone = patient.EmergencyPhone,
-//            Allergies = patient.Allergies.Select(a => new AllergyInfo
-//            {
-//                Id = a.Id,
-//                PatientId = a.PatientId,
-//                AllergenName = a.AllergenName,
-//                Reaction = a.Reaction,
-//                Severity = a.Severity,
-//                CreatedAt = a.CreatedAt
-//            }).ToList(),
-//            ChronicDiseases = patient.ChronicDiseases.Select(cd => new ChronicDiseaseInfo
-//            {
-//                Id = cd.Id,
-//                PatientId = cd.PatientId,
-//                DiseaseName = cd.DiseaseName,
-//                Description = cd.Description,
-//                DiagnosisDate = cd.DiagnosisDate,
-//                CreatedAt = cd.CreatedAt
-//            }).ToList(),
-//            Surgeries = patient.Surgeries.Select(s => new SurgeryInfo
-//            {
-//                Id = s.Id,
-//                PatientId = s.PatientId,
-//                SurgeryName = s.SurgeryName,
-//                Description = s.Description,
-//                SurgeryDate = s.SurgeryDate,
-//                Hospital = s.Hospital,
-//                Surgeon = s.Surgeon,
-//                CreatedAt = s.CreatedAt
-//            }).ToList(),
-//            MedicalRecords = patient.MedicalRecords.Select(mr => new MedicalRecordInfo
-//            {
-//                Id = mr.Id,
-//                PatientId = mr.PatientId,
-//                DoctorId = null,
-//                Diagnosis = mr.Diagnosis,
-//                Notes = mr.Notes,
-//                Symptoms = mr.Symptoms,
-//                Treatment = mr.Treatment,
-//                RecordDate = mr.RecordDate,
-//                CreatedAt = mr.CreatedAt,
-//                DoctorName = mr.Doctor.FullName,
-//                PatientName = patient.FullName
-//            }).ToList(),
-//            Prescriptions = patient.Prescriptions.Select(p => new PrescriptionInfo
-//            {
-//                Id = p.Id,
-//                PatientId = p.PatientId,
-//                DoctorId = p.DoctorId,
-//                Diagnosis = p.Diagnosis,
-//                Notes = p.Notes,
-//                Status = p.Status,
-//                PrescriptionDate = p.PrescriptionDate,
-//                CreatedAt = p.CreatedAt,
-//                DoctorName = p.Doctor.FullName,
-//                PatientName = patient.FullName,
-//                Items = p.PrescriptionItems.Select(pi => new PrescriptionItemInfo
-//                {
-//                    Id = pi.Id,
-//                    PrescriptionId = pi.PrescriptionId,
-//                    MedicationName = pi.MedicationName,
-//                    Dosage = pi.Dosage,
-//                    Frequency = pi.Frequency,
-//                    Duration = pi.Duration,
-//                    Instructions = pi.Instructions,
-//                    Quantity = pi.Quantity,
-//                    IsDispensed = pi.IsDispensed,
-//                    CreatedAt = pi.CreatedAt
-//                }).ToList()
-//            }).ToList()
-//        };
 
-//        return Ok(new PatientSearchResponse
-//        {
-//            Success = true,
-//            Message = "تم العثور على المريض بنجاح",
-//            Patient = patientInfo
-//        });
-//    }
-//    catch (Exception ex)
-//    {
-//        _logger.LogError(ex, "Error searching for patient");
-//        return StatusCode(500, new PatientSearchResponse
-//        {
-//            Success = false,
-//            Message = "حدث خطأ في الخادم"
-//        });
-//    }
-//}
+
+
+
+////public async Task<ActionResult<PatientSearchResponse>> SearchPatient([FromBody] PatientSearchRequest request)
+////{
+////    try
+////    {
+////        if (!ModelState.IsValid)
+////        {
+////            return BadRequest(new PatientSearchResponse
+////            {
+////                Success = false,
+////                Message = "البيانات المدخلة غير صحيحة"
+////            });
+////        }
+
+////        var patient = await _context.Patients
+////            .Include(p => p.User)
+////            .Include(p => p.Allergies)
+////            .Include(p => p.ChronicDiseases)
+////            .Include(p => p.Surgeries)
+////            .Include(p => p.MedicalRecords)
+////                .ThenInclude(mr => mr.Doctor)
+////            .Include(p => p.Prescriptions)
+////                .ThenInclude(pr => pr.PrescriptionItems)
+////            .FirstOrDefaultAsync(p => p.User.NationalId == request.NationalId);
+
+////        if (patient == null)
+////        {
+////            return NotFound(new PatientSearchResponse
+////            {
+////                Success = false,
+////                Message = "لم يتم العثور على المريض"
+////            });
+////        }
+
+////        var patientInfo = new PatientMedicalInfo
+////        {
+////            Id = patient.UserId,
+////            FullName = patient.FullName,
+////            DateOfBirth = patient.DateOfBirth,
+////            Gender = patient.Gender,
+////            BloodType = patient.BloodType,
+////            Weight = patient.Weight,
+////            Height = patient.Height,
+////            EmergencyContact = patient.EmergencyContact,
+////            EmergencyPhone = patient.EmergencyPhone,
+////            Allergies = patient.Allergies.Select(a => new AllergyInfo
+////            {
+////                Id = a.Id,
+////                PatientId = a.PatientId,
+////                AllergenName = a.AllergenName,
+////                Reaction = a.Reaction,
+////                Severity = a.Severity,
+////                CreatedAt = a.CreatedAt
+////            }).ToList(),
+////            ChronicDiseases = patient.ChronicDiseases.Select(cd => new ChronicDiseaseInfo
+////            {
+////                Id = cd.Id,
+////                PatientId = cd.PatientId,
+////                DiseaseName = cd.DiseaseName,
+////                Description = cd.Description,
+////                DiagnosisDate = cd.DiagnosisDate,
+////                CreatedAt = cd.CreatedAt
+////            }).ToList(),
+////            Surgeries = patient.Surgeries.Select(s => new SurgeryInfo
+////            {
+////                Id = s.Id,
+////                PatientId = s.PatientId,
+////                SurgeryName = s.SurgeryName,
+////                Description = s.Description,
+////                SurgeryDate = s.SurgeryDate,
+////                Hospital = s.Hospital,
+////                Surgeon = s.Surgeon,
+////                CreatedAt = s.CreatedAt
+////            }).ToList(),
+////            MedicalRecords = patient.MedicalRecords.Select(mr => new MedicalRecordInfo
+////            {
+////                Id = mr.Id,
+////                PatientId = mr.PatientId,
+////                DoctorId = null,
+////                Diagnosis = mr.Diagnosis,
+////                Notes = mr.Notes,
+////                Symptoms = mr.Symptoms,
+////                Treatment = mr.Treatment,
+////                RecordDate = mr.RecordDate,
+////                CreatedAt = mr.CreatedAt,
+////                DoctorName = mr.Doctor.FullName,
+////                PatientName = patient.FullName
+////            }).ToList(),
+////            Prescriptions = patient.Prescriptions.Select(p => new PrescriptionInfo
+////            {
+////                Id = p.Id,
+////                PatientId = p.PatientId,
+////                DoctorId = p.DoctorId,
+////                Diagnosis = p.Diagnosis,
+////                Notes = p.Notes,
+////                Status = p.Status,
+////                PrescriptionDate = p.PrescriptionDate,
+////                CreatedAt = p.CreatedAt,
+////                DoctorName = p.Doctor.FullName,
+////                PatientName = patient.FullName,
+////                Items = p.PrescriptionItems.Select(pi => new PrescriptionItemInfo
+////                {
+////                    Id = pi.Id,
+////                    PrescriptionId = pi.PrescriptionId,
+////                    MedicationName = pi.MedicationName,
+////                    Dosage = pi.Dosage,
+////                    Frequency = pi.Frequency,
+////                    Duration = pi.Duration,
+////                    Instructions = pi.Instructions,
+////                    Quantity = pi.Quantity,
+////                    IsDispensed = pi.IsDispensed,
+////                    CreatedAt = pi.CreatedAt
+////                }).ToList()
+////            }).ToList()
+////        };
+
+////        return Ok(new PatientSearchResponse
+////        {
+////            Success = true,
+////            Message = "تم العثور على المريض بنجاح",
+////            Patient = patientInfo
+////        });
+////    }
+////    catch (Exception ex)
+////    {
+////        _logger.LogError(ex, "Error searching for patient");
+////        return StatusCode(500, new PatientSearchResponse
+////        {
+////            Success = false,
+////            Message = "حدث خطأ في الخادم"
+////        });
+////    }
+////}

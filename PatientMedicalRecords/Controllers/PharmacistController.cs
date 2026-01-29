@@ -31,7 +31,7 @@ namespace PatientMedicalRecords.Controllers
             _logger = logger;
         }
 
-           
+
         /// <summary>
         /// الحصول على ملف الصيدلي الشخصي
         /// </summary>
@@ -182,7 +182,7 @@ namespace PatientMedicalRecords.Controllers
 
                 var patient = await _context.Patients
                     .Include(p => p.User)
-                    .Include(p => p.Prescriptions)                    
+                    .Include(p => p.Prescriptions)
                     .FirstOrDefaultAsync(p => p.User.NationalId == request.Identifier
                     || p.PatientCode == request.Identifier);
 
@@ -319,7 +319,7 @@ namespace PatientMedicalRecords.Controllers
                 var interactionRequest = new DrugInteractionCheckRequest
                 {
                     PatientId = prescription.PatientId, // <-- تأكد أن الحقل موجود في نموذجك
-                     Medications = prescription.PrescriptionItems
+                    Medications = prescription.PrescriptionItems
                         .Where(pi => request.Items.Any(i => i.PrescriptionItemId == pi.Id && i.Dispensed))
                         .Select(pi => pi.MedicationName)
                         .ToList()
@@ -412,20 +412,20 @@ namespace PatientMedicalRecords.Controllers
 
 
 
-       [HttpPost("create")]
-       public async Task<ActionResult<ServiceResult>> CreatePrescription([FromBody] PrescriptionCreateRequest request)
-            {
-                if (!ModelState.IsValid)
-                    return BadRequest(ServiceResult.Fail("البيانات المدخلة غير صحيحة"));
+        [HttpPost("create")]
+        public async Task<ActionResult<ServiceResult>> CreatePrescription([FromBody] PrescriptionCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ServiceResult.Fail("البيانات المدخلة غير صحيحة"));
 
-                var result = await _drugInteractionService.CreatePrescriptionAsync(request);
+            var result = await _drugInteractionService.CreatePrescriptionAsync(request);
 
-                if (!result.Success)
-                    return BadRequest(result);
+            if (!result.Success)
+                return BadRequest(result);
 
-                return Ok(result);
-            }
-        
+            return Ok(result);
+        }
+
 
         /// <summary>
         /// تحديث حالة الوصفة الطبية
@@ -463,7 +463,7 @@ namespace PatientMedicalRecords.Controllers
                 await _context.SaveChangesAsync();
 
                 // Log the action
-                await LogUserAction(userId.Value, "UPDATE_PRESCRIPTION_STATUS", 
+                await LogUserAction(userId.Value, "UPDATE_PRESCRIPTION_STATUS",
                     $"تم تحديث حالة الوصفة الطبية {request.PrescriptionId} إلى {request.Status}");
 
                 return Ok(new PrescriptionStatusUpdateResponse
@@ -530,154 +530,154 @@ namespace PatientMedicalRecords.Controllers
 
 
 
-//public async Task<ActionResult<PrescriptionDispenseResponse>> DispensePrescription([FromBody] PrescriptionDispenseRequest request)
-//{
-//    try
-//    {
-//        if (!ModelState.IsValid)
-//        {
-//            return BadRequest(new PrescriptionDispenseResponse
-//            {
-//                Success = false,
-//                Message = "البيانات المدخلة غير صحيحة"
-//            });
-//        }
+////public async Task<ActionResult<PrescriptionDispenseResponse>> DispensePrescription([FromBody] PrescriptionDispenseRequest request)
+////{
+////    try
+////    {
+////        if (!ModelState.IsValid)
+////        {
+////            return BadRequest(new PrescriptionDispenseResponse
+////            {
+////                Success = false,
+////                Message = "البيانات المدخلة غير صحيحة"
+////            });
+////        }
 
-//        var userId = GetCurrentUserId();
-//        if (userId == null) return Unauthorized();
+////        var userId = GetCurrentUserId();
+////        if (userId == null) return Unauthorized();
 
-//        var prescription = await _context.Prescriptions
-//            .Include(p => p.PrescriptionItems)
-//            .FirstOrDefaultAsync(p => p.Id == request.PrescriptionId);
+////        var prescription = await _context.Prescriptions
+////            .Include(p => p.PrescriptionItems)
+////            .FirstOrDefaultAsync(p => p.Id == request.PrescriptionId);
 
-//        if (prescription == null)
-//        {
-//            return NotFound(new PrescriptionDispenseResponse
-//            {
-//                Success = false,
-//                Message = "لم يتم العثور على الوصفة الطبية"
-//            });
-//        }
+////        if (prescription == null)
+////        {
+////            return NotFound(new PrescriptionDispenseResponse
+////            {
+////                Success = false,
+////                Message = "لم يتم العثور على الوصفة الطبية"
+////            });
+////        }
 
-//        // Check for drug interactions
-//        var medications = request.Items
-//            .Where(i => i.Dispensed)
-//            .Select(i => prescription.PrescriptionItems.First(pi => pi.Id == i.PrescriptionItemId).MedicationName)
-//            .ToList();
+////        // Check for drug interactions
+////        var medications = request.Items
+////            .Where(i => i.Dispensed)
+////            .Select(i => prescription.PrescriptionItems.First(pi => pi.Id == i.PrescriptionItemId).MedicationName)
+////            .ToList();
 
-//        var interactionRequest = new DrugInteractionCheckRequest
-//        {
-//            PatientId = prescription.Id,
-//            Medications = medications
-//        };
+////        var interactionRequest = new DrugInteractionCheckRequest
+////        {
+////            PatientId = prescription.Id,
+////            Medications = medications
+////        };
 
-//        var interactionResult = await _drugInteractionService.CheckDrugInteractionsAsync(interactionRequest);
+////        var interactionResult = await _drugInteractionService.CheckDrugInteractionsAsync(interactionRequest);
 
-//        // Update prescription items
-//        foreach (var item in request.Items)
-//        {
-//            var prescriptionItem = prescription.PrescriptionItems.FirstOrDefault(pi => pi.Id == item.PrescriptionItemId);
-//            if (prescriptionItem != null)
-//            {
-//                prescriptionItem.IsDispensed = item.Dispensed;
-//            }
-//        }
+////        // Update prescription items
+////        foreach (var item in request.Items)
+////        {
+////            var prescriptionItem = prescription.PrescriptionItems.FirstOrDefault(pi => pi.Id == item.PrescriptionItemId);
+////            if (prescriptionItem != null)
+////            {
+////                prescriptionItem.IsDispensed = item.Dispensed;
+////            }
+////        }
 
-//        // Create dispense record
-//        var dispense = new PrescriptionDispense
-//        {
-//            PrescriptionId = request.PrescriptionId,
-//            PharmacistId = userId.Value,
-//            Notes = request.Notes,
-//            DispenseDate = DateTime.UtcNow,
-//            CreatedAt = DateTime.UtcNow
-//        };
+////        // Create dispense record
+////        var dispense = new PrescriptionDispense
+////        {
+////            PrescriptionId = request.PrescriptionId,
+////            PharmacistId = userId.Value,
+////            Notes = request.Notes,
+////            DispenseDate = DateTime.UtcNow,
+////            CreatedAt = DateTime.UtcNow
+////        };
 
-//        _context.PrescriptionDispenses.Add(dispense);
+////        _context.PrescriptionDispenses.Add(dispense);
 
-//        // Update prescription status
-//        var dispensedItems = prescription.PrescriptionItems.Count(pi => pi.IsDispensed);
-//        var totalItems = prescription.PrescriptionItems.Count;
+////        // Update prescription status
+////        var dispensedItems = prescription.PrescriptionItems.Count(pi => pi.IsDispensed);
+////        var totalItems = prescription.PrescriptionItems.Count;
 
-//        if (dispensedItems == totalItems)
-//        {
-//            prescription.Status = PrescriptionStatus.Dispensed;
-//        }
-//        else if (dispensedItems > 0)
-//        {
-//            prescription.Status = PrescriptionStatus.PartiallyDispensed;
-//        }
+////        if (dispensedItems == totalItems)
+////        {
+////            prescription.Status = PrescriptionStatus.Dispensed;
+////        }
+////        else if (dispensedItems > 0)
+////        {
+////            prescription.Status = PrescriptionStatus.PartiallyDispensed;
+////        }
 
-//        await _context.SaveChangesAsync();
+////        await _context.SaveChangesAsync();
 
-//        // Log the action
-//        await LogUserAction(userId.Value, "DISPENSE_PRESCRIPTION", 
-//            $"تم صرف الوصفة الطبية {request.PrescriptionId}");
+////        // Log the action
+////        await LogUserAction(userId.Value, "DISPENSE_PRESCRIPTION", 
+////            $"تم صرف الوصفة الطبية {request.PrescriptionId}");
 
-//        var dispenseInfo = new PrescriptionDispenseInfo
-//        {
-//            Id = dispense.Id,
-//            PrescriptionId = dispense.PrescriptionId,
-//            PharmacistId = dispense.PharmacistId,
-//            Notes = dispense.Notes,
-//            DispenseDate = dispense.DispenseDate,
-//            CreatedAt = dispense.CreatedAt,
-//            Items = prescription.PrescriptionItems.Select(pi => new DispensedItemInfo
-//            {
-//                Id = pi.Id,
-//                PrescriptionItemId = pi.Id,
-//                MedicationName = pi.MedicationName,
-//                Dosage = pi.Dosage,
-//                Frequency = pi.Frequency,
-//                Duration = pi.Duration,
-//                Instructions = pi.Instructions,
-//                Quantity = pi.Quantity,
-//                IsDispensed = pi.IsDispensed,
-//                DispenseNotes = request.Items.FirstOrDefault(i => i.PrescriptionItemId == pi.Id)?.Notes
-//            }).ToList()
-//        };
+////        var dispenseInfo = new PrescriptionDispenseInfo
+////        {
+////            Id = dispense.Id,
+////            PrescriptionId = dispense.PrescriptionId,
+////            PharmacistId = dispense.PharmacistId,
+////            Notes = dispense.Notes,
+////            DispenseDate = dispense.DispenseDate,
+////            CreatedAt = dispense.CreatedAt,
+////            Items = prescription.PrescriptionItems.Select(pi => new DispensedItemInfo
+////            {
+////                Id = pi.Id,
+////                PrescriptionItemId = pi.Id,
+////                MedicationName = pi.MedicationName,
+////                Dosage = pi.Dosage,
+////                Frequency = pi.Frequency,
+////                Duration = pi.Duration,
+////                Instructions = pi.Instructions,
+////                Quantity = pi.Quantity,
+////                IsDispensed = pi.IsDispensed,
+////                DispenseNotes = request.Items.FirstOrDefault(i => i.PrescriptionItemId == pi.Id)?.Notes
+////            }).ToList()
+////        };
 
-//        return Ok(new PrescriptionDispenseResponse
-//        {
-//            Success = true,
-//            Message = interactionResult.HasInteractions 
-//                ? "تم صرف الوصفة مع تحذيرات التفاعل الدوائي" 
-//                : "تم صرف الوصفة بنجاح",
-//            Dispense = dispenseInfo,
-//            Warnings = interactionResult.Warnings
-//        });
-//    }
-//    catch (Exception ex)
-//    {
-//        _logger.LogError(ex, "Error dispensing prescription");
-//        return StatusCode(500, new PrescriptionDispenseResponse
-//        {
-//            Success = false,
-//            Message = "حدث خطأ في الخادم"
-//        });
-//    }
-//}
+////        return Ok(new PrescriptionDispenseResponse
+////        {
+////            Success = true,
+////            Message = interactionResult.HasInteractions 
+////                ? "تم صرف الوصفة مع تحذيرات التفاعل الدوائي" 
+////                : "تم صرف الوصفة بنجاح",
+////            Dispense = dispenseInfo,
+////            Warnings = interactionResult.Warnings
+////        });
+////    }
+////    catch (Exception ex)
+////    {
+////        _logger.LogError(ex, "Error dispensing prescription");
+////        return StatusCode(500, new PrescriptionDispenseResponse
+////        {
+////            Success = false,
+////            Message = "حدث خطأ في الخادم"
+////        });
+////    }
+////}
 
 
-/// <summary>
-/// الحصول على اقتراحات الأدوية
-/// </summary>
-//[HttpGet("medication-suggestions")]
-//        public async Task<ActionResult<List<string>>> GetMedicationSuggestions([FromQuery] string partialName)
-//        {
-//            try
-//            {
-//                if (string.IsNullOrWhiteSpace(partialName))
-//                {
-//                    return BadRequest("اسم الدواء مطلوب");
-//                }
+///// <summary>
+///// الحصول على اقتراحات الأدوية
+///// </summary>
+////[HttpGet("medication-suggestions")]
+////        public async Task<ActionResult<List<string>>> GetMedicationSuggestions([FromQuery] string partialName)
+////        {
+////            try
+////            {
+////                if (string.IsNullOrWhiteSpace(partialName))
+////                {
+////                    return BadRequest("اسم الدواء مطلوب");
+////                }
 
-//                var suggestions = await _drugInteractionService.GetMedicationSuggestionsAsync(partialName);
-//                return Ok(suggestions);
-//            }
-//            catch (Exception ex)
-//            {
-//                _logger.LogError(ex, "Error getting medication suggestions");
-//                return StatusCode(500, "حدث خطأ في الخادم");
-//            }
-//        }
+////                var suggestions = await _drugInteractionService.GetMedicationSuggestionsAsync(partialName);
+////                return Ok(suggestions);
+////            }
+////            catch (Exception ex)
+////            {
+////                _logger.LogError(ex, "Error getting medication suggestions");
+////                return StatusCode(500, "حدث خطأ في الخادم");
+////            }
+////        }

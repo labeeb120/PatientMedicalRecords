@@ -170,11 +170,7 @@ namespace PatientMedicalRecords.Services
                         ComparisonSteps = comparisonSteps
                     };
 
-                //Success = true,
-                //    Message = relevantWarnings.Any() ? "تم العثور على تفاعلات دوائية خطيرة أو متوسطة" : "لا توجد تفاعلات دوائية معروفة",
-                //    Warnings = relevantWarnings,
-                //    HasInteractions = relevantWarnings.Any()
-                //};
+                
             }
             catch (Exception ex)
             {
@@ -199,12 +195,6 @@ namespace PatientMedicalRecords.Services
 
 
 
-        //public Task<List<DrugInteractionWarning>> GetKnownInteractionsAsync(List<int> ingredientIds)
-        //{
-        //    // تم تغيير نوع الإدخال في الواجهة ليتناسب مع منطق المكونات
-        //    // يمكن استخدام هذه الدالة كدالة مساعدة لجلب التفاعلات بشكل مباشر عن طريق معرفات المكونات
-        //    throw new NotImplementedException();
-        //}
 
 
         //******************************************

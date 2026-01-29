@@ -48,6 +48,7 @@ namespace PatientMedicalRecords.DTOs
 
 public class AllergyInput
 {
+    public int? Id { get; set; } // Optional ID for updates
     [Required]
     [StringLength(100)]
     public string AllergenName { get; set; } = string.Empty;
@@ -61,6 +62,7 @@ public class AllergyInput
 
 public class ChronicDiseaseInput
 {
+    public int? Id { get; set; } // Optional ID for updates
     [Required]
     [StringLength(100)]
     public string DiseaseName { get; set; } = string.Empty;
@@ -73,6 +75,7 @@ public class ChronicDiseaseInput
 
 public class SurgeryInput
 {
+    public int? Id { get; set; } // Optional ID for updates
     [Required]
     [StringLength(100)]
     public string SurgeryName { get; set; } = string.Empty;
@@ -92,6 +95,7 @@ public class SurgeryInput
 
 public class CurrentMedicationInput
 {
+    public int? Id { get; set; } // Optional ID for updates
     [Required]
     [StringLength(100)]
     public string MedicationName { get; set; } = string.Empty;

@@ -194,8 +194,8 @@ namespace PatientMedicalRecords.DTOs
         public string LicenseNumber { get; set; } = string.Empty;        
         public string? Specialization { get; set; }
         public string? Hospital { get; set; }
-        [Required(ErrorMessage = "شهادة الترخيص مطلوبة")]
-        public IFormFile LicenseDocument { get; set; }
+        //[Required(ErrorMessage = "شهادة الترخيص مطلوبة")]
+        public IFormFile? LicenseDocument { get; set; }
     }
 
     public class PharmacistRegisterRequest
@@ -208,8 +208,8 @@ namespace PatientMedicalRecords.DTOs
         public string PhoneNumber { get; set; } = string.Empty;
         public string LicenseNumber { get; set; } = string.Empty;
         public string? PharmacyName { get; set; }    
-        [Required(ErrorMessage = "شهادة الترخيص مطلوبة")]
-        public IFormFile LicenseDocument { get; set; }
+        //[Required(ErrorMessage = "شهادة الترخيص مطلوبة")]
+        public IFormFile? LicenseDocument { get; set; }
 
     }
 

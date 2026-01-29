@@ -62,7 +62,7 @@ namespace PatientMedicalRecords.Services
     public class RefreshResult
     {
         public bool Success { get; set; }
-        public string AccessToken { get; set; }
+        public string? AccessToken { get; set; }
         public string? NewRefreshToken { get; set; }
         public string Message { get; set; } = string.Empty;
     }

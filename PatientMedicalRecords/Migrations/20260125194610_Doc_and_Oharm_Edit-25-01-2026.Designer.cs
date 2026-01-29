@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PatientMedicalRecords.Data;
 
@@ -11,9 +12,11 @@ using PatientMedicalRecords.Data;
 namespace PatientMedicalRecords.Migrations
 {
     [DbContext(typeof(MedicalRecordsDbContext))]
-    partial class MedicalRecordsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260125194610_Doc_and_Oharm_Edit-25-01-2026")]
+    partial class Doc_and_Oharm_Edit25012026
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

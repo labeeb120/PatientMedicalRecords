@@ -19,6 +19,11 @@ namespace PatientMedicalRecords.Models
         public DateTime PrescriptionDate { get; set; } = DateTime.UtcNow;
         public PrescriptionStatus Status { get; set; } = PrescriptionStatus.Pending;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        //25-01-2026 start:
+        public int? AssignedPharmacistId { get; set; }
+        [ForeignKey("AssignedPharmacistId")]
+        public virtual Pharmacist? AssignedPharmacist { get; set; }
+        //25-01-2026 end.
 
         public ICollection<PrescriptionItem> PrescriptionItems { get; set; } = new List<PrescriptionItem>();
         public virtual ICollection<PrescriptionDispense> PrescriptionDispenses { get; set; } = new List<PrescriptionDispense>();

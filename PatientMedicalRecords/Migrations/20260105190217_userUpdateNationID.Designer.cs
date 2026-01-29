@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PatientMedicalRecords.Data;
 
@@ -11,9 +12,11 @@ using PatientMedicalRecords.Data;
 namespace PatientMedicalRecords.Migrations
 {
     [DbContext(typeof(MedicalRecordsDbContext))]
-    partial class MedicalRecordsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260105190217_userUpdateNationID")]
+    partial class userUpdateNationID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -276,7 +279,7 @@ namespace PatientMedicalRecords.Migrations
                         {
                             Id = 1,
                             BrandName = "Adol",
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 1, 671, DateTimeKind.Utc).AddTicks(9287),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 11, 874, DateTimeKind.Utc).AddTicks(5316),
                             Manufacturer = "Pharma Co.",
                             NormalizedName = "adol",
                             ScientificName = "Paracetamol"
@@ -285,7 +288,7 @@ namespace PatientMedicalRecords.Migrations
                         {
                             Id = 2,
                             BrandName = "Brufen",
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 1, 671, DateTimeKind.Utc).AddTicks(9298),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 11, 874, DateTimeKind.Utc).AddTicks(5322),
                             Manufacturer = "Med Co.",
                             NormalizedName = "brufen",
                             ScientificName = "Ibuprofen"
@@ -294,7 +297,7 @@ namespace PatientMedicalRecords.Migrations
                         {
                             Id = 3,
                             BrandName = "Amoxil",
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 1, 671, DateTimeKind.Utc).AddTicks(9302),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 11, 874, DateTimeKind.Utc).AddTicks(5326),
                             Manufacturer = "Global Drugs",
                             NormalizedName = "amoxil",
                             ScientificName = "Amoxicillin"
@@ -303,7 +306,7 @@ namespace PatientMedicalRecords.Migrations
                         {
                             Id = 4,
                             BrandName = "Tylenol",
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 1, 671, DateTimeKind.Utc).AddTicks(9307),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 11, 874, DateTimeKind.Utc).AddTicks(5329),
                             Manufacturer = "US Pharma",
                             NormalizedName = "tylenol",
                             ScientificName = "Paracetamol"
@@ -312,7 +315,7 @@ namespace PatientMedicalRecords.Migrations
                         {
                             Id = 5,
                             BrandName = "Coumadin",
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 1, 671, DateTimeKind.Utc).AddTicks(9310),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 11, 874, DateTimeKind.Utc).AddTicks(5331),
                             Manufacturer = "Chem Lab",
                             NormalizedName = "coumadin",
                             ScientificName = "Warfarin"
@@ -416,7 +419,7 @@ namespace PatientMedicalRecords.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 1, 671, DateTimeKind.Utc).AddTicks(9591),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 11, 874, DateTimeKind.Utc).AddTicks(5552),
                             Description = "قد يزيد الإيبوبروفين من تأثير الوارفارين، مما يزيد بشكل كبير من خطر النزيف الحاد.",
                             IngredientAId = 2,
                             IngredientBId = 4,
@@ -426,7 +429,7 @@ namespace PatientMedicalRecords.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 1, 671, DateTimeKind.Utc).AddTicks(9599),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 11, 874, DateTimeKind.Utc).AddTicks(5556),
                             Description = "لا يوجد تفاعل سريري كبير معروف بين هذين المكونين.",
                             IngredientAId = 1,
                             IngredientBId = 3,
@@ -464,28 +467,28 @@ namespace PatientMedicalRecords.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 1, 671, DateTimeKind.Utc).AddTicks(8165),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 11, 874, DateTimeKind.Utc).AddTicks(4853),
                             Name = "Paracetamol",
                             NormalizedName = "paracetamol"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 1, 671, DateTimeKind.Utc).AddTicks(8180),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 11, 874, DateTimeKind.Utc).AddTicks(4862),
                             Name = "Ibuprofen",
                             NormalizedName = "ibuprofen"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 1, 671, DateTimeKind.Utc).AddTicks(8186),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 11, 874, DateTimeKind.Utc).AddTicks(4865),
                             Name = "Amoxicillin",
                             NormalizedName = "amoxicillin"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 1, 671, DateTimeKind.Utc).AddTicks(8188),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 11, 874, DateTimeKind.Utc).AddTicks(4867),
                             Name = "Warfarin",
                             NormalizedName = "warfarin"
                         });
@@ -741,32 +744,6 @@ namespace PatientMedicalRecords.Migrations
                     b.ToTable("Pharmacists");
                 });
 
-            modelBuilder.Entity("PatientMedicalRecords.Models.PinnedPatient", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("PinnedPatients");
-                });
-
             modelBuilder.Entity("PatientMedicalRecords.Models.Prescription", b =>
                 {
                     b.Property<int>("Id")
@@ -774,9 +751,6 @@ namespace PatientMedicalRecords.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AssignedPharmacistId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -803,8 +777,6 @@ namespace PatientMedicalRecords.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AssignedPharmacistId");
 
                     b.HasIndex("DoctorId");
 
@@ -1028,11 +1000,11 @@ namespace PatientMedicalRecords.Migrations
                         new
                         {
                             Id = 101,
-                            CreatedAt = new DateTime(2026, 1, 25, 19, 46, 3, 121, DateTimeKind.Utc).AddTicks(8333),
+                            CreatedAt = new DateTime(2026, 1, 5, 19, 2, 12, 935, DateTimeKind.Utc).AddTicks(2502),
                             Email = "admin@medicalrecords.com",
                             FullName = "System Administrator",
                             NationalId = "1000000001",
-                            PasswordHash = "$2a$11$qbEQXVbsEmN2wHMX8SJWReA9HMxCGH7Ohw41fyH9xvJFezPQlxTG.",
+                            PasswordHash = "$2a$11$sXzYIzQJ17vaGGGMp5AUdupb3tlDnWe9JNQ/Y/8WXMvERbd/EBa2y",
                             Role = 4,
                             Status = 2
                         });
@@ -1256,31 +1228,8 @@ namespace PatientMedicalRecords.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PatientMedicalRecords.Models.PinnedPatient", b =>
-                {
-                    b.HasOne("PatientMedicalRecords.Models.Doctor", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PatientMedicalRecords.Models.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Patient");
-                });
-
             modelBuilder.Entity("PatientMedicalRecords.Models.Prescription", b =>
                 {
-                    b.HasOne("PatientMedicalRecords.Models.Pharmacist", "AssignedPharmacist")
-                        .WithMany()
-                        .HasForeignKey("AssignedPharmacistId");
-
                     b.HasOne("PatientMedicalRecords.Models.Doctor", "Doctor")
                         .WithMany("Prescriptions")
                         .HasForeignKey("DoctorId")
@@ -1291,8 +1240,6 @@ namespace PatientMedicalRecords.Migrations
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AssignedPharmacist");
 
                     b.Navigation("Doctor");
 
