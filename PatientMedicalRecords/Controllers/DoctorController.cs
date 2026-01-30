@@ -575,75 +575,76 @@ namespace PatientMedicalRecords.Controllers
 
 
 
-        // In Controllers/DoctorController.cs
-        //26-01-2026 تم اضافة هذا الميثود لتفعيل ملف المريض للطبيب
-        // تأكد من حقن IJwtService في المُنشئ (Constructor) الخاص بـ DoctorController
-        // private readonly IJwtService _jwtService;
-        // public DoctorController(..., IJwtService jwtService) { ..., _jwtService = jwtService; }
+        /// <summary>
+        /// تفعيل ملف المريض للأطباء والصيادلة
+        /// </summary>
+        [HttpPost("activate-patient-profile")]
+        [Authorize(Roles = "Doctor,Pharmacist")]
+        public async Task<ActionResult<LoginResponse>> ActivatePatientProfile()
+        {
+            var userId = GetCurrentUserId();
+            if (userId == null) return Unauthorized();
 
-        //[HttpPost("activate-patient-profile")]
-        //[Authorize(Roles = "Doctor")]//: //# "// فقط الطبيب المسجل دخوله يمكنه تفعيل ملفه"
-        //public async Task<ActionResult<LoginResponse>> ActivatePatientProfile()
-        //{
-        //    // الخطوة 1: الحصول على هوية المستخدم الحالي
-        //    var doctorId = GetCurrentUserId();
-        //    if (doctorId == null)
-        //    {
-        //        return Unauthorized(); // مسار إرجاع 1: غير مصرح به
-        //    }
+            var user = await _context.Users
+                .Include(u => u.Roles)
+                .FirstOrDefaultAsync(u => u.Id == userId.Value);
 
-        //    // الخطوة 2: جلب المستخدم مع أدواره للتأكد من عدم وجود ملف مريض مسبقاً
-        //    var user = await _context.Users
-        //        .Include(u => u.Roles) // مهم جداً لتحميل الأدوار الحالية
-        //        .FirstOrDefaultAsync(u => u.Id == doctorId.Value);
+            if (user == null) return NotFound("User not found.");
 
-        //    if (user == null)
-        //    {
-        //        return NotFound("User not found."); // مسار إرجاع 2: المستخدم غير موجود
-        //    }
+            // التحقق من عدم وجود دور المريض مسبقاً
+            if (user.Roles.Any(r => r.Role == UserRole.Patient))
+            {
+                return BadRequest(new { Success = false, Message = "لديك ملف طبي مفعل بالفعل." });
+            }
 
-        //    // الخطوة 3: التحقق مما إذا كان دور "المريض" موجوداً بالفعل
-        //    if (user.Roles.Any(assignment => assignment.Role == UserRole.Patient))
-        //    {
-        //        // مسار إرجاع 3: طلب غير صالح لأن الملف موجود
-        //        return BadRequest(new { Success = false, Message = "لديك ملف طبي مفعل بالفعل." });
-        //    }
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                // إنشاء سجل المريض
+                var patientProfile = new Patient
+                {
+                    UserId = user.Id,
+                    FullName = user.FullName ?? "New Patient",
+                    PatientCode = "PM-" + Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper(),
+                    CreatedAt = DateTime.UtcNow
+                };
+                _context.Patients.Add(patientProfile);
 
-        //    // --- بداية المنطق الجديد الذي كان ناقصاً ---
+                // إضافة الدور في الجدول الوسيط
+                _context.UserRoleAssignments.Add(new UserRoleAssignment
+                {
+                    UserId = user.Id,
+                    Role = UserRole.Patient
+                });
 
-        //    // الخطوة 4: إنشاء سجل الملف الشخصي للمريض في جدول `Patients`
-        //    var patientProfile = new Patient
-        //    {
-        //        UserId = user.Id, // الربط بنفس معرف المستخدم
-        //        FullName = user.FullName, // استخدام الاسم الموجود بالفعل في جدول Users
-        //        PatientCode = Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper(), // إنشاء كود فريد للمريض
-        //        CreatedAt = DateTime.UtcNow
-        //        // باقي الحقول مثل فصيلة الدم والطول والوزن ستكون فارغة في البداية
-        //    };
-        //    _context.Patients.Add(patientProfile);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
 
-        //    // --- نهاية المنطق الجديد ---
+                // توليد توكن جديد يحتوي على الأدوار المحدثة
+                var newAccessToken = _jwtService.GenerateAccessToken(user);
 
-        //    // الخطوة 5: إضافة دور "المريض" الجديد للمستخدم في جدول `UserRoleAssignments`
-        //    user.Roles.Add(new UserRoleAssignment { UserId = user.Id, Role = UserRole.Patient });
-
-        //    // الخطوة 6: حفظ جميع التغييرات (إنشاء المريض وإضافة الدور) في معاملة واحدة
-        //    await _context.SaveChangesAsync();
-
-        //    // الخطوة 7: إعادة إصدار Token جديد يحتوي على الأدوار المحدثة ("Doctor" و "Patient")
-        //    var newAccessToken = _jwtService.GenerateAccessToken(user);
-
-        //    // يمكنك أيضاً التعامل مع Refresh Token هنا إذا كان نظامك يستخدمه
-
-        //    // مسار إرجاع 4: النجاح. هذا هو المسار الذي كان ناقصاً ويسبب خطأ CS0161
-        //    return Ok(new LoginResponse // افترض أن لديك DTO بهذا الاسم لإرجاع التوكن
-        //    {
-        //        Success = true,
-        //        Message = "تم تفعيل ملفك الطبي بنجاح! يمكنك الآن التبديل إليه.",
-        //        Token = newAccessToken,
-        //        // RefreshToken = newRefreshToken
-        //    });
-        //}
+                return Ok(new LoginResponse
+                {
+                    Success = true,
+                    Message = "تم تفعيل ملفك الطبي بنجاح! يمكنك الآن التبديل إليه كـ مريض.",
+                    Token = newAccessToken,
+                    User = new UserInfo
+                    {
+                        Id = user.Id,
+                        NationalId = user.NationalId,
+                        FullName = user.FullName,
+                        Role = user.Role, // Legacy primary role
+                        Status = user.Status
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                _logger.LogError(ex, "Error activating patient profile for user {UserId}", user.Id);
+                return StatusCode(500, "حدث خطأ أثناء تفعيل الملف الطبي");
+            }
+        }
 
 
 
