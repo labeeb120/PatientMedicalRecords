@@ -611,11 +611,15 @@ namespace PatientMedicalRecords.Controllers
                 _context.Patients.Add(patientProfile);
 
                 // إضافة الدور في الجدول الوسيط
-                _context.UserRoleAssignments.Add(new UserRoleAssignment
+                var roleAssignment = new UserRoleAssignment
                 {
                     UserId = user.Id,
                     Role = UserRole.Patient
-                });
+                };
+                _context.UserRoleAssignments.Add(roleAssignment);
+
+                // أضف الدور للمجموعة في الذاكرة لضمان شموله في التوكن الجديد
+                user.Roles.Add(roleAssignment);
 
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
