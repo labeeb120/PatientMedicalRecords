@@ -144,6 +144,10 @@ namespace PatientMedicalRecords.Services
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
             _context.Users.Add(user);
+
+            // 26-01-2026: Sync role with UserRoleAssignments table
+            _context.UserRoleAssignments.Add(new UserRoleAssignment { User = user, Role = UserRole.Patient });
+
             await _context.SaveChangesAsync();
 
             // create patient record
@@ -193,6 +197,10 @@ namespace PatientMedicalRecords.Services
                 };
                 user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
                 _context.Users.Add(user);
+
+                // 26-01-2026: Sync role with UserRoleAssignments table
+                _context.UserRoleAssignments.Add(new UserRoleAssignment { User = user, Role = UserRole.Doctor });
+
                 await _context.SaveChangesAsync(); // حفظ للحصول على user.Id
 
                 //****************                   
@@ -268,6 +276,10 @@ namespace PatientMedicalRecords.Services
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
                 };
                 _context.Users.Add(user);
+
+                // 26-01-2026: Sync role with UserRoleAssignments table
+                _context.UserRoleAssignments.Add(new UserRoleAssignment { User = user, Role = UserRole.Pharmacist });
+
                 await _context.SaveChangesAsync();            
 
             //user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
@@ -331,7 +343,7 @@ namespace PatientMedicalRecords.Services
             User? user = null;
 
             // 1) Try find by patient code
-            var patient = await _context.Patients.Include(p => p.User)
+            var patient = await _context.Patients.Include(p => p.User).ThenInclude(u => u.Roles)
                                  .FirstOrDefaultAsync(p => p.PatientCode == request.Identifier);
             if (patient != null)
             {
@@ -341,7 +353,7 @@ namespace PatientMedicalRecords.Services
             // 2) If not found, try by national id
             if (user == null)
             {
-                user = await _context.Users.FirstOrDefaultAsync(u => u.NationalId == request.Identifier);
+                user = await _context.Users.Include(u => u.Roles).FirstOrDefaultAsync(u => u.NationalId == request.Identifier);
             }
 
             if (user == null)

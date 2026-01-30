@@ -157,10 +157,10 @@ namespace PatientMedicalRecords.Controllers
 
                 var query = _context.Users.AsQueryable();
 
-                // Filter by role
+                // Filter by role (26-01-2026: Updated to support multi-role via UserRoleAssignments)
                 if (request.Role.HasValue)
                 {
-                    query = query.Where(u => u.Role == request.Role.Value);
+                    query = query.Where(u => u.Roles.Any(r => r.Role == request.Role.Value) || u.Role == request.Role.Value);
                 }
 
                 // Filter by status
@@ -386,19 +386,26 @@ namespace PatientMedicalRecords.Controllers
 
                 statistics.MonthlyStats = monthlyStats;
 
-                // Role statistics
-                var roleStats = await _context.Users
-                    .GroupBy(u => u.Role)
-                    .Select(g => new RoleStatistics
+                // Role statistics (26-01-2026: Re-implemented to support multi-role counting)
+                var roles = Enum.GetValues(typeof(UserRole)).Cast<UserRole>();
+                var roleStats = new List<RoleStatistics>();
+
+                foreach (var r in roles)
+                {
+                    var count = await _context.Users.CountAsync(u => u.Roles.Any(ra => ra.Role == r) || u.Role == r);
+                    if (count > 0)
                     {
-                        Role = g.Key,
-                        RoleName = g.Key.ToString(),
-                        Count = g.Count(),
-                        ActiveCount = g.Count(u => u.Status == UserStatus.Approved),
-                        PendingCount = g.Count(u => u.Status == UserStatus.Pending),
-                        SuspendedCount = g.Count(u => u.Status == UserStatus.Suspended)
-                    })
-                    .ToListAsync();
+                        roleStats.Add(new RoleStatistics
+                        {
+                            Role = r,
+                            RoleName = r.ToString(),
+                            Count = count,
+                            ActiveCount = await _context.Users.CountAsync(u => (u.Roles.Any(ra => ra.Role == r) || u.Role == r) && u.Status == UserStatus.Approved),
+                            PendingCount = await _context.Users.CountAsync(u => (u.Roles.Any(ra => ra.Role == r) || u.Role == r) && u.Status == UserStatus.Pending),
+                            SuspendedCount = await _context.Users.CountAsync(u => (u.Roles.Any(ra => ra.Role == r) || u.Role == r) && u.Status == UserStatus.Suspended)
+                        });
+                    }
+                }
 
                 statistics.RoleStats = roleStats;
 

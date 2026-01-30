@@ -386,7 +386,16 @@ namespace PatientMedicalRecords.Data
                     CreatedAt = DateTime.UtcNow
                 }
             
-            );                       
+            );
+
+            modelBuilder.Entity<UserRoleAssignment>().HasData(
+                new UserRoleAssignment
+                {
+                    Id = 1,
+                    UserId = 101,
+                    Role = UserRole.Admin
+                }
+            );
         }
 
 
