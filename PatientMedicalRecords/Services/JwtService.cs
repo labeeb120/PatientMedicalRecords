@@ -37,9 +37,28 @@ namespace PatientMedicalRecords.Services
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.Role.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
+
+            // 26-01-2026: Include all roles to support multi-role users
+            var roles = new HashSet<string>();
+
+            // 1. Add primary role (legacy field)
+            roles.Add(user.Role.ToString());
+
+            // 2. Add all roles from assignments table
+            if (user.Roles != null)
+            {
+                foreach (var roleAssignment in user.Roles)
+                {
+                    roles.Add(roleAssignment.Role.ToString());
+                }
+            }
+
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
 
             // Optional: add nationalId as claim if needed (careful with PII)

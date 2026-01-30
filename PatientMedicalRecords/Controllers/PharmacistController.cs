@@ -18,17 +18,20 @@ namespace PatientMedicalRecords.Controllers
         private readonly IQRCodeService _qrCodeService;
         private readonly IDrugInteractionService _drugInteractionService;
         private readonly ILogger<PharmacistController> _logger;
+        private readonly IJwtService _jwtService;
 
         public PharmacistController(
             MedicalRecordsDbContext context,
             IQRCodeService qrCodeService,
             IDrugInteractionService drugInteractionService,
-            ILogger<PharmacistController> logger)
+            ILogger<PharmacistController> logger,
+            IJwtService jwtService)
         {
             _context = context;
             _qrCodeService = qrCodeService;
             _drugInteractionService = drugInteractionService;
             _logger = logger;
+            _jwtService = jwtService;
         }
 
 
@@ -510,6 +513,81 @@ namespace PatientMedicalRecords.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error logging user action {Action} for user {UserId}", action, userId);
+            }
+        }
+
+        /// <summary>
+        /// تفعيل ملف المريض للصيادلة (والأطباء)
+        /// </summary>
+        [HttpPost("activate-patient-profile")]
+        [Authorize(Roles = "Pharmacist,Doctor")]
+        public async Task<ActionResult<LoginResponse>> ActivatePatientProfile()
+        {
+            var userId = GetCurrentUserId();
+            if (userId == null) return Unauthorized();
+
+            var user = await _context.Users
+                .Include(u => u.Roles)
+                .FirstOrDefaultAsync(u => u.Id == userId.Value);
+
+            if (user == null) return NotFound("User not found.");
+
+            // التحقق من عدم وجود دور المريض مسبقاً
+            if (user.Roles.Any(r => r.Role == UserRole.Patient))
+            {
+                return BadRequest(new { Success = false, Message = "لديك ملف طبي مفعل بالفعل." });
+            }
+
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                // إنشاء سجل المريض
+                var patientProfile = new Patient
+                {
+                    UserId = user.Id,
+                    FullName = user.FullName ?? "New Patient",
+                    PatientCode = "PM-" + Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper(),
+                    CreatedAt = DateTime.UtcNow
+                };
+                _context.Patients.Add(patientProfile);
+
+                // إضافة الدور في الجدول الوسيط
+                var roleAssignment = new UserRoleAssignment
+                {
+                    UserId = user.Id,
+                    Role = UserRole.Patient
+                };
+                _context.UserRoleAssignments.Add(roleAssignment);
+
+                // أضف الدور للمجموعة في الذاكرة لضمان شموله في التوكن الجديد
+                user.Roles.Add(roleAssignment);
+
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+
+                // توليد توكن جديد يحتوي على الأدوار المحدثة
+                var newAccessToken = _jwtService.GenerateAccessToken(user);
+
+                return Ok(new LoginResponse
+                {
+                    Success = true,
+                    Message = "تم تفعيل ملفك الطبي بنجاح! يمكنك الآن التبديل إليه كـ مريض.",
+                    Token = newAccessToken,
+                    User = new UserInfo
+                    {
+                        Id = user.Id,
+                        NationalId = user.NationalId,
+                        FullName = user.FullName,
+                        Role = user.Role,
+                        Status = user.Status
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                _logger.LogError(ex, "Error activating patient profile for user {UserId}", user.Id);
+                return StatusCode(500, "حدث خطأ أثناء تفعيل الملف الطبي");
             }
         }
     }
