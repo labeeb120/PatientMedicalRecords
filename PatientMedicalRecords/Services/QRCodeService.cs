@@ -43,10 +43,11 @@ namespace PatientMedicalRecords.Services
         {
             try
             {
-                // Check if user exists and is a patient
+                // Check if user exists and is a patient (Updated 26-01-2026 to support multi-role)
                 var user = await _context.Users
                     .Include(u => u.Patient)
-                    .FirstOrDefaultAsync(u => u.Id == request.UserId && u.Role == UserRole.Patient);
+                    .Include(u => u.Roles)
+                    .FirstOrDefaultAsync(u => u.Id == request.UserId && (u.Role == UserRole.Patient || u.Roles.Any(r => r.Role == UserRole.Patient)));
 
                 if (user == null || user.Patient == null)
                 {
