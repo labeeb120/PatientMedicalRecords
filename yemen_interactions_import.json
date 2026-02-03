@@ -1,0 +1,114 @@
+[
+  {
+    "IngredientAName": "Warfarin",
+    "IngredientBName": "Aspirin",
+    "Severity": "High",
+    "Description": "زيادة خطر النزيف بشكل كبير عند استخدامهما معاً.",
+    "Recommendation": "تجنب الجمع بينهما إلا تحت إشراف طبي صارم مع مراقبة INR."
+  },
+  {
+    "IngredientAName": "Sildenafil",
+    "IngredientBName": "Nitroglycerin",
+    "Severity": "High",
+    "Description": "انخفاض حاد وخطير في ضغط الدم قد يؤدي للوفاة.",
+    "Recommendation": "يمنع منعاً باتاً استخدامهما معاً."
+  },
+  {
+    "IngredientAName": "Atorvastatin",
+    "IngredientBName": "Clarithromycin",
+    "Severity": "Medium",
+    "Description": "زيادة خطر الإصابة باعتلال العضلات (Myopathy) أو انحلال العضلات.",
+    "Recommendation": "يفضل إيقاف الأتورفاستاتين مؤقتاً أثناء العلاج بالمضاد الحيوي."
+  },
+  {
+    "IngredientAName": "Simvastatin",
+    "IngredientBName": "Clarithromycin",
+    "Severity": "High",
+    "Description": "زيادة كبيرة في مستويات السيمفاستاتين وخطر انحلال العضلات.",
+    "Recommendation": "تجنب الجمع بينهما."
+  },
+  {
+    "IngredientAName": "Metformin",
+    "IngredientBName": "Contrast Media",
+    "Severity": "High",
+    "Description": "خطر الإصابة بحماض لاكتيكي (Lactic Acidosis) وفشل كلوي.",
+    "Recommendation": "يجب إيقاف الميتفورمين قبل يومين من إجراء الأشعة المقطعية بالصبغة."
+  },
+  {
+    "IngredientAName": "Ciprofloxacin",
+    "IngredientBName": "Theophylline",
+    "Severity": "Medium",
+    "Description": "زيادة مستويات الثيوفيلين في الدم مما قد يسبب تسمماً.",
+    "Recommendation": "مراقبة مستويات الثيوفيلين وتقليل الجرعة إذا لزم الأمر."
+  },
+  {
+    "IngredientAName": "Ibuprofen",
+    "IngredientBName": "Aspirin",
+    "Severity": "Low",
+    "Description": "تقليل التأثير الواقي للأسبرين على القلب.",
+    "Recommendation": "تناول الأسبرين قبل الإيبوبروفين بـ 30 دقيقة أو بعده بـ 8 ساعات."
+  },
+  {
+    "IngredientAName": "Amlodipine",
+    "IngredientBName": "Simvastatin",
+    "Severity": "Medium",
+    "Description": "زيادة مستويات السيمفاستاتين.",
+    "Recommendation": "لا تتجاوز جرعة السيمفاستاتين 20 ملجم يومياً."
+  },
+  {
+    "IngredientAName": "Digoxin",
+    "IngredientBName": "Furosemide",
+    "Severity": "Medium",
+    "Description": "زيادة خطر تسمم الديجوكسين بسبب نقص البوتاسيوم الناتج عن المدر.",
+    "Recommendation": "مراقبة مستويات البوتاسيوم بانتظام."
+  },
+  {
+    "IngredientAName": "Spironolactone",
+    "IngredientBName": "Lisinopril",
+    "Severity": "Medium",
+    "Description": "خطر ارتفاع مستويات البوتاسيوم في الدم (Hyperkalemia).",
+    "Recommendation": "مراقبة مستويات البوتاسيوم والوظائف الكلوية."
+  },
+  {
+    "IngredientAName": "Sertraline",
+    "IngredientBName": "Tramadol",
+    "Severity": "High",
+    "Description": "زيادة خطر الإصابة بمتلازمة السيروتونين الخطيرة.",
+    "Recommendation": "تجنب الجمع بينهما أو المراقبة اللصيقة جداً."
+  },
+  {
+    "IngredientAName": "Fluoxetine",
+    "IngredientBName": "Tramadol",
+    "Severity": "High",
+    "Description": "زيادة خطر الإصابة بمتلازمة السيروتونين الخطيرة.",
+    "Recommendation": "تجنب الجمع بينهما."
+  },
+  {
+    "IngredientAName": "Azithromycin",
+    "IngredientBName": "Amiodarone",
+    "Severity": "High",
+    "Description": "زيادة خطر إطالة فتره QT واضطرابات نظم القلب.",
+    "Recommendation": "تجنب الجمع بينهما."
+  },
+  {
+    "IngredientAName": "Ciprofloxacin",
+    "IngredientBName": "Multivitamins",
+    "Severity": "Medium",
+    "Description": "المعادن في الفيتامينات تقلل من امتصاص المضاد الحيوي.",
+    "Recommendation": "فصل الجرعات بمدة لا تقل عن ساعتين."
+  },
+  {
+    "IngredientAName": "Amoxicillin",
+    "IngredientBName": "Methotrexate",
+    "Severity": "Medium",
+    "Description": "تقليل طرح الميثوتركسات مما يزيد من سميته.",
+    "Recommendation": "مراقبة مستويات الميثوتركسات."
+  },
+  {
+    "IngredientAName": "Omeprazole",
+    "IngredientBName": "Clopidogrel",
+    "Severity": "Medium",
+    "Description": "الأوميبرازول قد يقلل من فعالية الكلوبيدوجريل في منع التجلط.",
+    "Recommendation": "يفضل استخدام البانتوبرازول كبديل."
+  }
+]
