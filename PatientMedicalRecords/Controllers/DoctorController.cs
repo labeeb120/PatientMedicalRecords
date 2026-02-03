@@ -448,6 +448,7 @@ namespace PatientMedicalRecords.Controllers
                var interactionRequest = new DrugInteractionCheckRequest
                {
                    PatientId = request.PatientId,
+                   DrugIds = request.Items.Select(i => i.DrugId).ToList(),
                    Medications = request.Items
                        .Select(i => i.MedicationName)
                        .ToList()
@@ -475,6 +476,7 @@ namespace PatientMedicalRecords.Controllers
                     var prescriptionItem = new PrescriptionItem
                     {
                         PrescriptionId = prescription.Id,
+                        DrugId = item.DrugId,
                         MedicationName = item.MedicationName,
                         Dosage = item.Dosage,
                         Frequency = item.Frequency,
@@ -506,6 +508,7 @@ namespace PatientMedicalRecords.Controllers
                     Items = request.Items.Select(i => new PrescriptionItemInfo
                     {
                         PrescriptionId = prescription.Id,
+                        DrugId = i.DrugId,
                         MedicationName = i.MedicationName,
                         Dosage = i.Dosage,
                         Frequency = i.Frequency,
@@ -535,6 +538,34 @@ namespace PatientMedicalRecords.Controllers
                     Message = "حدث خطأ في الخادم"
                 });
             }
+        }
+
+        [HttpGet("search-drugs")]
+        [Authorize(Roles = "Doctor")]
+        public async Task<ActionResult<List<DrugSuggestionDto>>> SearchDrugs([FromQuery] string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return Ok(new List<DrugSuggestionDto>());
+            }
+
+            var normalizedQuery = query.Trim().ToLowerInvariant();
+
+            var suggestions = await _context.Drugs
+                .Where(d => d.ScientificName.Contains(normalizedQuery) ||
+                            (d.BrandName != null && d.BrandName.Contains(normalizedQuery)) ||
+                            (d.ChemicalName != null && d.ChemicalName.Contains(normalizedQuery)))
+                .Take(20)
+                .Select(d => new DrugSuggestionDto
+                {
+                    DrugId = d.Id,
+                    ScientificName = d.ScientificName,
+                    BrandName = d.BrandName ?? "",
+                    ChemicalName = d.ChemicalName ?? ""
+                })
+                .ToListAsync();
+
+            return Ok(suggestions);
         }
 
         private int? GetCurrentUserId()

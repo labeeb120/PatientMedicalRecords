@@ -11,6 +11,8 @@ namespace PatientMedicalRecords.Services
         Task<DrugInteractionCheckResponse> CheckDrugInteractionsAsync(DrugInteractionCheckRequest request);
         Task<ServiceResult> CreatePrescriptionAsync(PrescriptionCreateRequest request);
         Task<List<DrugInteractionWarning>> GetKnownInteractionsAsync(List<int> ingredientIds);
+        Task<ServiceResult> BulkImportDrugsAsync(List<DrugImportDto> drugs);
+        Task<ServiceResult> BulkImportInteractionsAsync(List<InteractionImportDto> interactions);
         //Task<List<DrugSuggestionDto>> GetDrugSuggestionsAsync(string partialName);
     }
 
@@ -38,27 +40,33 @@ namespace PatientMedicalRecords.Services
                 // 1) الأدوية الحالية للمريض (معرفات الأدوية المخزنة)
                 var currentDrugIds = await GetPatientCurrentDrugIdsAsync(request.PatientId);
 
-                // 2) الأدوية الجديدة المقترحة (معرفات الأدوية المخزنة)
-                // يجب أن يتم إرسال DrugIds في الطلب وليس فقط الأسماء لتكون العملية أكثر دقة.
-                // إذا كان طلبك يستخدم الأسماء، يجب البحث عن المعرفات أولاً.
-                // سنفترض الآن أن request.Medications يحتوي على أسماء الأدوية الجديدة.
-
+                // 2) الأدوية الجديدة المقترحة
                 var allDrugIds = new HashSet<int>(currentDrugIds);
-                var newMedicationNames = request.Medications.Select(n => Normalize(n)).ToHashSet();
+                var newDrugIdsFromRequest = request.DrugIds ?? new List<int>();
 
-                // نبحث عن معرفات الأدوية الجديدة
-                var newDrugs = await _context.Drugs
-                    .Where(d => newMedicationNames.Contains(d.NormalizedName!))
-                    .Select(d => d.Id)
-                    .ToListAsync();
-
-                // إضافة المعرفات الجديدة
-                foreach (var id in newDrugs)
+                // إضافة المعرفات المرسلة مباشرة
+                foreach (var id in newDrugIdsFromRequest)
                 {
                     allDrugIds.Add(id);
                 }
 
-                // إذا لم يتم العثور على أدوية جديدة، فإننا نستخدم فقط الأدوية الحالية
+                var newMedicationNames = (request.Medications ?? new List<string>()).Select(n => Normalize(n)).ToHashSet();
+
+                // نبحث عن معرفات الأدوية الجديدة بناءً على الأسماء إذا تم إرسالها
+                if (newMedicationNames.Any())
+                {
+                    var newDrugsFromNames = await _context.Drugs
+                        .Where(d => newMedicationNames.Contains(d.NormalizedName!))
+                        .Select(d => d.Id)
+                        .ToListAsync();
+
+                    foreach (var id in newDrugsFromNames)
+                    {
+                        allDrugIds.Add(id);
+                    }
+                }
+
+                // إذا لم يتم العثور على أدوية جديدة أو حالية
                 if (!allDrugIds.Any())
                 {
                     return new DrugInteractionCheckResponse
@@ -152,8 +160,20 @@ namespace PatientMedicalRecords.Services
                 }
 
                 // فلترة التحذيرات بحيث تكون ذات صلة بالطلب الحالي (الأدوية الجديدة)
+                // نعتبر التحذير ذا صلة إذا كان أحد الأدوية المتفاعلة هو دواء جديد تم إرساله في الطلب (بواسطة ID أو الاسم)
+                var newDrugsData = await _context.Drugs
+                    .Where(d => allDrugIds.Contains(d.Id) && !currentDrugIds.Contains(d.Id))
+                    .Select(d => new { d.BrandName, d.ScientificName, d.NormalizedName })
+                    .ToListAsync();
+
+                var newDrugNames = newDrugsData
+                    .SelectMany(d => new[] { Normalize(d.BrandName ?? ""), Normalize(d.ScientificName ?? ""), d.NormalizedName ?? "" })
+                    .Where(s => !string.IsNullOrEmpty(s))
+                    .ToHashSet();
+
                 var relevantWarnings = warnings.Where(w =>
-                    newMedicationNames.Any(n => w.Medication1.Contains(n) || w.Medication2.Contains(n))
+                    newDrugNames.Any(n => Normalize(w.Medication1).Contains(n) || Normalize(w.Medication2).Contains(n)) ||
+                    newMedicationNames.Any(n => Normalize(w.Medication1).Contains(n) || Normalize(w.Medication2).Contains(n))
                 ).ToList();
 
 
@@ -315,6 +335,132 @@ namespace PatientMedicalRecords.Services
         public Task<List<DrugSuggestionDto>> GetDrugSuggestionsAsync(string partialName)
         {
             throw new NotImplementedException();
+        }
+
+        // 26-01-2026: Bulk Import Implementation
+        public async Task<ServiceResult> BulkImportDrugsAsync(List<DrugImportDto> drugs)
+        {
+            try
+            {
+                int addedCount = 0;
+
+                // تحميل كافة الأدوية والمكونات الحالية لتقليل عدد الاستعلامات
+                var existingDrugs = await _context.Drugs.Include(d => d.DrugIngredients).ToDictionaryAsync(d => d.NormalizedName!);
+                var existingIngredients = await _context.Ingredients.ToDictionaryAsync(i => i.NormalizedName);
+
+                foreach (var d in drugs)
+                {
+                    var normalizedDrug = Normalize(d.ScientificName);
+                    if (!existingDrugs.TryGetValue(normalizedDrug, out var drug))
+                    {
+                        drug = new Drug
+                        {
+                            ScientificName = d.ScientificName,
+                            BrandName = d.BrandName,
+                            ChemicalName = d.ChemicalName,
+                            Manufacturer = d.Manufacturer,
+                            NormalizedName = normalizedDrug,
+                            CreatedAt = DateTime.UtcNow
+                        };
+                        _context.Drugs.Add(drug);
+                        existingDrugs[normalizedDrug] = drug;
+                        addedCount++;
+                    }
+
+                    foreach (var ingName in d.Ingredients)
+                    {
+                        var normalizedIng = Normalize(ingName);
+                        if (!existingIngredients.TryGetValue(normalizedIng, out var ingredient))
+                        {
+                            ingredient = new Ingredient
+                            {
+                                Name = ingName,
+                                NormalizedName = normalizedIng
+                            };
+                            _context.Ingredients.Add(ingredient);
+                            existingIngredients[normalizedIng] = ingredient;
+                        }
+
+                        // سيتم تعيين المعرفات بعد SaveChanges، لذا نحتاج للتعامل مع العناصر الجديدة
+                        // لكن EF Core يتعامل مع الكيانات المضافة حديثاً بشكل تلقائي عند الربط
+                        if (drug.Id == 0 || !drug.DrugIngredients.Any(di => di.IngredientId == ingredient.Id))
+                        {
+                            // لمنع التكرار في حالة العناصر الجديدة التي لم تأخذ ID بعد
+                            var linkExists = _context.DrugIngredients.Local.Any(di => di.Drug == drug && di.Ingredient == ingredient);
+                            if (!linkExists)
+                            {
+                                _context.DrugIngredients.Add(new DrugIngredient
+                                {
+                                    Drug = drug,
+                                    Ingredient = ingredient
+                                });
+                            }
+                        }
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                return ServiceResult.Ok($"تم استيراد {addedCount} أدوية جديدة بنجاح وتحديث المكونات.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error during bulk drug import");
+                return ServiceResult.Fail($"حدث خطأ أثناء استيراد الأدوية: {ex.Message}");
+            }
+        }
+
+        public async Task<ServiceResult> BulkImportInteractionsAsync(List<InteractionImportDto> interactions)
+        {
+            try
+            {
+                int addedCount = 0;
+                var ingredients = await _context.Ingredients.ToDictionaryAsync(i => i.NormalizedName);
+
+                // جلب التفاعلات الحالية لتجنب التكرار
+                var existingInteractions = await _context.DrugInteractions.ToListAsync();
+                var interactionMap = existingInteractions.ToDictionary(i => $"{Math.Min(i.IngredientAId, i.IngredientBId)}_{Math.Max(i.IngredientAId, i.IngredientBId)}");
+
+                foreach (var inter in interactions)
+                {
+                    var normA = Normalize(inter.IngredientAName);
+                    var normB = Normalize(inter.IngredientBName);
+
+                    if (!ingredients.TryGetValue(normA, out var ingA) || !ingredients.TryGetValue(normB, out var ingB))
+                        continue;
+
+                    var idA = Math.Min(ingA.Id, ingB.Id);
+                    var idB = Math.Max(ingA.Id, ingB.Id);
+                    var key = $"{idA}_{idB}";
+
+                    if (interactionMap.TryGetValue(key, out var existing))
+                    {
+                        existing.Severity = inter.Severity;
+                        existing.Description = inter.Description;
+                        existing.Recommendation = inter.Recommendation;
+                    }
+                    else
+                    {
+                        _context.DrugInteractions.Add(new DrugInteraction
+                        {
+                            IngredientAId = idA,
+                            IngredientBId = idB,
+                            Severity = inter.Severity,
+                            Description = inter.Description,
+                            Recommendation = inter.Recommendation,
+                            CreatedAt = DateTime.UtcNow
+                        });
+                        addedCount++;
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                return ServiceResult.Ok($"تم استيراد/تحديث {addedCount} تفاعلات دوائية بنجاح.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error during bulk interactions import");
+                return ServiceResult.Fail($"حدث خطأ أثناء استيراد التفاعلات: {ex.Message}");
+            }
         }
     }
 }

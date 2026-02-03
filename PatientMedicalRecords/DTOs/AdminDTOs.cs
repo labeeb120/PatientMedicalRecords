@@ -246,4 +246,23 @@ namespace PatientMedicalRecords.DTOs
         public int SentCount { get; set; }
         public int FailedCount { get; set; }
     }
+
+    // Medication Ingestion DTOs (26-01-2026)
+    public class DrugImportDto
+    {
+        public string ScientificName { get; set; } = string.Empty;
+        public string? BrandName { get; set; }
+        public string? ChemicalName { get; set; }
+        public string? Manufacturer { get; set; }
+        public List<string> Ingredients { get; set; } = new List<string>();
+    }
+
+    public class InteractionImportDto
+    {
+        public string IngredientAName { get; set; } = string.Empty;
+        public string IngredientBName { get; set; } = string.Empty;
+        public string Severity { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string? Recommendation { get; set; }
+    }
 }
