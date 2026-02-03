@@ -27,10 +27,10 @@ namespace PatientMedicalRecords.Data
         public DbSet<DeviceToken> DeviceTokens { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         // existing DBSets...
-        public DbSet<Medication> Medications { get; set; }
+        // public DbSet<Medication> Medications { get; set; } // Deprecated 26-01-2026
         public DbSet<Ingredient> Ingredients { get; set; }
-        public DbSet<MedicationIngredient> MedicationIngredients { get; set; }
-        public DbSet<IngredientInteraction> IngredientInteractions { get; set; }
+        // public DbSet<MedicationIngredient> MedicationIngredients { get; set; } // Deprecated 26-01-2026
+        // public DbSet<IngredientInteraction> IngredientInteractions { get; set; } // Deprecated 26-01-2026
 
         public DbSet<Drug> Drugs { get; set; }
         public DbSet<DrugIngredient> DrugIngredients { get; set; }
@@ -182,13 +182,13 @@ namespace PatientMedicalRecords.Data
 
             //*****************************************
 
-            modelBuilder.Entity<MedicationIngredient>()
-            .HasKey(mi => new { mi.MedicationId, mi.IngredientId });
+            // modelBuilder.Entity<MedicationIngredient>()
+            // .HasKey(mi => new { mi.MedicationId, mi.IngredientId });
 
-            modelBuilder.Entity<MedicationIngredient>()
-                .HasOne(mi => mi.Medication)
-                .WithMany(m => m.MedicationIngredients)
-                .HasForeignKey(mi => mi.MedicationId);
+            // modelBuilder.Entity<MedicationIngredient>()
+            //     .HasOne(mi => mi.Medication)
+            //     .WithMany(m => m.MedicationIngredients)
+            //     .HasForeignKey(mi => mi.MedicationId);
 
            
 

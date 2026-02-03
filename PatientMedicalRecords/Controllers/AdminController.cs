@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PatientMedicalRecords.Data;
 using PatientMedicalRecords.DTOs;
 using PatientMedicalRecords.Models;
+using PatientMedicalRecords.Services;
 using SkiaSharp;
 using System.Linq;
 using System.Security.Claims;
@@ -17,11 +18,13 @@ namespace PatientMedicalRecords.Controllers
     {
         private readonly MedicalRecordsDbContext _context;
         private readonly ILogger<AdminController> _logger;
+        private readonly IDrugInteractionService _drugInteractionService;
 
-        public AdminController(MedicalRecordsDbContext context, ILogger<AdminController> logger)
+        public AdminController(MedicalRecordsDbContext context, ILogger<AdminController> logger, IDrugInteractionService drugInteractionService)
         {
             _context = context;
             _logger = logger;
+            _drugInteractionService = drugInteractionService;
         }
 
         ///****************************************************************
@@ -510,6 +513,29 @@ namespace PatientMedicalRecords.Controllers
             {
                 _logger.LogError(ex, "Error logging user action {Action} for user {UserId}", action, userId);
             }
+        }
+
+        // 26-01-2026: Bulk Import Endpoints
+        [HttpPost("import-drugs")]
+        public async Task<IActionResult> ImportDrugs([FromBody] List<DrugImportDto> drugs)
+        {
+            if (!IsAdmin()) return Forbid();
+            var result = await _drugInteractionService.BulkImportDrugsAsync(drugs);
+            if (!result.Success) return BadRequest(result);
+
+            await LogUserAction(GetCurrentUserId()!.Value, "IMPORT_DRUGS", $"تم استيراد {drugs.Count} دواء");
+            return Ok(result);
+        }
+
+        [HttpPost("import-interactions")]
+        public async Task<IActionResult> ImportInteractions([FromBody] List<InteractionImportDto> interactions)
+        {
+            if (!IsAdmin()) return Forbid();
+            var result = await _drugInteractionService.BulkImportInteractionsAsync(interactions);
+            if (!result.Success) return BadRequest(result);
+
+            await LogUserAction(GetCurrentUserId()!.Value, "IMPORT_INTERACTIONS", $"تم استيراد {interactions.Count} تفاعل");
+            return Ok(result);
         }
     }
 }

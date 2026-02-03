@@ -11,6 +11,8 @@ namespace PatientMedicalRecords.Services
         Task<DrugInteractionCheckResponse> CheckDrugInteractionsAsync(DrugInteractionCheckRequest request);
         Task<ServiceResult> CreatePrescriptionAsync(PrescriptionCreateRequest request);
         Task<List<DrugInteractionWarning>> GetKnownInteractionsAsync(List<int> ingredientIds);
+        Task<ServiceResult> BulkImportDrugsAsync(List<DrugImportDto> drugs);
+        Task<ServiceResult> BulkImportInteractionsAsync(List<InteractionImportDto> interactions);
         //Task<List<DrugSuggestionDto>> GetDrugSuggestionsAsync(string partialName);
     }
 
@@ -315,6 +317,128 @@ namespace PatientMedicalRecords.Services
         public Task<List<DrugSuggestionDto>> GetDrugSuggestionsAsync(string partialName)
         {
             throw new NotImplementedException();
+        }
+
+        // 26-01-2026: Bulk Import Implementation
+        public async Task<ServiceResult> BulkImportDrugsAsync(List<DrugImportDto> drugs)
+        {
+            try
+            {
+                int addedCount = 0;
+                foreach (var d in drugs)
+                {
+                    var normalized = Normalize(d.ScientificName);
+                    var existingDrug = await _context.Drugs
+                        .Include(dr => dr.DrugIngredients)
+                        .FirstOrDefaultAsync(dr => dr.NormalizedName == normalized || dr.ScientificName == d.ScientificName);
+
+                    if (existingDrug == null)
+                    {
+                        existingDrug = new Drug
+                        {
+                            ScientificName = d.ScientificName,
+                            BrandName = d.BrandName,
+                            ChemicalName = d.ChemicalName,
+                            Manufacturer = d.Manufacturer,
+                            NormalizedName = normalized,
+                            CreatedAt = DateTime.UtcNow
+                        };
+                        _context.Drugs.Add(existingDrug);
+                        await _context.SaveChangesAsync();
+                        addedCount++;
+                    }
+
+                    // Handle Ingredients
+                    foreach (var ingName in d.Ingredients)
+                    {
+                        var normalizedIng = Normalize(ingName);
+                        var ingredient = await _context.Ingredients
+                            .FirstOrDefaultAsync(i => i.NormalizedName == normalizedIng || i.Name == ingName);
+
+                        if (ingredient == null)
+                        {
+                            ingredient = new Ingredient
+                            {
+                                Name = ingName,
+                                NormalizedName = normalizedIng
+                            };
+                            _context.Ingredients.Add(ingredient);
+                            await _context.SaveChangesAsync();
+                        }
+
+                        // Link Drug to Ingredient
+                        var exists = existingDrug.DrugIngredients.Any(di => di.IngredientId == ingredient.Id);
+                        if (!exists)
+                        {
+                            _context.DrugIngredients.Add(new DrugIngredient
+                            {
+                                DrugId = existingDrug.Id,
+                                IngredientId = ingredient.Id
+                            });
+                        }
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                return ServiceResult.Ok($"تم استيراد {addedCount} أدوية جديدة بنجاح وتحديث المكونات.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error during bulk drug import");
+                return ServiceResult.Fail("حدث خطأ أثناء استيراد الأدوية.");
+            }
+        }
+
+        public async Task<ServiceResult> BulkImportInteractionsAsync(List<InteractionImportDto> interactions)
+        {
+            try
+            {
+                int addedCount = 0;
+                foreach (var inter in interactions)
+                {
+                    var normA = Normalize(inter.IngredientAName);
+                    var normB = Normalize(inter.IngredientBName);
+
+                    var ingA = await _context.Ingredients.FirstOrDefaultAsync(i => i.NormalizedName == normA);
+                    var ingB = await _context.Ingredients.FirstOrDefaultAsync(i => i.NormalizedName == normB);
+
+                    if (ingA == null || ingB == null) continue;
+
+                    var idA = Math.Min(ingA.Id, ingB.Id);
+                    var idB = Math.Max(ingA.Id, ingB.Id);
+
+                    var existing = await _context.DrugInteractions
+                        .FirstOrDefaultAsync(di => di.IngredientAId == idA && di.IngredientBId == idB);
+
+                    if (existing == null)
+                    {
+                        _context.DrugInteractions.Add(new DrugInteraction
+                        {
+                            IngredientAId = idA,
+                            IngredientBId = idB,
+                            Severity = inter.Severity,
+                            Description = inter.Description,
+                            Recommendation = inter.Recommendation,
+                            CreatedAt = DateTime.UtcNow
+                        });
+                        addedCount++;
+                    }
+                    else
+                    {
+                        existing.Severity = inter.Severity;
+                        existing.Description = inter.Description;
+                        existing.Recommendation = inter.Recommendation;
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                return ServiceResult.Ok($"تم استيراد/تحديث {addedCount} تفاعلات دوائية بنجاح.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error during bulk interactions import");
+                return ServiceResult.Fail("حدث خطأ أثناء استيراد التفاعلات.");
+            }
         }
     }
 }
