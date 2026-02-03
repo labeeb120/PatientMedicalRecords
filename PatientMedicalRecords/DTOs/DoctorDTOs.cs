@@ -109,6 +109,9 @@ namespace PatientMedicalRecords.DTOs
 
     public class PrescriptionItemRequest
     {
+        [Required(ErrorMessage = "معرف الدواء مطلوب")]
+        public int DrugId { get; set; }
+
         [Required(ErrorMessage = "اسم الدواء مطلوب")]
         [StringLength(100, ErrorMessage = "اسم الدواء لا يجب أن يتجاوز 100 حرف")]
         public string MedicationName { get; set; } = string.Empty;
@@ -155,6 +158,7 @@ namespace PatientMedicalRecords.DTOs
     {
         public int Id { get; set; }
         public int PrescriptionId { get; set; }
+        public int DrugId { get; set; }
         public string MedicationName { get; set; } = string.Empty;
         public string? Dosage { get; set; }
         public string? Frequency { get; set; }

@@ -40,27 +40,33 @@ namespace PatientMedicalRecords.Services
                 // 1) الأدوية الحالية للمريض (معرفات الأدوية المخزنة)
                 var currentDrugIds = await GetPatientCurrentDrugIdsAsync(request.PatientId);
 
-                // 2) الأدوية الجديدة المقترحة (معرفات الأدوية المخزنة)
-                // يجب أن يتم إرسال DrugIds في الطلب وليس فقط الأسماء لتكون العملية أكثر دقة.
-                // إذا كان طلبك يستخدم الأسماء، يجب البحث عن المعرفات أولاً.
-                // سنفترض الآن أن request.Medications يحتوي على أسماء الأدوية الجديدة.
-
+                // 2) الأدوية الجديدة المقترحة
                 var allDrugIds = new HashSet<int>(currentDrugIds);
-                var newMedicationNames = request.Medications.Select(n => Normalize(n)).ToHashSet();
+                var newDrugIdsFromRequest = request.DrugIds ?? new List<int>();
 
-                // نبحث عن معرفات الأدوية الجديدة
-                var newDrugs = await _context.Drugs
-                    .Where(d => newMedicationNames.Contains(d.NormalizedName!))
-                    .Select(d => d.Id)
-                    .ToListAsync();
-
-                // إضافة المعرفات الجديدة
-                foreach (var id in newDrugs)
+                // إضافة المعرفات المرسلة مباشرة
+                foreach (var id in newDrugIdsFromRequest)
                 {
                     allDrugIds.Add(id);
                 }
 
-                // إذا لم يتم العثور على أدوية جديدة، فإننا نستخدم فقط الأدوية الحالية
+                var newMedicationNames = (request.Medications ?? new List<string>()).Select(n => Normalize(n)).ToHashSet();
+
+                // نبحث عن معرفات الأدوية الجديدة بناءً على الأسماء إذا تم إرسالها
+                if (newMedicationNames.Any())
+                {
+                    var newDrugsFromNames = await _context.Drugs
+                        .Where(d => newMedicationNames.Contains(d.NormalizedName!))
+                        .Select(d => d.Id)
+                        .ToListAsync();
+
+                    foreach (var id in newDrugsFromNames)
+                    {
+                        allDrugIds.Add(id);
+                    }
+                }
+
+                // إذا لم يتم العثور على أدوية جديدة أو حالية
                 if (!allDrugIds.Any())
                 {
                     return new DrugInteractionCheckResponse
@@ -154,8 +160,20 @@ namespace PatientMedicalRecords.Services
                 }
 
                 // فلترة التحذيرات بحيث تكون ذات صلة بالطلب الحالي (الأدوية الجديدة)
+                // نعتبر التحذير ذا صلة إذا كان أحد الأدوية المتفاعلة هو دواء جديد تم إرساله في الطلب (بواسطة ID أو الاسم)
+                var newDrugsData = await _context.Drugs
+                    .Where(d => allDrugIds.Contains(d.Id) && !currentDrugIds.Contains(d.Id))
+                    .Select(d => new { d.BrandName, d.ScientificName, d.NormalizedName })
+                    .ToListAsync();
+
+                var newDrugNames = newDrugsData
+                    .SelectMany(d => new[] { Normalize(d.BrandName ?? ""), Normalize(d.ScientificName ?? ""), d.NormalizedName ?? "" })
+                    .Where(s => !string.IsNullOrEmpty(s))
+                    .ToHashSet();
+
                 var relevantWarnings = warnings.Where(w =>
-                    newMedicationNames.Any(n => w.Medication1.Contains(n) || w.Medication2.Contains(n))
+                    newDrugNames.Any(n => Normalize(w.Medication1).Contains(n) || Normalize(w.Medication2).Contains(n)) ||
+                    newMedicationNames.Any(n => Normalize(w.Medication1).Contains(n) || Normalize(w.Medication2).Contains(n))
                 ).ToList();
 
 

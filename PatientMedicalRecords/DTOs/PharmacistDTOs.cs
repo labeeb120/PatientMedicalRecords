@@ -138,6 +138,11 @@ namespace PatientMedicalRecords.DTOs
         /// </summary>
         [Required(ErrorMessage = "قائمة الأدوية مطلوبة")]
         public List<string> Medications { get; set; } = new List<string>();
+
+        /// <summary>
+        /// قائمة معرفات الأدوية المختارة من النظام
+        /// </summary>
+        public List<int> DrugIds { get; set; } = new List<int>();
     }
     // رد الفحص
     public class DrugInteractionCheckResponse
