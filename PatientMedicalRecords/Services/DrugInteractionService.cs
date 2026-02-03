@@ -343,37 +343,34 @@ namespace PatientMedicalRecords.Services
             try
             {
                 int addedCount = 0;
+
+                // تحميل كافة الأدوية والمكونات الحالية لتقليل عدد الاستعلامات
+                var existingDrugs = await _context.Drugs.Include(d => d.DrugIngredients).ToDictionaryAsync(d => d.NormalizedName!);
+                var existingIngredients = await _context.Ingredients.ToDictionaryAsync(i => i.NormalizedName);
+
                 foreach (var d in drugs)
                 {
-                    var normalized = Normalize(d.ScientificName);
-                    var existingDrug = await _context.Drugs
-                        .Include(dr => dr.DrugIngredients)
-                        .FirstOrDefaultAsync(dr => dr.NormalizedName == normalized || dr.ScientificName == d.ScientificName);
-
-                    if (existingDrug == null)
+                    var normalizedDrug = Normalize(d.ScientificName);
+                    if (!existingDrugs.TryGetValue(normalizedDrug, out var drug))
                     {
-                        existingDrug = new Drug
+                        drug = new Drug
                         {
                             ScientificName = d.ScientificName,
                             BrandName = d.BrandName,
                             ChemicalName = d.ChemicalName,
                             Manufacturer = d.Manufacturer,
-                            NormalizedName = normalized,
+                            NormalizedName = normalizedDrug,
                             CreatedAt = DateTime.UtcNow
                         };
-                        _context.Drugs.Add(existingDrug);
-                        await _context.SaveChangesAsync();
+                        _context.Drugs.Add(drug);
+                        existingDrugs[normalizedDrug] = drug;
                         addedCount++;
                     }
 
-                    // Handle Ingredients
                     foreach (var ingName in d.Ingredients)
                     {
                         var normalizedIng = Normalize(ingName);
-                        var ingredient = await _context.Ingredients
-                            .FirstOrDefaultAsync(i => i.NormalizedName == normalizedIng || i.Name == ingName);
-
-                        if (ingredient == null)
+                        if (!existingIngredients.TryGetValue(normalizedIng, out var ingredient))
                         {
                             ingredient = new Ingredient
                             {
@@ -381,18 +378,23 @@ namespace PatientMedicalRecords.Services
                                 NormalizedName = normalizedIng
                             };
                             _context.Ingredients.Add(ingredient);
-                            await _context.SaveChangesAsync();
+                            existingIngredients[normalizedIng] = ingredient;
                         }
 
-                        // Link Drug to Ingredient
-                        var exists = existingDrug.DrugIngredients.Any(di => di.IngredientId == ingredient.Id);
-                        if (!exists)
+                        // سيتم تعيين المعرفات بعد SaveChanges، لذا نحتاج للتعامل مع العناصر الجديدة
+                        // لكن EF Core يتعامل مع الكيانات المضافة حديثاً بشكل تلقائي عند الربط
+                        if (drug.Id == 0 || !drug.DrugIngredients.Any(di => di.IngredientId == ingredient.Id))
                         {
-                            _context.DrugIngredients.Add(new DrugIngredient
+                            // لمنع التكرار في حالة العناصر الجديدة التي لم تأخذ ID بعد
+                            var linkExists = _context.DrugIngredients.Local.Any(di => di.Drug == drug && di.Ingredient == ingredient);
+                            if (!linkExists)
                             {
-                                DrugId = existingDrug.Id,
-                                IngredientId = ingredient.Id
-                            });
+                                _context.DrugIngredients.Add(new DrugIngredient
+                                {
+                                    Drug = drug,
+                                    Ingredient = ingredient
+                                });
+                            }
                         }
                     }
                 }
@@ -403,7 +405,7 @@ namespace PatientMedicalRecords.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error during bulk drug import");
-                return ServiceResult.Fail("حدث خطأ أثناء استيراد الأدوية.");
+                return ServiceResult.Fail($"حدث خطأ أثناء استيراد الأدوية: {ex.Message}");
             }
         }
 
@@ -412,23 +414,31 @@ namespace PatientMedicalRecords.Services
             try
             {
                 int addedCount = 0;
+                var ingredients = await _context.Ingredients.ToDictionaryAsync(i => i.NormalizedName);
+
+                // جلب التفاعلات الحالية لتجنب التكرار
+                var existingInteractions = await _context.DrugInteractions.ToListAsync();
+                var interactionMap = existingInteractions.ToDictionary(i => $"{Math.Min(i.IngredientAId, i.IngredientBId)}_{Math.Max(i.IngredientAId, i.IngredientBId)}");
+
                 foreach (var inter in interactions)
                 {
                     var normA = Normalize(inter.IngredientAName);
                     var normB = Normalize(inter.IngredientBName);
 
-                    var ingA = await _context.Ingredients.FirstOrDefaultAsync(i => i.NormalizedName == normA);
-                    var ingB = await _context.Ingredients.FirstOrDefaultAsync(i => i.NormalizedName == normB);
-
-                    if (ingA == null || ingB == null) continue;
+                    if (!ingredients.TryGetValue(normA, out var ingA) || !ingredients.TryGetValue(normB, out var ingB))
+                        continue;
 
                     var idA = Math.Min(ingA.Id, ingB.Id);
                     var idB = Math.Max(ingA.Id, ingB.Id);
+                    var key = $"{idA}_{idB}";
 
-                    var existing = await _context.DrugInteractions
-                        .FirstOrDefaultAsync(di => di.IngredientAId == idA && di.IngredientBId == idB);
-
-                    if (existing == null)
+                    if (interactionMap.TryGetValue(key, out var existing))
+                    {
+                        existing.Severity = inter.Severity;
+                        existing.Description = inter.Description;
+                        existing.Recommendation = inter.Recommendation;
+                    }
+                    else
                     {
                         _context.DrugInteractions.Add(new DrugInteraction
                         {
@@ -441,12 +451,6 @@ namespace PatientMedicalRecords.Services
                         });
                         addedCount++;
                     }
-                    else
-                    {
-                        existing.Severity = inter.Severity;
-                        existing.Description = inter.Description;
-                        existing.Recommendation = inter.Recommendation;
-                    }
                 }
 
                 await _context.SaveChangesAsync();
@@ -455,7 +459,7 @@ namespace PatientMedicalRecords.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error during bulk interactions import");
-                return ServiceResult.Fail("حدث خطأ أثناء استيراد التفاعلات.");
+                return ServiceResult.Fail($"حدث خطأ أثناء استيراد التفاعلات: {ex.Message}");
             }
         }
     }

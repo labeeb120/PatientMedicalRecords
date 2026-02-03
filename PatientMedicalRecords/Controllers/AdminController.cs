@@ -482,8 +482,7 @@ namespace PatientMedicalRecords.Controllers
 
         private bool IsAdmin()
         {
-            var roleClaim = User.FindFirst(ClaimTypes.Role);
-            return roleClaim?.Value == UserRole.Admin.ToString();
+            return User.IsInRole(UserRole.Admin.ToString());
         }
 
         private int? GetCurrentUserId()

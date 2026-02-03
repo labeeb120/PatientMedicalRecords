@@ -346,3 +346,21 @@ namespace PatientMedicalRecords.DTOs
 //}
 
 // Prescription Search DTOs
+namespace PatientMedicalRecords.DTOs
+{
+    // Dashboard DTOs
+    public class PharmacistDashboardStats
+    {
+        public int TotalDispensedPrescriptions { get; set; }
+        public int PendingPrescriptions { get; set; }
+        public List<RecentDispenseInfo> RecentDispenses { get; set; } = new List<RecentDispenseInfo>();
+    }
+
+    public class RecentDispenseInfo
+    {
+        public int PrescriptionId { get; set; }
+        public string PatientName { get; set; } = string.Empty;
+        public DateTime DispenseDate { get; set; }
+        public PrescriptionStatus Status { get; set; }
+    }
+}
