@@ -180,6 +180,7 @@ public class PatientInfo
     public decimal? Height { get; set; }
     public string? EmergencyContact { get; set; }
     public string? EmergencyPhone { get; set; }
+    public bool IsProfileInitialized { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
 }

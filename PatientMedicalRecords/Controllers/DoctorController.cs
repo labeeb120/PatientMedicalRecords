@@ -222,6 +222,7 @@ namespace PatientMedicalRecords.Controllers
                     Height = patient.Height,
                     EmergencyContact = patient.EmergencyContact,
                     EmergencyPhone = patient.EmergencyPhone,
+                    IsProfileInitialized = patient.IsProfileInitialized,
                     Allergies = patient.Allergies.Select(a => new AllergyInfo
                     {
                         Id = a.Id,

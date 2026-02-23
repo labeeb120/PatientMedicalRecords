@@ -91,6 +91,7 @@ namespace PatientMedicalRecords.Controllers
                     patient.Height = request.Height;
                     patient.EmergencyContact = request.EmergencyContact;
                     patient.EmergencyPhone = request.EmergencyPhone;
+                    patient.IsProfileInitialized = true;
                     patient.UpdatedAt = DateTime.UtcNow;
 
                     // Allergies
@@ -270,6 +271,7 @@ namespace PatientMedicalRecords.Controllers
                     Height = patient.Height,
                     EmergencyContact = patient.EmergencyContact,
                     EmergencyPhone = patient.EmergencyPhone,
+                    IsProfileInitialized = patient.IsProfileInitialized,
                     CreatedAt = patient.CreatedAt,
                     UpdatedAt = patient.UpdatedAt
                 };

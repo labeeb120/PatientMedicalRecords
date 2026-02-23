@@ -681,6 +681,9 @@ namespace PatientMedicalRecords.Migrations
                     b.Property<decimal?>("Height")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<bool>("IsProfileInitialized")
+                        .HasColumnType("bit");
+
                     b.Property<string>("PatientCode")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
