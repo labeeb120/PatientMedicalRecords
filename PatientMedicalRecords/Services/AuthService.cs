@@ -417,16 +417,20 @@ namespace PatientMedicalRecords.Services
 
         public async Task<RefreshResult> RefreshTokenAsync(string refreshToken)
         {
-            var stored = await _context.RefreshTokens.Include(r => r.Id).FirstOrDefaultAsync(r => r.Token == refreshToken);
+            var stored = await _context.RefreshTokens.FirstOrDefaultAsync(r => r.Token == refreshToken);
             if (stored == null) return new RefreshResult { Success = false, Message = "Invalid token" };
             if (stored.Revoked || stored.ExpiresAt <= DateTime.UtcNow) return new RefreshResult { Success = false, Message = "Invalid token" };
 
-            // Optionally rotate: revoke old token and issue new one
+            // Fetch user to generate new token
+            var user = await _context.Users.Include(u => u.Roles).FirstOrDefaultAsync(u => u.Id == stored.UserId);
+            if (user == null) return new RefreshResult { Success = false, Message = "User not found" };
+
+            // Rotate: revoke old token and issue new one
             stored.Revoked = true;
 
             var newRefresh = new RefreshToken
             {
-                UserId = stored.Id,
+                UserId = user.Id,
                 Token = GenerateSecureToken(),
                 ExpiresAt = DateTime.UtcNow.AddDays(30),
                 CreatedAt = DateTime.UtcNow
@@ -435,7 +439,7 @@ namespace PatientMedicalRecords.Services
             await _context.SaveChangesAsync();
 
             // generate new access token
-            var access = _jwtService.GenerateAccessToken();
+            var access = _jwtService.GenerateAccessToken(user);
 
             return new RefreshResult { Success = true, AccessToken = access, NewRefreshToken = newRefresh.Token };
         }

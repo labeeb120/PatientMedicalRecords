@@ -63,7 +63,7 @@ namespace PatientMedicalRecords.Controllers
                 SameSite = SameSiteMode.Strict,
                 Expires = DateTime.UtcNow.AddDays(30)
             };
-            Response.Cookies.Append("refreshToken", result.AccessToken!, cookieOptions);
+            Response.Cookies.Append("refreshToken", result.RefreshToken!, cookieOptions);
 
             return Ok(new
             {
