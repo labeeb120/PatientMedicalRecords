@@ -15,6 +15,7 @@ namespace PatientMedicalRecords.Services
     public interface IQRCodeService
     {
         Task<QRCodeResponse> GenerateQRCodeAsync(QRCodeRequest request);
+        Task<QRCodeResponse> GenerateDataQRCodeAsync(string data);
         Task<AccessResponse> ValidateAccessTokenAsync(AccessRequest request);
         Task<AccessResponse> RequestAccessAsync(string token, int requesterUserId);
         Task<ApprovalResponse> ApproveAccessAsync(ApprovalRequest request, int patientId);
@@ -341,23 +342,52 @@ namespace PatientMedicalRecords.Services
         //    }
         //}
 
-        private async Task<string> GenerateQRCodeImageAsync(string token)
+        public async Task<QRCodeResponse> GenerateDataQRCodeAsync(string data)
         {
             try
             {
-                var qrCodeUrl = $"{_baseUrl}/api/access?token={token}";
-
                 using var qrGenerator = new QRCodeGenerator();
-                using var qrCodeData = qrGenerator.CreateQrCode(qrCodeUrl, QRCodeGenerator.ECCLevel.Q);
+                using var qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.M);
 
                 var pngWriter = new PngByteQRCode(qrCodeData);
-                byte[] pngBytes = pngWriter.GetGraphic(20); // يعيد مباشرة مصفوفة بايت لصورة PNG
+                byte[] pngBytes = pngWriter.GetGraphic(10);
+
+                var qrCodeBase64 = Convert.ToBase64String(pngBytes);
+                var qrCodeDataUrl = $"data:image/png;base64,{qrCodeBase64}";
+
+                return new QRCodeResponse
+                {
+                    Success = true,
+                    Message = "تم توليد رمز QR للبيانات بنجاح",
+                    QRCodeUrl = qrCodeDataUrl
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error generating data QR code");
+                return new QRCodeResponse { Success = false, Message = "حدث خطأ أثناء توليد رمز QR" };
+            }
+        }
+
+        private async Task<string> GenerateQRCodeImageAsync(string content)
+        {
+            try
+            {
+                // Note: The caller might pass a token or a full URL.
+                // We keep this for backward compatibility if needed, but we prefer GenerateDataQRCodeAsync.
+                var contentToEncode = content.StartsWith("http") ? content : $"{_baseUrl}/api/access?token={content}";
+
+                using var qrGenerator = new QRCodeGenerator();
+                using var qrCodeData = qrGenerator.CreateQrCode(contentToEncode, QRCodeGenerator.ECCLevel.Q);
+
+                var pngWriter = new PngByteQRCode(qrCodeData);
+                byte[] pngBytes = pngWriter.GetGraphic(20);
 
                 return Convert.ToBase64String(pngBytes);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error generating QR code image for token {Token}", token);
+                _logger.LogError(ex, "Error generating QR code image for content {Content}", content);
                 throw;
             }
         }

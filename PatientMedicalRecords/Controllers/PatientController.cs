@@ -393,8 +393,16 @@ namespace PatientMedicalRecords.Controllers
                 var userId = GetCurrentUserId();
                 if (userId == null) return Unauthorized();
 
-                var request = new QRCodeRequest { UserId = userId.Value };
-                var result = await _qrCodeService.GenerateQRCodeAsync(request);
+                var patient = await _context.Patients
+                    .Include(p => p.Allergies)
+                    .Include(p => p.Prescriptions)
+                        .ThenInclude(pr => pr.PrescriptionItems)
+                    .FirstOrDefaultAsync(p => p.UserId == userId);
+
+                if (patient == null) return NotFound("Patient not found");
+
+                var dataToEncode = FormatEmergencyData(patient);
+                var result = await _qrCodeService.GenerateDataQRCodeAsync(dataToEncode);
 
                 if (!result.Success)
                 {
@@ -441,9 +449,9 @@ namespace PatientMedicalRecords.Controllers
                     });
                 }
 
-                // Generate QR code for emergency access
-                var qrRequest = new QRCodeRequest { UserId = userId.Value };
-                var qrResult = await _qrCodeService.GenerateQRCodeAsync(qrRequest);
+                // Generate QR code with raw data for offline access
+                var dataToEncode = FormatEmergencyData(patient);
+                var qrResult = await _qrCodeService.GenerateDataQRCodeAsync(dataToEncode);
 
                 var emergencyInfo = new EmergencyInfo
                 {
@@ -587,6 +595,37 @@ namespace PatientMedicalRecords.Controllers
                 _logger.LogError(ex, "Error getting prescriptions");
                 return StatusCode(500, "حدث خطأ في الخادم");
             }
+        }
+
+        private string FormatEmergencyData(Patient patient)
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("🚨 بيانات الطوارئ الطبية 🚨");
+            sb.AppendLine("---------------------------");
+            sb.AppendLine($"👤 الاسم: {patient.FullName}");
+            sb.AppendLine($"🩸 فصيلة الدم: {patient.BloodType?.ToString().Replace("_", " ") ?? "غير محدد"}");
+
+            var allergies = patient.Allergies.Any()
+                ? string.Join("، ", patient.Allergies.Select(a => a.AllergenName))
+                : "لا يوجد";
+            sb.AppendLine($"⚠️ الحساسية: {allergies}");
+
+            var medications = patient.Prescriptions
+                .Where(p => p.Status == PrescriptionStatus.Dispensed)
+                .SelectMany(p => p.PrescriptionItems.Where(pi => pi.IsDispensed))
+                .Select(pi => pi.MedicationName)
+                .Distinct()
+                .ToList();
+
+            var medsList = medications.Any() ? string.Join("، ", medications) : "لا يوجد";
+            sb.AppendLine($"💊 الأدوية: {medsList}");
+
+            sb.AppendLine($"📞 جهة الطوارئ: {patient.EmergencyContact ?? "غير محدد"}");
+            sb.AppendLine($"📱 رقم الطوارئ: {patient.EmergencyPhone ?? "غير محدد"}");
+            sb.AppendLine("---------------------------");
+            sb.AppendLine("نظام السجل الطبي الموحد");
+
+            return sb.ToString();
         }
 
         private int? GetCurrentUserId()
