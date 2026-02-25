@@ -22,6 +22,7 @@ namespace PatientMedicalRecords.Models
         public DateTime? UpdatedAt { get; set; }
         [StringLength(20)]
         public string? PatientCode { get; set; } // مثال: PM-3F9A72A1
+        public bool IsProfileInitialized { get; set; } = false;
 
         [ForeignKey("UserId")] public virtual User User { get; set; } = null!;
         public virtual ICollection<MedicalRecord> MedicalRecords { get; set; } = new List<MedicalRecord>();

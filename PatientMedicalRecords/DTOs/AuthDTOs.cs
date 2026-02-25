@@ -195,7 +195,7 @@ namespace PatientMedicalRecords.DTOs
         public string? Specialization { get; set; }
         public string? Hospital { get; set; }
         //[Required(ErrorMessage = "شهادة الترخيص مطلوبة")]
-        public IFormFile? LicenseDocument { get; set; }
+        //public IFormFile? LicenseDocument { get; set; }
     }
 
     public class PharmacistRegisterRequest

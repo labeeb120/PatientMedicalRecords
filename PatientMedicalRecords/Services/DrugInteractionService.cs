@@ -355,12 +355,13 @@ namespace PatientMedicalRecords.Services
                     {
                         drug = new Drug
                         {
-                            ScientificName = d.ScientificName,
                             BrandName = d.BrandName,
-                            ChemicalName = d.ChemicalName,
                             Manufacturer = d.Manufacturer,
-                            NormalizedName = normalizedDrug,
-                            CreatedAt = DateTime.UtcNow
+                            ScientificName = d.ScientificName,                           
+                            ChemicalName = d.ChemicalName,
+                            CreatedAt = DateTime.UtcNow,
+                            NormalizedName = normalizedDrug
+                            
                         };
                         _context.Drugs.Add(drug);
                         existingDrugs[normalizedDrug] = drug;

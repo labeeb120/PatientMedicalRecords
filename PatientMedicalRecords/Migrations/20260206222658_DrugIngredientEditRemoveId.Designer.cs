@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PatientMedicalRecords.Data;
 
@@ -11,9 +12,11 @@ using PatientMedicalRecords.Data;
 namespace PatientMedicalRecords.Migrations
 {
     [DbContext(typeof(MedicalRecordsDbContext))]
-    partial class MedicalRecordsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260206222658_DrugIngredientEditRemoveId")]
+    partial class DrugIngredientEditRemoveId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -276,7 +279,7 @@ namespace PatientMedicalRecords.Migrations
                         {
                             Id = 1,
                             BrandName = "Adol",
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 12, 500, DateTimeKind.Utc).AddTicks(1729),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 54, 986, DateTimeKind.Utc).AddTicks(8615),
                             Manufacturer = "Pharma Co.",
                             NormalizedName = "adol",
                             ScientificName = "Paracetamol"
@@ -285,7 +288,7 @@ namespace PatientMedicalRecords.Migrations
                         {
                             Id = 2,
                             BrandName = "Brufen",
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 12, 500, DateTimeKind.Utc).AddTicks(1738),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 54, 986, DateTimeKind.Utc).AddTicks(8619),
                             Manufacturer = "Med Co.",
                             NormalizedName = "brufen",
                             ScientificName = "Ibuprofen"
@@ -294,7 +297,7 @@ namespace PatientMedicalRecords.Migrations
                         {
                             Id = 3,
                             BrandName = "Amoxil",
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 12, 500, DateTimeKind.Utc).AddTicks(1742),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 54, 986, DateTimeKind.Utc).AddTicks(8621),
                             Manufacturer = "Global Drugs",
                             NormalizedName = "amoxil",
                             ScientificName = "Amoxicillin"
@@ -303,7 +306,7 @@ namespace PatientMedicalRecords.Migrations
                         {
                             Id = 4,
                             BrandName = "Tylenol",
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 12, 500, DateTimeKind.Utc).AddTicks(1746),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 54, 986, DateTimeKind.Utc).AddTicks(8623),
                             Manufacturer = "US Pharma",
                             NormalizedName = "tylenol",
                             ScientificName = "Paracetamol"
@@ -312,7 +315,7 @@ namespace PatientMedicalRecords.Migrations
                         {
                             Id = 5,
                             BrandName = "Coumadin",
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 12, 500, DateTimeKind.Utc).AddTicks(1750),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 54, 986, DateTimeKind.Utc).AddTicks(8625),
                             Manufacturer = "Chem Lab",
                             NormalizedName = "coumadin",
                             ScientificName = "Warfarin"
@@ -408,7 +411,7 @@ namespace PatientMedicalRecords.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 12, 500, DateTimeKind.Utc).AddTicks(2137),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 54, 986, DateTimeKind.Utc).AddTicks(8768),
                             Description = "قد يزيد الإيبوبروفين من تأثير الوارفارين، مما يزيد بشكل كبير من خطر النزيف الحاد.",
                             IngredientAId = 2,
                             IngredientBId = 4,
@@ -418,7 +421,7 @@ namespace PatientMedicalRecords.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 12, 500, DateTimeKind.Utc).AddTicks(2143),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 54, 986, DateTimeKind.Utc).AddTicks(8772),
                             Description = "لا يوجد تفاعل سريري كبير معروف بين هذين المكونين.",
                             IngredientAId = 1,
                             IngredientBId = 3,
@@ -456,28 +459,28 @@ namespace PatientMedicalRecords.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 12, 500, DateTimeKind.Utc).AddTicks(1289),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 54, 986, DateTimeKind.Utc).AddTicks(8182),
                             Name = "Paracetamol",
                             NormalizedName = "paracetamol"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 12, 500, DateTimeKind.Utc).AddTicks(1304),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 54, 986, DateTimeKind.Utc).AddTicks(8187),
                             Name = "Ibuprofen",
                             NormalizedName = "ibuprofen"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 12, 500, DateTimeKind.Utc).AddTicks(1308),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 54, 986, DateTimeKind.Utc).AddTicks(8189),
                             Name = "Amoxicillin",
                             NormalizedName = "amoxicillin"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 12, 500, DateTimeKind.Utc).AddTicks(1312),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 54, 986, DateTimeKind.Utc).AddTicks(8191),
                             Name = "Warfarin",
                             NormalizedName = "warfarin"
                         });
@@ -602,9 +605,6 @@ namespace PatientMedicalRecords.Migrations
 
                     b.Property<decimal?>("Height")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("IsProfileInitialized")
-                        .HasColumnType("bit");
 
                     b.Property<string>("PatientCode")
                         .HasMaxLength(20)
@@ -953,11 +953,11 @@ namespace PatientMedicalRecords.Migrations
                         new
                         {
                             Id = 101,
-                            CreatedAt = new DateTime(2026, 2, 24, 21, 2, 13, 968, DateTimeKind.Utc).AddTicks(3868),
+                            CreatedAt = new DateTime(2026, 2, 6, 22, 26, 55, 568, DateTimeKind.Utc).AddTicks(1187),
                             Email = "admin@medicalrecords.com",
                             FullName = "System Administrator",
                             NationalId = "1000000001",
-                            PasswordHash = "$2a$11$WuLjr49JUpCXIF5whvI9nOAFYm5ufX/tLHBa9yJy4yH9ryEhgkDZe",
+                            PasswordHash = "$2a$11$spvNwL5SAxZzEezJDaCwp.vmleE/iIMNoZgVzLwMIWlb/qxzrdma2",
                             Role = 4,
                             Status = 2
                         });

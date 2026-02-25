@@ -112,15 +112,17 @@ namespace PatientMedicalRecords.Data
 
             modelBuilder.Entity<DrugIngredient>().HasData(
                 // Adol (1) -> Paracetamol (1)
-                new DrugIngredient { Id = 1, DrugId = 1, IngredientId = 1 },
+                new DrugIngredient { //Id = 1,
+                    DrugId = 1, IngredientId = 1 },
                 // Brufen (2) -> Ibuprofen (2)
-                new DrugIngredient { Id = 2, DrugId = 2, IngredientId = 2 },
+                new DrugIngredient {// Id = 2,
+                    DrugId = 2, IngredientId = 2 },
                 // Amoxil (3) -> Amoxicillin (3)
-                new DrugIngredient { Id = 3, DrugId = 3, IngredientId = 3 },
+                new DrugIngredient { DrugId = 3, IngredientId = 3 },
                 // Tylenol (4) -> Paracetamol (1)
-                new DrugIngredient { Id = 4, DrugId = 4, IngredientId = 1 },
+                new DrugIngredient { DrugId = 4, IngredientId = 1 },
                 // Coumadin (5) -> Warfarin (4)
-                new DrugIngredient { Id = 5, DrugId = 5, IngredientId = 4 }
+                new DrugIngredient { DrugId = 5, IngredientId = 4 }
             );
 
             // **********************************************

@@ -47,6 +47,7 @@ namespace PatientMedicalRecords.Services
                 EmergencyContact = patient.EmergencyContact,
                 EmergencyPhone = patient.EmergencyPhone,
                 PatientCode = patient.PatientCode,
+                IsProfileInitialized = patient.IsProfileInitialized,
                 Allergies = patient.Allergies.Select(a => new AllergyInfo { /* Map properties */ }).ToList(),
                 ChronicDiseases = patient.ChronicDiseases.Select(cd => new ChronicDiseaseInfo { /* Map properties */ }).ToList(),
                 Surgeries = patient.Surgeries.Select(s => new SurgeryInfo { /* Map properties */ }).ToList(),

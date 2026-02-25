@@ -85,6 +85,7 @@ namespace PatientMedicalRecords.DTOs
         public string? EmergencyContact { get; set; }
         public string? EmergencyPhone { get; set; }
         public string? PatientCode { get; set; }
+        public bool IsProfileInitialized { get; set; }
         public List<AllergyInfo> Allergies { get; set; } = new List<AllergyInfo>();
         public List<ChronicDiseaseInfo> ChronicDiseases { get; set; } = new List<ChronicDiseaseInfo>();
         public List<SurgeryInfo> Surgeries { get; set; } = new List<SurgeryInfo>();
@@ -109,7 +110,7 @@ namespace PatientMedicalRecords.DTOs
 
     public class PrescriptionItemRequest
     {
-        [Required(ErrorMessage = "معرف الدواء مطلوب")]
+        //[Required(ErrorMessage = "معرف الدواء مطلوب")]
         public int DrugId { get; set; }
 
         [Required(ErrorMessage = "اسم الدواء مطلوب")]
