@@ -428,10 +428,11 @@ namespace PatientMedicalRecords.Services
             // Rotate: revoke old token and issue new one
             stored.Revoked = true;
 
+            var newRefreshString = GenerateSecureToken();
             var newRefresh = new RefreshToken
             {
                 UserId = user.Id,
-                Token = GenerateSecureToken(),
+                Token = newRefreshString,
                 ExpiresAt = DateTime.UtcNow.AddDays(30),
                 CreatedAt = DateTime.UtcNow
             };
@@ -441,7 +442,7 @@ namespace PatientMedicalRecords.Services
             // generate new access token
             var access = _jwtService.GenerateAccessToken(user);
 
-            return new RefreshResult { Success = true, AccessToken = access, NewRefreshToken = newRefresh.Token };
+            return new RefreshResult { Success = true, AccessToken = access, NewRefreshToken = newRefreshString };
         }
 
         public async Task<ServiceResult> LogoutAsync(string refreshToken)

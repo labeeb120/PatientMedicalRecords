@@ -104,7 +104,12 @@ namespace PatientMedicalRecords.Controllers
                 Response.Cookies.Append("refreshToken", res.NewRefreshToken, cookieOptions);
             }
 
-            return Ok(new { success = true, accessToken = res.AccessToken });
+            return Ok(new
+            {
+                success = true,
+                accessToken = res.AccessToken,
+                refreshToken = res.NewRefreshToken // Include new refresh token in body
+            });
         }
 
         [HttpPost("logout")]

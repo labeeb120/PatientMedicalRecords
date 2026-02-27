@@ -569,6 +569,48 @@ namespace PatientMedicalRecords.Controllers
 
         }
 
+        /// <summary>
+        /// البحث عن الأدوية في قاعدة البيانات
+        /// </summary>
+        [HttpGet("search-drugs")]
+        public async Task<ActionResult<DrugSearchResponse>> SearchDrugs([FromQuery] string query)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(query))
+                {
+                    return Ok(new DrugSearchResponse { Success = true, Drugs = new List<DrugSuggestionDto>() });
+                }
+
+                var normalizedQuery = query.Trim().ToLowerInvariant();
+
+                var suggestions = await _context.Drugs
+                    .Where(d => d.ScientificName.Contains(normalizedQuery) ||
+                                (d.BrandName != null && d.BrandName.Contains(normalizedQuery)) ||
+                                (d.ChemicalName != null && d.ChemicalName.Contains(normalizedQuery)))
+                    .Take(20)
+                    .Select(d => new DrugSuggestionDto
+                    {
+                        DrugId = d.Id,
+                        ScientificName = d.ScientificName,
+                        BrandName = d.BrandName ?? "",
+                        ChemicalName = d.ChemicalName ?? ""
+                    })
+                    .ToListAsync();
+
+                return Ok(new DrugSearchResponse
+                {
+                    Success = true,
+                    Drugs = suggestions
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error searching for drugs with query {Query}", query);
+                return StatusCode(500, new DrugSearchResponse { Success = false });
+            }
+        }
+
 
 
 

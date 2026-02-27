@@ -215,6 +215,23 @@ namespace AdminPortal.Services
                         if (!string.IsNullOrEmpty(newToken))
                         {
                             SetToken(newToken);
+
+                            // Also update refresh token if returned (Rotation)
+                            if (result.TryGetProperty("refreshToken", out var refreshProp))
+                            {
+                                var newRefresh = refreshProp.GetString();
+                                if (!string.IsNullOrEmpty(newRefresh))
+                                {
+                                    _httpContextAccessor.HttpContext?.Response.Cookies.Append("refreshToken", newRefresh, new CookieOptions
+                                    {
+                                        HttpOnly = true,
+                                        Secure = true,
+                                        SameSite = SameSiteMode.Strict,
+                                        Expires = DateTimeOffset.UtcNow.AddDays(30)
+                                    });
+                                }
+                            }
+
                             return newToken;
                         }
                     }

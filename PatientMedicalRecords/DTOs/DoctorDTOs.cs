@@ -191,4 +191,10 @@ namespace PatientMedicalRecords.DTOs
         public bool Success { get; set; }
         public string Message { get; set; } = string.Empty;
     }
+
+    public class DrugSearchResponse
+    {
+        public bool Success { get; set; }
+        public List<DrugSuggestionDto> Drugs { get; set; } = new List<DrugSuggestionDto>();
+    }
 }
