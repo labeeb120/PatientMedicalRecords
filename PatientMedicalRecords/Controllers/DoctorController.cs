@@ -566,6 +566,8 @@ namespace PatientMedicalRecords.Controllers
                 })
                 .ToListAsync();
 
+            
+
             return Ok(suggestions);
         }
 

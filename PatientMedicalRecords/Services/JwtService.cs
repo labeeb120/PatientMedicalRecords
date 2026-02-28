@@ -25,7 +25,7 @@ namespace PatientMedicalRecords.Services
             _issuer = _configuration["JwtSettings:Issuer"] ?? "patient-medical";
             _audience = _configuration["JwtSettings:Audience"] ?? "patient-medical-audience";
             _expiresMinutes =
-                int.TryParse(_configuration["JwtSettings:AccessTokenExpirationMinutes"], out var m) ? m : 15;
+                int.TryParse(_configuration["JwtSettings:AccessTokenExpirationMinutes"], out var m) ? m : 120;
         }
 
         public string GenerateAccessToken(User user)

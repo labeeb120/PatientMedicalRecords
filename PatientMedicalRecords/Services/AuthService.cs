@@ -262,7 +262,7 @@ namespace PatientMedicalRecords.Services
             var existing = await _context.Users.FirstOrDefaultAsync(u => u.NationalId == request.NationalId);
             if (existing != null) return ServiceResult.Fail("National ID already used.");
 
-            var attachmentInfo = await SaveAttachmentAsync(request.LicenseDocument);
+            //var attachmentInfo = await SaveAttachmentAsync(request.LicenseDocument);
 
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
@@ -304,16 +304,16 @@ namespace PatientMedicalRecords.Services
             // notify pharmacist (pending)
             await _notificationService.CreateNotification(user.Id, "تم استلام طلب التسجيل", "حسابك تحت المراجعة من قبل الإدارة.");
                 //***********
-                var attachment = new UserAttachment
-                {
-                    UserId = user.Id,
-                    AttachmentType = "LicenseCertificate",
-                    FilePath = attachmentInfo.FilePath,
-                    FileName = attachmentInfo.FileName,
-                    FileSize = attachmentInfo.FileSize,
-                    ContentType = attachmentInfo.ContentType
-                };
-                _context.UserAttachments.Add(attachment);
+                //var attachment = new UserAttachment
+                //{
+                //    UserId = user.Id,
+                //    AttachmentType = "LicenseCertificate",
+                //    FilePath = attachmentInfo.FilePath,
+                //    FileName = attachmentInfo.FileName,
+                //    FileSize = attachmentInfo.FileSize,
+                //    ContentType = attachmentInfo.ContentType
+                //};
+                //_context.UserAttachments.Add(attachment);
 
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
