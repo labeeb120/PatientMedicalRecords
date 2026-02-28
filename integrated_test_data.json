@@ -1,0 +1,1622 @@
+[
+  {
+    "patientName": "مريم الشمري",
+    "patientId": 1,
+    "initProfileRequest": {
+      "fullName": "مريم الشمري",
+      "dateOfBirth": "1990-07-25T22:49:24",
+      "gender": 1,
+      "phoneNumber": "0503704171",
+      "email": "patient1@example.com",
+      "address": "شارع 53، حي النزهة",
+      "bloodType": 3,
+      "weight": 93,
+      "height": 156,
+      "emergencyContact": "قريب 1",
+      "emergencyPhone": "0557514321",
+      "allergies": [
+        {
+          "allergenName": "مكسرات",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "القولون العصبي",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "المرارة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "أوجمنتين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 1,
+      "diagnosis": "اشتباه انفلونزا موسمية",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 1,
+      "diagnosis": "اشتباه انفلونزا موسمية",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "بروفين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "مريم الدوسري",
+    "patientId": 2,
+    "initProfileRequest": {
+      "fullName": "مريم الدوسري",
+      "dateOfBirth": "2001-05-05T22:49:24",
+      "gender": 1,
+      "phoneNumber": "0509477353",
+      "email": "patient2@example.com",
+      "address": "شارع 41، حي الروضة",
+      "bloodType": 5,
+      "weight": 63,
+      "height": 171,
+      "emergencyContact": "قريب 2",
+      "emergencyPhone": "0554355004",
+      "allergies": [
+        {
+          "allergenName": "مكسرات",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "السكري",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "المرارة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "بروفين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 2,
+      "diagnosis": "اشتباه التهاب الجيوب الأنفية",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 2,
+      "diagnosis": "اشتباه التهاب الجيوب الأنفية",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أوميبرازول",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "أحمد المالكي",
+    "patientId": 3,
+    "initProfileRequest": {
+      "fullName": "أحمد المالكي",
+      "dateOfBirth": "2007-07-20T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0503467972",
+      "email": "patient3@example.com",
+      "address": "شارع 83، حي النزهة",
+      "bloodType": 7,
+      "weight": 79,
+      "height": 164,
+      "emergencyContact": "قريب 3",
+      "emergencyPhone": "0552246048",
+      "allergies": [
+        {
+          "allergenName": "سمك",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الغدة الدرقية",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "المرارة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "بروفين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 3,
+      "diagnosis": "اشتباه إجهاد عضلي",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 3,
+      "diagnosis": "اشتباه إجهاد عضلي",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "سولبادين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "هند الشمري",
+    "patientId": 4,
+    "initProfileRequest": {
+      "fullName": "هند الشمري",
+      "dateOfBirth": "1977-08-12T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0505171145",
+      "email": "patient4@example.com",
+      "address": "شارع 91، حي النزهة",
+      "bloodType": 4,
+      "weight": 91,
+      "height": 192,
+      "emergencyContact": "قريب 4",
+      "emergencyPhone": "0555146560",
+      "allergies": [
+        {
+          "allergenName": "فراولة",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الضغط",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "الزائدة الدودية",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "أوجمنتين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 4,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 4,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أوجمنتين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "فاطمة الحربي",
+    "patientId": 5,
+    "initProfileRequest": {
+      "fullName": "فاطمة الحربي",
+      "dateOfBirth": "1999-01-31T22:49:24",
+      "gender": 1,
+      "phoneNumber": "0504914565",
+      "email": "patient5@example.com",
+      "address": "شارع 100، حي الروضة",
+      "bloodType": 7,
+      "weight": 80,
+      "height": 159,
+      "emergencyContact": "قريب 5",
+      "emergencyPhone": "0559765201",
+      "allergies": [
+        {
+          "allergenName": "لاكتوز",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الضغط",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "القسطرة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "كونكور",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 5,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 5,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "ميتفورمين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "ليلى القحطاني",
+    "patientId": 6,
+    "initProfileRequest": {
+      "fullName": "ليلى القحطاني",
+      "dateOfBirth": "1976-07-03T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0508206408",
+      "email": "patient6@example.com",
+      "address": "شارع 70، حي الروضة",
+      "bloodType": 5,
+      "weight": 106,
+      "height": 150,
+      "emergencyContact": "قريب 6",
+      "emergencyPhone": "0557999817",
+      "allergies": [
+        {
+          "allergenName": "لاكتوز",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الروماتيزم",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "تجميل الأنف",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "أدول",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 6,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 6,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أوميبرازول",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "أحمد الرويلي",
+    "patientId": 7,
+    "initProfileRequest": {
+      "fullName": "أحمد الرويلي",
+      "dateOfBirth": "1982-05-12T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0503309803",
+      "email": "patient7@example.com",
+      "address": "شارع 78، حي الروضة",
+      "bloodType": 1,
+      "weight": 92,
+      "height": 150,
+      "emergencyContact": "قريب 7",
+      "emergencyPhone": "0553842032",
+      "allergies": [
+        {
+          "allergenName": "سمك",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الضغط",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "المرارة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "ميتفورمين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 7,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 7,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أوجمنتين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "سلطان الخالدي",
+    "patientId": 8,
+    "initProfileRequest": {
+      "fullName": "سلطان الخالدي",
+      "dateOfBirth": "1978-08-21T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0505661781",
+      "email": "patient8@example.com",
+      "address": "شارع 24، حي الياسمين",
+      "bloodType": 2,
+      "weight": 97,
+      "height": 170,
+      "emergencyContact": "قريب 8",
+      "emergencyPhone": "0551903827",
+      "allergies": [
+        {
+          "allergenName": "بنسلين",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الغدة الدرقية",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "الفتق",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "سولبادين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 8,
+      "diagnosis": "اشتباه انفلونزا موسمية",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 8,
+      "diagnosis": "اشتباه انفلونزا موسمية",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أوجمنتين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "سلطان العنزي",
+    "patientId": 9,
+    "initProfileRequest": {
+      "fullName": "سلطان العنزي",
+      "dateOfBirth": "2008-12-17T22:49:24",
+      "gender": 1,
+      "phoneNumber": "0504412214",
+      "email": "patient9@example.com",
+      "address": "شارع 61، حي النزهة",
+      "bloodType": 6,
+      "weight": 63,
+      "height": 192,
+      "emergencyContact": "قريب 9",
+      "emergencyPhone": "0558741756",
+      "allergies": [
+        {
+          "allergenName": "بيض",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "القولون العصبي",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "القسطرة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "بروفين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 9,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 9,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "ميتفورمين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "عمر الشمري",
+    "patientId": 10,
+    "initProfileRequest": {
+      "fullName": "عمر الشمري",
+      "dateOfBirth": "1998-05-22T22:49:24",
+      "gender": 1,
+      "phoneNumber": "0503383810",
+      "email": "patient10@example.com",
+      "address": "شارع 32، حي النزهة",
+      "bloodType": 3,
+      "weight": 104,
+      "height": 151,
+      "emergencyContact": "قريب 10",
+      "emergencyPhone": "0557582623",
+      "allergies": [
+        {
+          "allergenName": "بنسلين",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "القولون العصبي",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "تجميل الأنف",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "أدول",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 10,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 10,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "بروفين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "منى الغامدي",
+    "patientId": 11,
+    "initProfileRequest": {
+      "fullName": "منى الغامدي",
+      "dateOfBirth": "1993-01-27T22:49:24",
+      "gender": 1,
+      "phoneNumber": "0502402475",
+      "email": "patient11@example.com",
+      "address": "شارع 39، حي الروضة",
+      "bloodType": 2,
+      "weight": 59,
+      "height": 151,
+      "emergencyContact": "قريب 11",
+      "emergencyPhone": "0556976747",
+      "allergies": [
+        {
+          "allergenName": "فول صويا",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "السكري",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "الفتق",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "سولبادين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 11,
+      "diagnosis": "اشتباه التهاب الجيوب الأنفية",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 11,
+      "diagnosis": "اشتباه التهاب الجيوب الأنفية",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أوميبرازول",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "جواهر العنزي",
+    "patientId": 12,
+    "initProfileRequest": {
+      "fullName": "جواهر العنزي",
+      "dateOfBirth": "2006-03-08T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0506456929",
+      "email": "patient12@example.com",
+      "address": "شارع 70، حي النزهة",
+      "bloodType": 4,
+      "weight": 53,
+      "height": 185,
+      "emergencyContact": "قريب 12",
+      "emergencyPhone": "0553826850",
+      "allergies": [
+        {
+          "allergenName": "لاكتوز",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الروماتيزم",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "المرارة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "بروفين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 12,
+      "diagnosis": "اشتباه انفلونزا موسمية",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 12,
+      "diagnosis": "اشتباه انفلونزا موسمية",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أوميبرازول",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "جواهر العتيبي",
+    "patientId": 13,
+    "initProfileRequest": {
+      "fullName": "جواهر العتيبي",
+      "dateOfBirth": "2004-06-24T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0507642597",
+      "email": "patient13@example.com",
+      "address": "شارع 92، حي الروضة",
+      "bloodType": 1,
+      "weight": 83,
+      "height": 186,
+      "emergencyContact": "قريب 13",
+      "emergencyPhone": "0559489133",
+      "allergies": [
+        {
+          "allergenName": "بيض",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "السكري",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "المرارة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "أوميبرازول",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 13,
+      "diagnosis": "اشتباه التهاب الجيوب الأنفية",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 13,
+      "diagnosis": "اشتباه التهاب الجيوب الأنفية",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "كونكور",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "عمر السبيعي",
+    "patientId": 14,
+    "initProfileRequest": {
+      "fullName": "عمر السبيعي",
+      "dateOfBirth": "2004-07-22T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0508442244",
+      "email": "patient14@example.com",
+      "address": "شارع 21، حي الأمانة",
+      "bloodType": 5,
+      "weight": 99,
+      "height": 174,
+      "emergencyContact": "قريب 14",
+      "emergencyPhone": "0551416265",
+      "allergies": [
+        {
+          "allergenName": "بنسلين",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الغدة الدرقية",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "الفتق",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "أوميبرازول",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 14,
+      "diagnosis": "اشتباه انفلونزا موسمية",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 14,
+      "diagnosis": "اشتباه انفلونزا موسمية",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "سولبادين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "نورة العتيبي",
+    "patientId": 15,
+    "initProfileRequest": {
+      "fullName": "نورة العتيبي",
+      "dateOfBirth": "2008-10-26T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0503505851",
+      "email": "patient15@example.com",
+      "address": "شارع 70، حي النزهة",
+      "bloodType": 2,
+      "weight": 81,
+      "height": 189,
+      "emergencyContact": "قريب 15",
+      "emergencyPhone": "0555682246",
+      "allergies": [
+        {
+          "allergenName": "لاكتوز",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "السكري",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "القسطرة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "أوجمنتين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 15,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 15,
+      "diagnosis": "اشتباه نقص فيتامين د",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أدول",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "سعد السبيعي",
+    "patientId": 16,
+    "initProfileRequest": {
+      "fullName": "سعد السبيعي",
+      "dateOfBirth": "1988-01-22T22:49:24",
+      "gender": 1,
+      "phoneNumber": "0504793928",
+      "email": "patient16@example.com",
+      "address": "شارع 46، حي الياسمين",
+      "bloodType": 7,
+      "weight": 73,
+      "height": 172,
+      "emergencyContact": "قريب 16",
+      "emergencyPhone": "0554460935",
+      "allergies": [
+        {
+          "allergenName": "فول صويا",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الضغط",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "القسطرة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "أوجمنتين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 16,
+      "diagnosis": "اشتباه التهاب الجيوب الأنفية",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 16,
+      "diagnosis": "اشتباه التهاب الجيوب الأنفية",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "سولبادين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "عمر العتيبي",
+    "patientId": 17,
+    "initProfileRequest": {
+      "fullName": "عمر العتيبي",
+      "dateOfBirth": "1977-04-28T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0507352413",
+      "email": "patient17@example.com",
+      "address": "شارع 66، حي الروضة",
+      "bloodType": 6,
+      "weight": 55,
+      "height": 169,
+      "emergencyContact": "قريب 17",
+      "emergencyPhone": "0559110803",
+      "allergies": [
+        {
+          "allergenName": "فول صويا",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الربو",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "المرارة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "كونكور",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 17,
+      "diagnosis": "اشتباه التهاب الجيوب الأنفية",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 17,
+      "diagnosis": "اشتباه التهاب الجيوب الأنفية",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أدول",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "ليلى الفضلي",
+    "patientId": 18,
+    "initProfileRequest": {
+      "fullName": "ليلى الفضلي",
+      "dateOfBirth": "1984-07-18T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0509297610",
+      "email": "patient18@example.com",
+      "address": "شارع 71، حي الأمانة",
+      "bloodType": 4,
+      "weight": 104,
+      "height": 194,
+      "emergencyContact": "قريب 18",
+      "emergencyPhone": "0558448489",
+      "allergies": [
+        {
+          "allergenName": "سمك",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الربو",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "تجميل الأنف",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "ميتفورمين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 18,
+      "diagnosis": "اشتباه انفلونزا موسمية",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 18,
+      "diagnosis": "اشتباه انفلونزا موسمية",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أوجمنتين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "سلطان الرشيدي",
+    "patientId": 19,
+    "initProfileRequest": {
+      "fullName": "سلطان الرشيدي",
+      "dateOfBirth": "1971-06-04T22:49:24",
+      "gender": 2,
+      "phoneNumber": "0503119000",
+      "email": "patient19@example.com",
+      "address": "شارع 42، حي الياسمين",
+      "bloodType": 8,
+      "weight": 109,
+      "height": 188,
+      "emergencyContact": "قريب 19",
+      "emergencyPhone": "0553005623",
+      "allergies": [
+        {
+          "allergenName": "مكسرات",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الربو",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "المرارة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "بروفين",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 19,
+      "diagnosis": "اشتباه إجهاد عضلي",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 19,
+      "diagnosis": "اشتباه إجهاد عضلي",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أوميبرازول",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "patientName": "نورة الرويلي",
+    "patientId": 20,
+    "initProfileRequest": {
+      "fullName": "نورة الرويلي",
+      "dateOfBirth": "1975-02-05T22:49:24",
+      "gender": 1,
+      "phoneNumber": "0508706983",
+      "email": "patient20@example.com",
+      "address": "شارع 42، حي الياسمين",
+      "bloodType": 5,
+      "weight": 71,
+      "height": 152,
+      "emergencyContact": "قريب 20",
+      "emergencyPhone": "0554711139",
+      "allergies": [
+        {
+          "allergenName": "لاكتوز",
+          "reaction": "طفح جلدي",
+          "severity": "متوسط"
+        }
+      ],
+      "chronicDiseases": [
+        {
+          "diseaseName": "الضغط",
+          "description": "تحت السيطرة",
+          "diagnosisDate": "2020-01-01"
+        }
+      ],
+      "surgeries": [
+        {
+          "surgeryName": "المرارة",
+          "description": "عملية ناجحة",
+          "surgeryDate": "2019-05-10",
+          "hospital": "مستشفى الأمل",
+          "surgeon": "د. فهد"
+        }
+      ],
+      "currentMedications": [
+        {
+          "medicationName": "كونكور",
+          "dosage": "500mg",
+          "frequency": "مرتين يومياً",
+          "duration": "مستمر",
+          "instructions": "بعد الأكل"
+        }
+      ],
+      "notes": "المريض لديه تاريخ عائلي مع أمراض القلب"
+    },
+    "medicalRecordRequest": {
+      "patientId": 20,
+      "diagnosis": "اشتباه إجهاد عضلي",
+      "notes": "تم إجراء فحص سريري وكافة العلامات الحيوية طبيعية",
+      "symptoms": "صداع مستمر وخمول",
+      "treatment": "راحة تامة مع الالتزام بالوصفة المرفقة",
+      "recordDate": "2026-02-28T22:49:24"
+    },
+    "prescriptionRequest": {
+      "patientId": 20,
+      "diagnosis": "اشتباه إجهاد عضلي",
+      "notes": "الالتزام بالجرعات في أوقاتها المحددة",
+      "items": [
+        {
+          "medicationName": "أوجمنتين",
+          "dosage": "100mg",
+          "frequency": "مرة واحدة قبل النوم",
+          "duration": "7 أيام",
+          "instructions": "لا يشرب معه حليب",
+          "quantity": 1
+        },
+        {
+          "medicationName": "فيتامين سي",
+          "dosage": "1000mg",
+          "frequency": "فوار مرة يومياً",
+          "duration": "10 أيام",
+          "instructions": "بعد الغداء",
+          "quantity": 2
+        }
+      ]
+    }
+  }
+]
