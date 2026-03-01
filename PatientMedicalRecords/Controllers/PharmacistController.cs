@@ -415,6 +415,68 @@ namespace PatientMedicalRecords.Controllers
 
 
 
+        [HttpGet("patients-lookup")]
+        public async Task<ActionResult<PatientLookupResponse>> GetPatientsLookup()
+        {
+            try
+            {
+                var patients = await _context.Patients
+                    .Select(p => new LookupItem
+                    {
+                        Id = p.UserId,
+                        Name = p.FullName
+                    })
+                    .ToListAsync();
+
+                return Ok(new PatientLookupResponse
+                {
+                    Success = true,
+                    Message = "تم جلب قائمة المرضى بنجاح",
+                    Patients = patients
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting patients lookup");
+                return StatusCode(500, new PatientLookupResponse
+                {
+                    Success = false,
+                    Message = "حدث خطأ في الخادم"
+                });
+            }
+        }
+
+        [HttpGet("doctors-lookup")]
+        public async Task<ActionResult<DoctorLookupResponse>> GetDoctorsLookup()
+        {
+            try
+            {
+                var doctors = await _context.Doctors
+                    .Select(d => new LookupItem
+                    {
+                        Id = d.UserId,
+                        Name = d.FullName
+                    })
+                    .ToListAsync();
+
+                return Ok(new DoctorLookupResponse
+                {
+                    Success = true,
+                    Message = "تم جلب قائمة الأطباء بنجاح",
+                    Doctors = doctors
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting doctors lookup");
+                return StatusCode(500, new DoctorLookupResponse
+                {
+                    Success = false,
+                    Message = "حدث خطأ في الخادم"
+                });
+            }
+        }
+
         [HttpPost("create")]
         public async Task<ActionResult<ServiceResult>> CreatePrescription([FromBody] PrescriptionCreateRequest request)
         {

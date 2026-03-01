@@ -263,6 +263,26 @@ namespace PatientMedicalRecords.DTOs
         public PrescriptionStatus NewStatus { get; set; }
     }
 
+    public class LookupItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+    }
+
+    public class PatientLookupResponse
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public List<LookupItem> Patients { get; set; } = new List<LookupItem>();
+    }
+
+    public class DoctorLookupResponse
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public List<LookupItem> Doctors { get; set; } = new List<LookupItem>();
+    }
+
 
 
 
