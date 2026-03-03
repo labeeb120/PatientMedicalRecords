@@ -222,6 +222,7 @@ namespace PatientMedicalRecords.Controllers
                     Height = patient.Height,
                     EmergencyContact = patient.EmergencyContact,
                     EmergencyPhone = patient.EmergencyPhone,
+                    IsProfileInitialized = patient.IsProfileInitialized,
                     Allergies = patient.Allergies.Select(a => new AllergyInfo
                     {
                         Id = a.Id,
@@ -255,7 +256,7 @@ namespace PatientMedicalRecords.Controllers
                     {
                         Id = mr.Id,
                         PatientId = mr.PatientId,
-                        DoctorId = null,
+                        DoctorId = mr.DoctorId,
                         Diagnosis = mr.Diagnosis,
                         Notes = mr.Notes,
                         Symptoms = mr.Symptoms,
@@ -565,6 +566,8 @@ namespace PatientMedicalRecords.Controllers
                 })
                 .ToListAsync();
 
+            
+
             return Ok(suggestions);
         }
 
@@ -577,6 +580,8 @@ namespace PatientMedicalRecords.Controllers
             }
             return null;
         }
+
+
 
         private async Task LogUserAction(int userId, string action, string description)
         {

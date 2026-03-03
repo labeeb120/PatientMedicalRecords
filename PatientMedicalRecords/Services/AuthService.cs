@@ -182,7 +182,7 @@ namespace PatientMedicalRecords.Services
                 return ServiceResult.Fail("Passwords do not match");
 
             //****************
-            var attachmentInfo = await SaveAttachmentAsync(request.LicenseDocument);
+            //var attachmentInfo = await SaveAttachmentAsync(request.LicenseDocument);
             var existing = await _context.Users.FirstOrDefaultAsync(u => u.NationalId == request.NationalId);
             if (existing != null) return ServiceResult.Fail("National ID already used.");
             using var transaction = await _context.Database.BeginTransactionAsync();
@@ -224,16 +224,16 @@ namespace PatientMedicalRecords.Services
             // notify doctor (pending)
             await _notificationService.CreateNotification(user.Id, "تم استلام طلب التسجيل", "حسابك تحت المراجعة من قبل الإدارة.");
 
-                var attachment = new UserAttachment
-                {
-                    UserId = user.Id,
-                    AttachmentType = "LicenseCertificate", // نوع ثابت لشهادة الترخيص
-                    FilePath = attachmentInfo.FilePath,
-                    FileName = attachmentInfo.FileName,
-                    FileSize = attachmentInfo.FileSize,
-                    ContentType = attachmentInfo.ContentType
-                };
-                _context.UserAttachments.Add(attachment);
+                //var attachment = new UserAttachment
+                //{
+                //    UserId = user.Id,
+                //    AttachmentType = "LicenseCertificate", // نوع ثابت لشهادة الترخيص
+                //    FilePath = attachmentInfo.FilePath,
+                //    FileName = attachmentInfo.FileName,
+                //    FileSize = attachmentInfo.FileSize,
+                //    ContentType = attachmentInfo.ContentType
+                //};
+                //_context.UserAttachments.Add(attachment);
 
                 await _context.SaveChangesAsync(); // حفظ كل التغييرات
                 await transaction.CommitAsync(); // تأكيد العملية
@@ -262,7 +262,7 @@ namespace PatientMedicalRecords.Services
             var existing = await _context.Users.FirstOrDefaultAsync(u => u.NationalId == request.NationalId);
             if (existing != null) return ServiceResult.Fail("National ID already used.");
 
-            var attachmentInfo = await SaveAttachmentAsync(request.LicenseDocument);
+            //var attachmentInfo = await SaveAttachmentAsync(request.LicenseDocument);
 
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
@@ -304,16 +304,16 @@ namespace PatientMedicalRecords.Services
             // notify pharmacist (pending)
             await _notificationService.CreateNotification(user.Id, "تم استلام طلب التسجيل", "حسابك تحت المراجعة من قبل الإدارة.");
                 //***********
-                var attachment = new UserAttachment
-                {
-                    UserId = user.Id,
-                    AttachmentType = "LicenseCertificate",
-                    FilePath = attachmentInfo.FilePath,
-                    FileName = attachmentInfo.FileName,
-                    FileSize = attachmentInfo.FileSize,
-                    ContentType = attachmentInfo.ContentType
-                };
-                _context.UserAttachments.Add(attachment);
+                //var attachment = new UserAttachment
+                //{
+                //    UserId = user.Id,
+                //    AttachmentType = "LicenseCertificate",
+                //    FilePath = attachmentInfo.FilePath,
+                //    FileName = attachmentInfo.FileName,
+                //    FileSize = attachmentInfo.FileSize,
+                //    ContentType = attachmentInfo.ContentType
+                //};
+                //_context.UserAttachments.Add(attachment);
 
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
@@ -379,7 +379,7 @@ namespace PatientMedicalRecords.Services
             {
                 UserId = user.Id,
                 Token = refreshTokenString,
-                ExpiresAt = DateTime.UtcNow.AddDays(30),
+                ExpiresAt = DateTime.UtcNow.AddMinutes(1),
                 CreatedAt = DateTime.UtcNow,
             };
 
@@ -417,25 +417,39 @@ namespace PatientMedicalRecords.Services
 
         public async Task<RefreshResult> RefreshTokenAsync(string refreshToken)
         {
-            var stored = await _context.RefreshTokens.Include(r => r.Id).FirstOrDefaultAsync(r => r.Token == refreshToken);
+            //var stored = await _context.RefreshTokens.Include(r => r.Id).FirstOrDefaultAsync(r => r.Token == refreshToken);
+            //if (stored == null) return new RefreshResult { Success = false, Message = "Invalid token" };
+            //if (stored.Revoked || stored.ExpiresAt <= DateTime.UtcNow) return new RefreshResult { Success = false, Message = "Invalid token" };
+
+            //// Optionally rotate: revoke old token and issue new one
+            //stored.Revoked = true;
+
+            //var newRefresh = new RefreshToken
+            //{
+            //    UserId = stored.Id,
+            var stored = await _context.RefreshTokens.FirstOrDefaultAsync(r => r.Token == refreshToken);
             if (stored == null) return new RefreshResult { Success = false, Message = "Invalid token" };
             if (stored.Revoked || stored.ExpiresAt <= DateTime.UtcNow) return new RefreshResult { Success = false, Message = "Invalid token" };
 
-            // Optionally rotate: revoke old token and issue new one
+            // Fetch user to generate new token
+            var user = await _context.Users.Include(u => u.Roles).FirstOrDefaultAsync(u => u.Id == stored.UserId);
+            if (user == null) return new RefreshResult { Success = false, Message = "User not found" };
+
+            // Rotate: revoke old token and issue new one
             stored.Revoked = true;
 
             var newRefresh = new RefreshToken
             {
-                UserId = stored.Id,
+                UserId = user.Id,
                 Token = GenerateSecureToken(),
-                ExpiresAt = DateTime.UtcNow.AddDays(30),
+                ExpiresAt = DateTime.UtcNow.AddMinutes(1),
                 CreatedAt = DateTime.UtcNow
             };
             _context.RefreshTokens.Add(newRefresh);
             await _context.SaveChangesAsync();
 
             // generate new access token
-            var access = _jwtService.GenerateAccessToken();
+            var access = _jwtService.GenerateAccessToken(user);
 
             return new RefreshResult { Success = true, AccessToken = access, NewRefreshToken = newRefresh.Token };
         }

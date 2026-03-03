@@ -6,7 +6,7 @@ namespace PatientMedicalRecords.Models
 {
     public class DrugIngredient
     {
-        [Key] public int Id { get; set; }
+        //[Key] public int Id { get; set; }
 
         [Required] public int DrugId { get; set; }
         [Required] public int IngredientId { get; set; }

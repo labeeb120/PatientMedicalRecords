@@ -61,24 +61,37 @@ namespace PatientMedicalRecords.Controllers
                 HttpOnly = true,
                 Secure = true, // ensure HTTPS in production
                 SameSite = SameSiteMode.Strict,
-                Expires = DateTime.UtcNow.AddDays(30)
+                Expires = DateTime.UtcNow.AddMinutes(1)
             };
-            Response.Cookies.Append("refreshToken", result.AccessToken!, cookieOptions);
+            Response.Cookies.Append("refreshToken", result.RefreshToken!, cookieOptions);
 
             return Ok(new
             {
                 success = true,
                 accessToken = result.AccessToken,
+                refreshToken = result.RefreshToken,
                 role = result.RoleName,
                 userId = result.User.Id
             });
         }
 
         [HttpPost("refresh")]
-        public async Task<IActionResult> Refresh()
+        //public async Task<IActionResult> Refresh()
+        //{
+        //    if (!Request.Cookies.TryGetValue("refreshToken", out var existingRefresh))
+        //        return Unauthorized(new { success = false });
+        public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest? request)
         {
-            if (!Request.Cookies.TryGetValue("refreshToken", out var existingRefresh))
-                return Unauthorized(new { success = false });
+            // Try to get token from Cookie or Body
+            string? existingRefresh = request?.RefreshToken;
+            if (string.IsNullOrEmpty(existingRefresh))
+            {
+                Request.Cookies.TryGetValue("refreshToken", out existingRefresh);
+            }
+
+            if (string.IsNullOrEmpty(existingRefresh))
+                return Unauthorized(new { success = false, message = "Refresh token is missing" });
+
 
             var res = await _authService.RefreshTokenAsync(existingRefresh);
             if (!res.Success) return Unauthorized(new { success = false, message = res.Message });
@@ -91,7 +104,7 @@ namespace PatientMedicalRecords.Controllers
                     HttpOnly = true,
                     Secure = true,
                     SameSite = SameSiteMode.Strict,
-                    Expires = DateTime.UtcNow.AddDays(30)
+                    Expires = DateTime.UtcNow.AddMinutes(1)
                 };
                 Response.Cookies.Append("refreshToken", res.NewRefreshToken, cookieOptions);
             }
@@ -222,13 +235,17 @@ return StatusCode(500, new ChangePasswordResponse
         {
             public string Token { get; set; } = string.Empty;
         }
+            public class RefreshTokenRequest
+            {
+                public string? RefreshToken { get; set; }
+            }
 
 
 
 
 
 
-    }
+}
 
 
 

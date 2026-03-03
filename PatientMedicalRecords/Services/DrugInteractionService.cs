@@ -327,10 +327,57 @@ namespace PatientMedicalRecords.Services
             throw new NotImplementedException();
         }
 
-        public Task<ServiceResult> CreatePrescriptionAsync(PrescriptionCreateRequest request)
+        public async Task<ServiceResult> CreatePrescriptionAsync(PrescriptionCreateRequest request)
         {
-            throw new NotImplementedException();
+            // تحقق من وجود المريض والطبيب
+            var patient = await _context.Patients.FindAsync(request.PatientId);
+            var doctor = await _context.Doctors.FindAsync(request.DoctorId);
+
+            if (patient == null) return ServiceResult.Fail("المريض غير موجود");
+            if (doctor == null) return ServiceResult.Fail("الطبيب غير موجود");
+
+            // إنشاء الفاتورة
+            var prescription = new Prescription
+            {
+                PatientId = request.PatientId,
+                DoctorId = request.DoctorId,
+                Diagnosis = request.Diagnosis,
+                Status = PrescriptionStatus.Pending,
+                PrescriptionDate = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            _context.Prescriptions.Add(prescription);
+            await _context.SaveChangesAsync();
+
+            // إضافة العناصر (الأدوية)
+            foreach (var item in request.Items)
+            {
+                var drug = await _context.Drugs.FindAsync(item.DrugId);
+                if (drug == null) return ServiceResult.Fail($"الدواء بالمعرف {item.DrugId} غير موجود");
+
+                var prescriptionItem = new PrescriptionItem
+                {
+                    PrescriptionId = prescription.Id,
+                    DrugId = drug.Id,
+                    MedicationName= drug.BrandName,
+                    Dosage = item.Dosage,
+                    Frequency = item.Frequency,
+                    Duration = item.Duration,
+                    Instructions = item.Instructions,
+                    Quantity = item.Quantity,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                _context.PrescriptionItems.Add(prescriptionItem);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return ServiceResult.Ok("تم إضافة الوصفة الطبية بنجاح");
         }
+
+
 
         public Task<List<DrugSuggestionDto>> GetDrugSuggestionsAsync(string partialName)
         {
@@ -355,12 +402,13 @@ namespace PatientMedicalRecords.Services
                     {
                         drug = new Drug
                         {
-                            ScientificName = d.ScientificName,
                             BrandName = d.BrandName,
-                            ChemicalName = d.ChemicalName,
                             Manufacturer = d.Manufacturer,
-                            NormalizedName = normalizedDrug,
-                            CreatedAt = DateTime.UtcNow
+                            ScientificName = d.ScientificName,                           
+                            ChemicalName = d.ChemicalName,
+                            CreatedAt = DateTime.UtcNow,
+                            NormalizedName = normalizedDrug
+                            
                         };
                         _context.Drugs.Add(drug);
                         existingDrugs[normalizedDrug] = drug;

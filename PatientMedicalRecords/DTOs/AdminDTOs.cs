@@ -250,10 +250,14 @@ namespace PatientMedicalRecords.DTOs
     // Medication Ingestion DTOs (26-01-2026)
     public class DrugImportDto
     {
-        public string ScientificName { get; set; } = string.Empty;
         public string? BrandName { get; set; }
-        public string? ChemicalName { get; set; }
         public string? Manufacturer { get; set; }
+        public string ScientificName { get; set; } = string.Empty;
+        public string? ChemicalName { get; set; }=string.Empty;
+        public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
+        public string? NormalizedName { get; set; }
+
+
         public List<string> Ingredients { get; set; } = new List<string>();
     }
 

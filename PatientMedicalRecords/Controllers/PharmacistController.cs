@@ -31,6 +31,141 @@ namespace PatientMedicalRecords.Controllers
             _jwtService = jwtService;
         }
 
+
+
+        /// <summary>
+        /// الحصول على ملف الصيدلي الشخصي
+        /// </summary>
+        [HttpGet("profile")]
+        public async Task<ActionResult<PharmacistProfileResponse>> GetProfile()
+        {
+            try
+            {
+                var userId = GetCurrentUserId();
+                if (userId == null) return Unauthorized();
+
+                var pharmacist = await _context.Pharmacists
+                    .Include(p => p.User)
+                    .FirstOrDefaultAsync(p => p.UserId == userId);
+
+                if (pharmacist == null)
+                {
+                    return NotFound(new PharmacistProfileResponse
+                    {
+                        Success = false,
+                        Message = "لم يتم العثور على ملف الصيدلي"
+                    });
+                }
+
+                var pharmacistInfo = new PharmacistInfo
+                {
+                    Id = pharmacist.UserId,
+                    UserId = pharmacist.UserId,
+                    FullName = pharmacist.FullName,
+                    LicenseNumber = pharmacist.LicenseNumber,
+                    PharmacyName = pharmacist.PharmacyName,
+                    PhoneNumber = pharmacist.PhoneNumber,
+                    Email = pharmacist.Email,
+                    CreatedAt = pharmacist.CreatedAt,
+                    UpdatedAt = pharmacist.UpdatedAt
+                };
+
+                return Ok(new PharmacistProfileResponse
+                {
+                    Success = true,
+                    Message = "تم جلب ملف الصيدلي بنجاح",
+                    Pharmacist = pharmacistInfo
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting pharmacist profile");
+                return StatusCode(500, new PharmacistProfileResponse
+                {
+                    Success = false,
+                    Message = "حدث خطأ في الخادم"
+                });
+            }
+        }
+
+        /// <summary>
+        /// تحديث ملف الصيدلي الشخصي
+        /// </summary>
+        [HttpPut("profile")]
+        public async Task<ActionResult<PharmacistProfileResponse>> UpdateProfile([FromBody] PharmacistProfileRequest request)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(new PharmacistProfileResponse
+                    {
+                        Success = false,
+                        Message = "البيانات المدخلة غير صحيحة"
+                    });
+                }
+
+                var userId = GetCurrentUserId();
+                if (userId == null) return Unauthorized();
+
+                var pharmacist = await _context.Pharmacists
+                    .FirstOrDefaultAsync(p => p.UserId == userId);
+
+                if (pharmacist == null)
+                {
+                    return NotFound(new PharmacistProfileResponse
+                    {
+                        Success = false,
+                        Message = "لم يتم العثور على ملف الصيدلي"
+                    });
+                }
+
+                // Update pharmacist information
+                pharmacist.FullName = request.FullName;
+                pharmacist.LicenseNumber = request.LicenseNumber;
+                pharmacist.PharmacyName = request.PharmacyName;
+                pharmacist.PhoneNumber = request.PhoneNumber;
+                pharmacist.Email = request.Email;
+                pharmacist.UpdatedAt = DateTime.UtcNow;
+
+                await _context.SaveChangesAsync();
+
+                // Log the update
+                await LogUserAction(userId.Value, "UPDATE_PROFILE", "تم تحديث ملف الصيدلي الشخصي");
+
+                var pharmacistInfo = new PharmacistInfo
+                {
+                    Id = pharmacist.UserId,
+                    UserId = pharmacist.UserId,
+                    FullName = pharmacist.FullName,
+                    LicenseNumber = pharmacist.LicenseNumber,
+                    PharmacyName = pharmacist.PharmacyName,
+                    PhoneNumber = pharmacist.PhoneNumber,
+                    Email = pharmacist.Email,
+                    CreatedAt = pharmacist.CreatedAt,
+                    UpdatedAt = pharmacist.UpdatedAt
+                };
+
+                return Ok(new PharmacistProfileResponse
+                {
+                    Success = true,
+                    Message = "تم تحديث ملف الصيدلي بنجاح",
+                    Pharmacist = pharmacistInfo
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating pharmacist profile");
+                return StatusCode(500, new PharmacistProfileResponse
+                {
+                    Success = false,
+                    Message = "حدث خطأ في الخادم"
+                });
+            }
+        }
+
+
+
         /// <summary>
         /// الحصول على إحصائيات لوحة تحكم الصيدلي
         /// </summary>
@@ -308,6 +443,77 @@ namespace PatientMedicalRecords.Controllers
             }
         }
 
+        //*******************************************************
+        [HttpGet("patients-lookup")]
+        public async Task<ActionResult<PatientLookupResponse>> GetPatientsLookup()
+        {
+            try
+            {
+                var patients = await _context.Patients
+                    .Select(p => new LookupItem
+                    {
+                        Id = p.UserId,
+                        Name = p.FullName
+                    })
+                    .ToListAsync();
+
+                return Ok(new PatientLookupResponse
+                {
+                    Success = true,
+                    Message = "تم جلب قائمة المرضى بنجاح",
+                    Patients = patients
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting patients lookup");
+                return StatusCode(500, new PatientLookupResponse
+                {
+                    Success = false,
+                    Message = "حدث خطأ في الخادم"
+                });
+            }
+        }
+
+        [HttpGet("doctors-lookup")]
+        public async Task<ActionResult<DoctorLookupResponse>> GetDoctorsLookup()
+        {
+            try
+            {
+                var doctors = await _context.Doctors
+                    .Select(d => new LookupItem
+                    {
+                        Id = d.UserId,
+                        Name = d.FullName
+                    })
+                    .ToListAsync();
+
+                return Ok(new DoctorLookupResponse
+                {
+                    Success = true,
+                    Message = "تم جلب قائمة الأطباء بنجاح",
+                    Doctors = doctors
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting doctors lookup");
+                return StatusCode(500, new DoctorLookupResponse
+                {
+                    Success = false,
+                    Message = "حدث خطأ في الخادم"
+                });
+            }
+        }
+        //*******************************************************
+
+
+
+
+
+
+
+
         /// <summary>
         /// إنشاء وصفة طبية جديدة (للصيادلة في حالات خاصة)
         /// </summary>
@@ -319,8 +525,8 @@ namespace PatientMedicalRecords.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ServiceResult.Fail("البيانات المدخلة غير صحيحة"));
 
-                // في العادة الطبيب هو من ينشئ الوصفة، ولكن إذا سمحنا للصيدلي، يجب التأكد من صحة البيانات
-                var result = await _drugInteractionService.CreatePrescriptionAsync(request);
+                //في العادة الطبيب هو من ينشئ الوصفة، ولكن إذا سمحنا للصيدلي، يجب التأكد من صحة البيانات
+               var result = await _drugInteractionService.CreatePrescriptionAsync(request);
 
                 if (!result.Success)
                     return BadRequest(result);
@@ -366,6 +572,44 @@ namespace PatientMedicalRecords.Controllers
                 return StatusCode(500, new PrescriptionStatusUpdateResponse { Success = false, Message = "حدث خطأ في الخادم" });
             }
         }
+
+
+        //***********************************************************
+        [HttpGet("search-drugs")]
+        [Authorize(Roles = "Pharmacist,Doctor")]
+        public async Task<ActionResult<List<DrugSuggestionDto>>> SearchDrugs([FromQuery] string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return Ok(new List<DrugSuggestionDto>());
+            }
+
+            var normalizedQuery = query.Trim().ToLowerInvariant();
+
+            var suggestions = await _context.Drugs
+                .Where(d => d.ScientificName.Contains(normalizedQuery) ||
+                            (d.BrandName != null && d.BrandName.Contains(normalizedQuery)) ||
+                            (d.ChemicalName != null && d.ChemicalName.Contains(normalizedQuery)))
+                .Take(20)
+                .Select(d => new DrugSuggestionDto
+                {
+                    DrugId = d.Id,
+                    ScientificName = d.ScientificName,
+                    BrandName = d.BrandName ?? "",
+                    ChemicalName = d.ChemicalName ?? ""
+                })
+                .ToListAsync();
+
+
+
+            return Ok(suggestions);
+        }
+        //***********************************************************
+
+
+
+
+
 
         /// <summary>
         /// تفعيل ملف المريض للصيادلة (والأطباء)

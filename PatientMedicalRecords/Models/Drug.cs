@@ -9,23 +9,24 @@ namespace PatientMedicalRecords.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        public string ScientificName { get; set; } = string.Empty; // الاسم العلمي
-
         [StringLength(100)]
         public string? BrandName { get; set; } // الاسم التجاري
-
-        [StringLength(100)]
-        public string? ChemicalName { get; set; } // الاسم الكيميائي
 
         [StringLength(200)]
         public string? Manufacturer { get; set; }
 
+        [Required]
+        [StringLength(100)]
+        public string ScientificName { get; set; } = string.Empty; // الاسم العلمي
+                
+        [StringLength(100)]
+        public string? ChemicalName { get; set; } // الاسم الكيميائي
+
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
         [StringLength(200)]
         public string? NormalizedName { get; set; } // للاستخدام في البحث والمقارنة
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // العلاقة بين الدواء والمركبات النشطة (Ingredients)
         public virtual ICollection<DrugIngredient> DrugIngredients { get; set; } = new List<DrugIngredient>();

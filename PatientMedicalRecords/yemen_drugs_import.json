@@ -1,0 +1,1812 @@
+[
+  {
+    "ScientificName": "Paracetamol",
+    "BrandName": "Panadol",
+    "ChemicalName": "Acetaminophen",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Paracetamol"
+    ]
+  },
+  {
+    "ScientificName": "Paracetamol",
+    "BrandName": "Adol",
+    "ChemicalName": "Acetaminophen",
+    "Manufacturer": "Julphar",
+    "Ingredients": [
+      "Paracetamol"
+    ]
+  },
+  {
+    "ScientificName": "Paracetamol",
+    "BrandName": "Revanin",
+    "ChemicalName": "Acetaminophen",
+    "Manufacturer": "Yemen Pharma",
+    "Ingredients": [
+      "Paracetamol"
+    ]
+  },
+  {
+    "ScientificName": "Ibuprofen",
+    "BrandName": "Brufen",
+    "ChemicalName": "Ibuprofen",
+    "Manufacturer": "Abbott",
+    "Ingredients": [
+      "Ibuprofen"
+    ]
+  },
+  {
+    "ScientificName": "Ibuprofen",
+    "BrandName": "Ibufen",
+    "ChemicalName": "Ibuprofen",
+    "Manufacturer": "Modern Pharma",
+    "Ingredients": [
+      "Ibuprofen"
+    ]
+  },
+  {
+    "ScientificName": "Diclofenac Sodium",
+    "BrandName": "Voltaren",
+    "ChemicalName": "Diclofenac",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Diclofenac"
+    ]
+  },
+  {
+    "ScientificName": "Diclofenac Sodium",
+    "BrandName": "Olfen",
+    "ChemicalName": "Diclofenac",
+    "Manufacturer": "Mepha",
+    "Ingredients": [
+      "Diclofenac"
+    ]
+  },
+  {
+    "ScientificName": "Diclofenac Potassium",
+    "BrandName": "Cataflam",
+    "ChemicalName": "Diclofenac",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Diclofenac"
+    ]
+  },
+  {
+    "ScientificName": "Naproxen",
+    "BrandName": "Naprosyn",
+    "ChemicalName": "Naproxen",
+    "Manufacturer": "Roche",
+    "Ingredients": [
+      "Naproxen"
+    ]
+  },
+  {
+    "ScientificName": "Celecoxib",
+    "BrandName": "Celebrex",
+    "ChemicalName": "Celecoxib",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Celecoxib"
+    ]
+  },
+  {
+    "ScientificName": "Aspirin",
+    "BrandName": "Aspirin",
+    "ChemicalName": "Acetylsalicylic Acid",
+    "Manufacturer": "Bayer",
+    "Ingredients": [
+      "Aspirin"
+    ]
+  },
+  {
+    "ScientificName": "Mefenamic Acid",
+    "BrandName": "Ponstan",
+    "ChemicalName": "Mefenamic Acid",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Mefenamic Acid"
+    ]
+  },
+  {
+    "ScientificName": "Tramadol",
+    "BrandName": "Tramal",
+    "ChemicalName": "Tramadol",
+    "Manufacturer": "Grunenthal",
+    "Ingredients": [
+      "Tramadol"
+    ]
+  },
+  {
+    "ScientificName": "Amoxicillin",
+    "BrandName": "Amoxil",
+    "ChemicalName": "Amoxicillin",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Amoxicillin"
+    ]
+  },
+  {
+    "ScientificName": "Amoxicillin + Clavulanic Acid",
+    "BrandName": "Augmentin",
+    "ChemicalName": "Amoxicillin/Clavulanate",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Amoxicillin",
+      "Clavulanic Acid"
+    ]
+  },
+  {
+    "ScientificName": "Amoxicillin + Clavulanic Acid",
+    "BrandName": "Curam",
+    "ChemicalName": "Amoxicillin/Clavulanate",
+    "Manufacturer": "Sandoz",
+    "Ingredients": [
+      "Amoxicillin",
+      "Clavulanic Acid"
+    ]
+  },
+  {
+    "ScientificName": "Azithromycin",
+    "BrandName": "Zithromax",
+    "ChemicalName": "Azithromycin",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Azithromycin"
+    ]
+  },
+  {
+    "ScientificName": "Azithromycin",
+    "BrandName": "Azomyne",
+    "ChemicalName": "Azithromycin",
+    "Manufacturer": "Shephaco",
+    "Ingredients": [
+      "Azithromycin"
+    ]
+  },
+  {
+    "ScientificName": "Ciprofloxacin",
+    "BrandName": "Cipro",
+    "ChemicalName": "Ciprofloxacin",
+    "Manufacturer": "Bayer",
+    "Ingredients": [
+      "Ciprofloxacin"
+    ]
+  },
+  {
+    "ScientificName": "Ciprofloxacin",
+    "BrandName": "Ciprodar",
+    "ChemicalName": "Ciprofloxacin",
+    "Manufacturer": "Dar Al Dawa",
+    "Ingredients": [
+      "Ciprofloxacin"
+    ]
+  },
+  {
+    "ScientificName": "Ceftriaxone",
+    "BrandName": "Rocephin",
+    "ChemicalName": "Ceftriaxone",
+    "Manufacturer": "Roche",
+    "Ingredients": [
+      "Ceftriaxone"
+    ]
+  },
+  {
+    "ScientificName": "Cefixime",
+    "BrandName": "Suprax",
+    "ChemicalName": "Cefixime",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Cefixime"
+    ]
+  },
+  {
+    "ScientificName": "Clarithromycin",
+    "BrandName": "Klacid",
+    "ChemicalName": "Clarithromycin",
+    "Manufacturer": "Abbott",
+    "Ingredients": [
+      "Clarithromycin"
+    ]
+  },
+  {
+    "ScientificName": "Doxycycline",
+    "BrandName": "Vibramycin",
+    "ChemicalName": "Doxycycline",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Doxycycline"
+    ]
+  },
+  {
+    "ScientificName": "Metronidazole",
+    "BrandName": "Flagyl",
+    "ChemicalName": "Metronidazole",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Metronidazole"
+    ]
+  },
+  {
+    "ScientificName": "Metronidazole",
+    "BrandName": "Metrolag",
+    "ChemicalName": "Metronidazole",
+    "Manufacturer": "Lagap",
+    "Ingredients": [
+      "Metronidazole"
+    ]
+  },
+  {
+    "ScientificName": "Amlodipine",
+    "BrandName": "Norvasc",
+    "ChemicalName": "Amlodipine",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Amlodipine"
+    ]
+  },
+  {
+    "ScientificName": "Amlodipine",
+    "BrandName": "Amlocard",
+    "ChemicalName": "Amlodipine",
+    "Manufacturer": "Modern Pharma",
+    "Ingredients": [
+      "Amlodipine"
+    ]
+  },
+  {
+    "ScientificName": "Lisinopril",
+    "BrandName": "Zestril",
+    "ChemicalName": "Lisinopril",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Lisinopril"
+    ]
+  },
+  {
+    "ScientificName": "Enalapril",
+    "BrandName": "Renitec",
+    "ChemicalName": "Enalapril",
+    "Manufacturer": "MSD",
+    "Ingredients": [
+      "Enalapril"
+    ]
+  },
+  {
+    "ScientificName": "Valsartan",
+    "BrandName": "Diovan",
+    "ChemicalName": "Valsartan",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Valsartan"
+    ]
+  },
+  {
+    "ScientificName": "Atorvastatin",
+    "BrandName": "Lipitor",
+    "ChemicalName": "Atorvastatin",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Atorvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Atorvastatin",
+    "BrandName": "Atorva",
+    "ChemicalName": "Atorvastatin",
+    "Manufacturer": "Shephaco",
+    "Ingredients": [
+      "Atorvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Rosuvastatin",
+    "BrandName": "Crestor",
+    "ChemicalName": "Rosuvastatin",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Rosuvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Simvastatin",
+    "BrandName": "Zocor",
+    "ChemicalName": "Simvastatin",
+    "Manufacturer": "MSD",
+    "Ingredients": [
+      "Simvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Furosemide",
+    "BrandName": "Lasix",
+    "ChemicalName": "Furosemide",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Furosemide"
+    ]
+  },
+  {
+    "ScientificName": "Spironolactone",
+    "BrandName": "Aldactone",
+    "ChemicalName": "Spironolactone",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Spironolactone"
+    ]
+  },
+  {
+    "ScientificName": "Bisoprolol",
+    "BrandName": "Concor",
+    "ChemicalName": "Bisoprolol",
+    "Manufacturer": "Merck",
+    "Ingredients": [
+      "Bisoprolol"
+    ]
+  },
+  {
+    "ScientificName": "Atenolol",
+    "BrandName": "Tenormin",
+    "ChemicalName": "Atenolol",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Atenolol"
+    ]
+  },
+  {
+    "ScientificName": "Clopidogrel",
+    "BrandName": "Plavix",
+    "ChemicalName": "Clopidogrel",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Clopidogrel"
+    ]
+  },
+  {
+    "ScientificName": "Warfarin",
+    "BrandName": "Coumadin",
+    "ChemicalName": "Warfarin",
+    "Manufacturer": "BMS",
+    "Ingredients": [
+      "Warfarin"
+    ]
+  },
+  {
+    "ScientificName": "Metformin",
+    "BrandName": "Glucophage",
+    "ChemicalName": "Metformin",
+    "Manufacturer": "Merck",
+    "Ingredients": [
+      "Metformin"
+    ]
+  },
+  {
+    "ScientificName": "Metformin",
+    "BrandName": "Metfor",
+    "ChemicalName": "Metformin",
+    "Manufacturer": "Yemen Pharma",
+    "Ingredients": [
+      "Metformin"
+    ]
+  },
+  {
+    "ScientificName": "Glibenclamide",
+    "BrandName": "Daonil",
+    "ChemicalName": "Glibenclamide",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Glibenclamide"
+    ]
+  },
+  {
+    "ScientificName": "Gliclazide",
+    "BrandName": "Diamicron",
+    "ChemicalName": "Gliclazide",
+    "Manufacturer": "Servier",
+    "Ingredients": [
+      "Gliclazide"
+    ]
+  },
+  {
+    "ScientificName": "Sitagliptin",
+    "BrandName": "Januvia",
+    "ChemicalName": "Sitagliptin",
+    "Manufacturer": "MSD",
+    "Ingredients": [
+      "Sitagliptin"
+    ]
+  },
+  {
+    "ScientificName": "Vildagliptin",
+    "BrandName": "Galvus",
+    "ChemicalName": "Vildagliptin",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Vildagliptin"
+    ]
+  },
+  {
+    "ScientificName": "Glimepiride",
+    "BrandName": "Amaryl",
+    "ChemicalName": "Glimepiride",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Glimepiride"
+    ]
+  },
+  {
+    "ScientificName": "Omeprazole",
+    "BrandName": "Losec",
+    "ChemicalName": "Omeprazole",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Omeprazole"
+    ]
+  },
+  {
+    "ScientificName": "Omeprazole",
+    "BrandName": "Omiz",
+    "ChemicalName": "Omeprazole",
+    "Manufacturer": "Shephaco",
+    "Ingredients": [
+      "Omeprazole"
+    ]
+  },
+  {
+    "ScientificName": "Esomeprazole",
+    "BrandName": "Nexium",
+    "ChemicalName": "Esomeprazole",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Esomeprazole"
+    ]
+  },
+  {
+    "ScientificName": "Lansoprazole",
+    "BrandName": "Prevacid",
+    "ChemicalName": "Lansoprazole",
+    "Manufacturer": "Takeda",
+    "Ingredients": [
+      "Lansoprazole"
+    ]
+  },
+  {
+    "ScientificName": "Pantoprazole",
+    "BrandName": "Controloc",
+    "ChemicalName": "Pantoprazole",
+    "Manufacturer": "Takeda",
+    "Ingredients": [
+      "Pantoprazole"
+    ]
+  },
+  {
+    "ScientificName": "Domperidone",
+    "BrandName": "Motilium",
+    "ChemicalName": "Domperidone",
+    "Manufacturer": "Janssen",
+    "Ingredients": [
+      "Domperidone"
+    ]
+  },
+  {
+    "ScientificName": "Metoclopramide",
+    "BrandName": "Plasil",
+    "ChemicalName": "Metoclopramide",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Metoclopramide"
+    ]
+  },
+  {
+    "ScientificName": "Hyoscine",
+    "BrandName": "Buscopan",
+    "ChemicalName": "Hyoscine Butylbromide",
+    "Manufacturer": "Boehringer Ingelheim",
+    "Ingredients": [
+      "Hyoscine"
+    ]
+  },
+  {
+    "ScientificName": "Salbutamol",
+    "BrandName": "Ventolin",
+    "ChemicalName": "Salbutamol",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Salbutamol"
+    ]
+  },
+  {
+    "ScientificName": "Montelukast",
+    "BrandName": "Singulair",
+    "ChemicalName": "Montelukast",
+    "Manufacturer": "MSD",
+    "Ingredients": [
+      "Montelukast"
+    ]
+  },
+  {
+    "ScientificName": "Fluticasone + Salmeterol",
+    "BrandName": "Seretide",
+    "ChemicalName": "Fluticasone/Salmeterol",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Fluticasone",
+      "Salmeterol"
+    ]
+  },
+  {
+    "ScientificName": "Budesonide",
+    "BrandName": "Pulmicort",
+    "ChemicalName": "Budesonide",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Budesonide"
+    ]
+  },
+  {
+    "ScientificName": "Escitalopram",
+    "BrandName": "Cipralex",
+    "ChemicalName": "Escitalopram",
+    "Manufacturer": "Lundbeck",
+    "Ingredients": [
+      "Escitalopram"
+    ]
+  },
+  {
+    "ScientificName": "Sertraline",
+    "BrandName": "Zoloft",
+    "ChemicalName": "Sertraline",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Sertraline"
+    ]
+  },
+  {
+    "ScientificName": "Fluoxetine",
+    "BrandName": "Prozac",
+    "ChemicalName": "Fluoxetine",
+    "Manufacturer": "Lilly",
+    "Ingredients": [
+      "Fluoxetine"
+    ]
+  },
+  {
+    "ScientificName": "Alprazolam",
+    "BrandName": "Xanax",
+    "ChemicalName": "Alprazolam",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Alprazolam"
+    ]
+  },
+  {
+    "ScientificName": "Diazepam",
+    "BrandName": "Valium",
+    "ChemicalName": "Diazepam",
+    "Manufacturer": "Roche",
+    "Ingredients": [
+      "Diazepam"
+    ]
+  },
+  {
+    "ScientificName": "Olanzapine",
+    "BrandName": "Zyprexa",
+    "ChemicalName": "Olanzapine",
+    "Manufacturer": "Lilly",
+    "Ingredients": [
+      "Olanzapine"
+    ]
+  },
+  {
+    "ScientificName": "Quetiapine",
+    "BrandName": "Seroquel",
+    "ChemicalName": "Quetiapine",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Quetiapine"
+    ]
+  },
+  {
+    "ScientificName": "Carbamazepine",
+    "BrandName": "Tegretol",
+    "ChemicalName": "Carbamazepine",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Carbamazepine"
+    ]
+  },
+  {
+    "ScientificName": "Valproate Sodium",
+    "BrandName": "Depakine",
+    "ChemicalName": "Valproic Acid",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Valproic Acid"
+    ]
+  },
+  {
+    "ScientificName": "Multivitamins",
+    "BrandName": "Centrum",
+    "ChemicalName": "Multivitamins",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Multivitamins"
+    ]
+  },
+  {
+    "ScientificName": "Ferrous Sulfate",
+    "BrandName": "Fersamal",
+    "ChemicalName": "Iron",
+    "Manufacturer": "Various",
+    "Ingredients": [
+      "Iron"
+    ]
+  },
+  {
+    "ScientificName": "Calcium + Vitamin D",
+    "BrandName": "Caltrate",
+    "ChemicalName": "Calcium/D3",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Calcium",
+      "Vitamin D"
+    ]
+  },
+  {
+    "ScientificName": "Vitamin C",
+    "BrandName": "C-Vit",
+    "ChemicalName": "Ascorbic Acid",
+    "Manufacturer": "Yemen Pharma",
+    "Ingredients": [
+      "Vitamin C"
+    ]
+  },
+  {
+    "ScientificName": "Paracetamol",
+    "BrandName": "Panadol 2",
+    "ChemicalName": "Acetaminophen",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Paracetamol"
+    ]
+  },
+  {
+    "ScientificName": "Paracetamol",
+    "BrandName": "Adol 2",
+    "ChemicalName": "Acetaminophen",
+    "Manufacturer": "Julphar",
+    "Ingredients": [
+      "Paracetamol"
+    ]
+  },
+  {
+    "ScientificName": "Paracetamol",
+    "BrandName": "Revanin 2",
+    "ChemicalName": "Acetaminophen",
+    "Manufacturer": "Yemen Pharma",
+    "Ingredients": [
+      "Paracetamol"
+    ]
+  },
+  {
+    "ScientificName": "Ibuprofen",
+    "BrandName": "Brufen 2",
+    "ChemicalName": "Ibuprofen",
+    "Manufacturer": "Abbott",
+    "Ingredients": [
+      "Ibuprofen"
+    ]
+  },
+  {
+    "ScientificName": "Ibuprofen",
+    "BrandName": "Ibufen 2",
+    "ChemicalName": "Ibuprofen",
+    "Manufacturer": "Modern Pharma",
+    "Ingredients": [
+      "Ibuprofen"
+    ]
+  },
+  {
+    "ScientificName": "Diclofenac Sodium",
+    "BrandName": "Voltaren 2",
+    "ChemicalName": "Diclofenac",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Diclofenac"
+    ]
+  },
+  {
+    "ScientificName": "Diclofenac Sodium",
+    "BrandName": "Olfen 2",
+    "ChemicalName": "Diclofenac",
+    "Manufacturer": "Mepha",
+    "Ingredients": [
+      "Diclofenac"
+    ]
+  },
+  {
+    "ScientificName": "Diclofenac Potassium",
+    "BrandName": "Cataflam 2",
+    "ChemicalName": "Diclofenac",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Diclofenac"
+    ]
+  },
+  {
+    "ScientificName": "Naproxen",
+    "BrandName": "Naprosyn 2",
+    "ChemicalName": "Naproxen",
+    "Manufacturer": "Roche",
+    "Ingredients": [
+      "Naproxen"
+    ]
+  },
+  {
+    "ScientificName": "Celecoxib",
+    "BrandName": "Celebrex 2",
+    "ChemicalName": "Celecoxib",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Celecoxib"
+    ]
+  },
+  {
+    "ScientificName": "Aspirin",
+    "BrandName": "Aspirin 2",
+    "ChemicalName": "Acetylsalicylic Acid",
+    "Manufacturer": "Bayer",
+    "Ingredients": [
+      "Aspirin"
+    ]
+  },
+  {
+    "ScientificName": "Mefenamic Acid",
+    "BrandName": "Ponstan 2",
+    "ChemicalName": "Mefenamic Acid",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Mefenamic Acid"
+    ]
+  },
+  {
+    "ScientificName": "Tramadol",
+    "BrandName": "Tramal 2",
+    "ChemicalName": "Tramadol",
+    "Manufacturer": "Grunenthal",
+    "Ingredients": [
+      "Tramadol"
+    ]
+  },
+  {
+    "ScientificName": "Amoxicillin",
+    "BrandName": "Amoxil 2",
+    "ChemicalName": "Amoxicillin",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Amoxicillin"
+    ]
+  },
+  {
+    "ScientificName": "Amoxicillin + Clavulanic Acid",
+    "BrandName": "Augmentin 2",
+    "ChemicalName": "Amoxicillin/Clavulanate",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Amoxicillin",
+      "Clavulanic Acid"
+    ]
+  },
+  {
+    "ScientificName": "Amoxicillin + Clavulanic Acid",
+    "BrandName": "Curam 2",
+    "ChemicalName": "Amoxicillin/Clavulanate",
+    "Manufacturer": "Sandoz",
+    "Ingredients": [
+      "Amoxicillin",
+      "Clavulanic Acid"
+    ]
+  },
+  {
+    "ScientificName": "Azithromycin",
+    "BrandName": "Zithromax 2",
+    "ChemicalName": "Azithromycin",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Azithromycin"
+    ]
+  },
+  {
+    "ScientificName": "Azithromycin",
+    "BrandName": "Azomyne 2",
+    "ChemicalName": "Azithromycin",
+    "Manufacturer": "Shephaco",
+    "Ingredients": [
+      "Azithromycin"
+    ]
+  },
+  {
+    "ScientificName": "Ciprofloxacin",
+    "BrandName": "Cipro 2",
+    "ChemicalName": "Ciprofloxacin",
+    "Manufacturer": "Bayer",
+    "Ingredients": [
+      "Ciprofloxacin"
+    ]
+  },
+  {
+    "ScientificName": "Ciprofloxacin",
+    "BrandName": "Ciprodar 2",
+    "ChemicalName": "Ciprofloxacin",
+    "Manufacturer": "Dar Al Dawa",
+    "Ingredients": [
+      "Ciprofloxacin"
+    ]
+  },
+  {
+    "ScientificName": "Ceftriaxone",
+    "BrandName": "Rocephin 2",
+    "ChemicalName": "Ceftriaxone",
+    "Manufacturer": "Roche",
+    "Ingredients": [
+      "Ceftriaxone"
+    ]
+  },
+  {
+    "ScientificName": "Cefixime",
+    "BrandName": "Suprax 2",
+    "ChemicalName": "Cefixime",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Cefixime"
+    ]
+  },
+  {
+    "ScientificName": "Clarithromycin",
+    "BrandName": "Klacid 2",
+    "ChemicalName": "Clarithromycin",
+    "Manufacturer": "Abbott",
+    "Ingredients": [
+      "Clarithromycin"
+    ]
+  },
+  {
+    "ScientificName": "Doxycycline",
+    "BrandName": "Vibramycin 2",
+    "ChemicalName": "Doxycycline",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Doxycycline"
+    ]
+  },
+  {
+    "ScientificName": "Metronidazole",
+    "BrandName": "Flagyl 2",
+    "ChemicalName": "Metronidazole",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Metronidazole"
+    ]
+  },
+  {
+    "ScientificName": "Metronidazole",
+    "BrandName": "Metrolag 2",
+    "ChemicalName": "Metronidazole",
+    "Manufacturer": "Lagap",
+    "Ingredients": [
+      "Metronidazole"
+    ]
+  },
+  {
+    "ScientificName": "Amlodipine",
+    "BrandName": "Norvasc 2",
+    "ChemicalName": "Amlodipine",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Amlodipine"
+    ]
+  },
+  {
+    "ScientificName": "Amlodipine",
+    "BrandName": "Amlocard 2",
+    "ChemicalName": "Amlodipine",
+    "Manufacturer": "Modern Pharma",
+    "Ingredients": [
+      "Amlodipine"
+    ]
+  },
+  {
+    "ScientificName": "Lisinopril",
+    "BrandName": "Zestril 2",
+    "ChemicalName": "Lisinopril",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Lisinopril"
+    ]
+  },
+  {
+    "ScientificName": "Enalapril",
+    "BrandName": "Renitec 2",
+    "ChemicalName": "Enalapril",
+    "Manufacturer": "MSD",
+    "Ingredients": [
+      "Enalapril"
+    ]
+  },
+  {
+    "ScientificName": "Valsartan",
+    "BrandName": "Diovan 2",
+    "ChemicalName": "Valsartan",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Valsartan"
+    ]
+  },
+  {
+    "ScientificName": "Atorvastatin",
+    "BrandName": "Lipitor 2",
+    "ChemicalName": "Atorvastatin",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Atorvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Atorvastatin",
+    "BrandName": "Atorva 2",
+    "ChemicalName": "Atorvastatin",
+    "Manufacturer": "Shephaco",
+    "Ingredients": [
+      "Atorvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Rosuvastatin",
+    "BrandName": "Crestor 2",
+    "ChemicalName": "Rosuvastatin",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Rosuvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Simvastatin",
+    "BrandName": "Zocor 2",
+    "ChemicalName": "Simvastatin",
+    "Manufacturer": "MSD",
+    "Ingredients": [
+      "Simvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Furosemide",
+    "BrandName": "Lasix 2",
+    "ChemicalName": "Furosemide",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Furosemide"
+    ]
+  },
+  {
+    "ScientificName": "Spironolactone",
+    "BrandName": "Aldactone 2",
+    "ChemicalName": "Spironolactone",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Spironolactone"
+    ]
+  },
+  {
+    "ScientificName": "Bisoprolol",
+    "BrandName": "Concor 2",
+    "ChemicalName": "Bisoprolol",
+    "Manufacturer": "Merck",
+    "Ingredients": [
+      "Bisoprolol"
+    ]
+  },
+  {
+    "ScientificName": "Atenolol",
+    "BrandName": "Tenormin 2",
+    "ChemicalName": "Atenolol",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Atenolol"
+    ]
+  },
+  {
+    "ScientificName": "Clopidogrel",
+    "BrandName": "Plavix 2",
+    "ChemicalName": "Clopidogrel",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Clopidogrel"
+    ]
+  },
+  {
+    "ScientificName": "Warfarin",
+    "BrandName": "Coumadin 2",
+    "ChemicalName": "Warfarin",
+    "Manufacturer": "BMS",
+    "Ingredients": [
+      "Warfarin"
+    ]
+  },
+  {
+    "ScientificName": "Metformin",
+    "BrandName": "Glucophage 2",
+    "ChemicalName": "Metformin",
+    "Manufacturer": "Merck",
+    "Ingredients": [
+      "Metformin"
+    ]
+  },
+  {
+    "ScientificName": "Metformin",
+    "BrandName": "Metfor 2",
+    "ChemicalName": "Metformin",
+    "Manufacturer": "Yemen Pharma",
+    "Ingredients": [
+      "Metformin"
+    ]
+  },
+  {
+    "ScientificName": "Glibenclamide",
+    "BrandName": "Daonil 2",
+    "ChemicalName": "Glibenclamide",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Glibenclamide"
+    ]
+  },
+  {
+    "ScientificName": "Gliclazide",
+    "BrandName": "Diamicron 2",
+    "ChemicalName": "Gliclazide",
+    "Manufacturer": "Servier",
+    "Ingredients": [
+      "Gliclazide"
+    ]
+  },
+  {
+    "ScientificName": "Sitagliptin",
+    "BrandName": "Januvia 2",
+    "ChemicalName": "Sitagliptin",
+    "Manufacturer": "MSD",
+    "Ingredients": [
+      "Sitagliptin"
+    ]
+  },
+  {
+    "ScientificName": "Vildagliptin",
+    "BrandName": "Galvus 2",
+    "ChemicalName": "Vildagliptin",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Vildagliptin"
+    ]
+  },
+  {
+    "ScientificName": "Glimepiride",
+    "BrandName": "Amaryl 2",
+    "ChemicalName": "Glimepiride",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Glimepiride"
+    ]
+  },
+  {
+    "ScientificName": "Omeprazole",
+    "BrandName": "Losec 2",
+    "ChemicalName": "Omeprazole",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Omeprazole"
+    ]
+  },
+  {
+    "ScientificName": "Omeprazole",
+    "BrandName": "Omiz 2",
+    "ChemicalName": "Omeprazole",
+    "Manufacturer": "Shephaco",
+    "Ingredients": [
+      "Omeprazole"
+    ]
+  },
+  {
+    "ScientificName": "Esomeprazole",
+    "BrandName": "Nexium 2",
+    "ChemicalName": "Esomeprazole",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Esomeprazole"
+    ]
+  },
+  {
+    "ScientificName": "Lansoprazole",
+    "BrandName": "Prevacid 2",
+    "ChemicalName": "Lansoprazole",
+    "Manufacturer": "Takeda",
+    "Ingredients": [
+      "Lansoprazole"
+    ]
+  },
+  {
+    "ScientificName": "Pantoprazole",
+    "BrandName": "Controloc 2",
+    "ChemicalName": "Pantoprazole",
+    "Manufacturer": "Takeda",
+    "Ingredients": [
+      "Pantoprazole"
+    ]
+  },
+  {
+    "ScientificName": "Domperidone",
+    "BrandName": "Motilium 2",
+    "ChemicalName": "Domperidone",
+    "Manufacturer": "Janssen",
+    "Ingredients": [
+      "Domperidone"
+    ]
+  },
+  {
+    "ScientificName": "Metoclopramide",
+    "BrandName": "Plasil 2",
+    "ChemicalName": "Metoclopramide",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Metoclopramide"
+    ]
+  },
+  {
+    "ScientificName": "Hyoscine",
+    "BrandName": "Buscopan 2",
+    "ChemicalName": "Hyoscine Butylbromide",
+    "Manufacturer": "Boehringer Ingelheim",
+    "Ingredients": [
+      "Hyoscine"
+    ]
+  },
+  {
+    "ScientificName": "Salbutamol",
+    "BrandName": "Ventolin 2",
+    "ChemicalName": "Salbutamol",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Salbutamol"
+    ]
+  },
+  {
+    "ScientificName": "Montelukast",
+    "BrandName": "Singulair 2",
+    "ChemicalName": "Montelukast",
+    "Manufacturer": "MSD",
+    "Ingredients": [
+      "Montelukast"
+    ]
+  },
+  {
+    "ScientificName": "Fluticasone + Salmeterol",
+    "BrandName": "Seretide 2",
+    "ChemicalName": "Fluticasone/Salmeterol",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Fluticasone",
+      "Salmeterol"
+    ]
+  },
+  {
+    "ScientificName": "Budesonide",
+    "BrandName": "Pulmicort 2",
+    "ChemicalName": "Budesonide",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Budesonide"
+    ]
+  },
+  {
+    "ScientificName": "Escitalopram",
+    "BrandName": "Cipralex 2",
+    "ChemicalName": "Escitalopram",
+    "Manufacturer": "Lundbeck",
+    "Ingredients": [
+      "Escitalopram"
+    ]
+  },
+  {
+    "ScientificName": "Sertraline",
+    "BrandName": "Zoloft 2",
+    "ChemicalName": "Sertraline",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Sertraline"
+    ]
+  },
+  {
+    "ScientificName": "Fluoxetine",
+    "BrandName": "Prozac 2",
+    "ChemicalName": "Fluoxetine",
+    "Manufacturer": "Lilly",
+    "Ingredients": [
+      "Fluoxetine"
+    ]
+  },
+  {
+    "ScientificName": "Alprazolam",
+    "BrandName": "Xanax 2",
+    "ChemicalName": "Alprazolam",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Alprazolam"
+    ]
+  },
+  {
+    "ScientificName": "Diazepam",
+    "BrandName": "Valium 2",
+    "ChemicalName": "Diazepam",
+    "Manufacturer": "Roche",
+    "Ingredients": [
+      "Diazepam"
+    ]
+  },
+  {
+    "ScientificName": "Olanzapine",
+    "BrandName": "Zyprexa 2",
+    "ChemicalName": "Olanzapine",
+    "Manufacturer": "Lilly",
+    "Ingredients": [
+      "Olanzapine"
+    ]
+  },
+  {
+    "ScientificName": "Quetiapine",
+    "BrandName": "Seroquel 2",
+    "ChemicalName": "Quetiapine",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Quetiapine"
+    ]
+  },
+  {
+    "ScientificName": "Carbamazepine",
+    "BrandName": "Tegretol 2",
+    "ChemicalName": "Carbamazepine",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Carbamazepine"
+    ]
+  },
+  {
+    "ScientificName": "Valproate Sodium",
+    "BrandName": "Depakine 2",
+    "ChemicalName": "Valproic Acid",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Valproic Acid"
+    ]
+  },
+  {
+    "ScientificName": "Multivitamins",
+    "BrandName": "Centrum 2",
+    "ChemicalName": "Multivitamins",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Multivitamins"
+    ]
+  },
+  {
+    "ScientificName": "Ferrous Sulfate",
+    "BrandName": "Fersamal 2",
+    "ChemicalName": "Iron",
+    "Manufacturer": "Various",
+    "Ingredients": [
+      "Iron"
+    ]
+  },
+  {
+    "ScientificName": "Calcium + Vitamin D",
+    "BrandName": "Caltrate 2",
+    "ChemicalName": "Calcium/D3",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Calcium",
+      "Vitamin D"
+    ]
+  },
+  {
+    "ScientificName": "Vitamin C",
+    "BrandName": "C-Vit 2",
+    "ChemicalName": "Ascorbic Acid",
+    "Manufacturer": "Yemen Pharma",
+    "Ingredients": [
+      "Vitamin C"
+    ]
+  },
+  {
+    "ScientificName": "Paracetamol",
+    "BrandName": "Panadol 3",
+    "ChemicalName": "Acetaminophen",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Paracetamol"
+    ]
+  },
+  {
+    "ScientificName": "Paracetamol",
+    "BrandName": "Adol 3",
+    "ChemicalName": "Acetaminophen",
+    "Manufacturer": "Julphar",
+    "Ingredients": [
+      "Paracetamol"
+    ]
+  },
+  {
+    "ScientificName": "Paracetamol",
+    "BrandName": "Revanin 3",
+    "ChemicalName": "Acetaminophen",
+    "Manufacturer": "Yemen Pharma",
+    "Ingredients": [
+      "Paracetamol"
+    ]
+  },
+  {
+    "ScientificName": "Ibuprofen",
+    "BrandName": "Brufen 3",
+    "ChemicalName": "Ibuprofen",
+    "Manufacturer": "Abbott",
+    "Ingredients": [
+      "Ibuprofen"
+    ]
+  },
+  {
+    "ScientificName": "Ibuprofen",
+    "BrandName": "Ibufen 3",
+    "ChemicalName": "Ibuprofen",
+    "Manufacturer": "Modern Pharma",
+    "Ingredients": [
+      "Ibuprofen"
+    ]
+  },
+  {
+    "ScientificName": "Diclofenac Sodium",
+    "BrandName": "Voltaren 3",
+    "ChemicalName": "Diclofenac",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Diclofenac"
+    ]
+  },
+  {
+    "ScientificName": "Diclofenac Sodium",
+    "BrandName": "Olfen 3",
+    "ChemicalName": "Diclofenac",
+    "Manufacturer": "Mepha",
+    "Ingredients": [
+      "Diclofenac"
+    ]
+  },
+  {
+    "ScientificName": "Diclofenac Potassium",
+    "BrandName": "Cataflam 3",
+    "ChemicalName": "Diclofenac",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Diclofenac"
+    ]
+  },
+  {
+    "ScientificName": "Naproxen",
+    "BrandName": "Naprosyn 3",
+    "ChemicalName": "Naproxen",
+    "Manufacturer": "Roche",
+    "Ingredients": [
+      "Naproxen"
+    ]
+  },
+  {
+    "ScientificName": "Celecoxib",
+    "BrandName": "Celebrex 3",
+    "ChemicalName": "Celecoxib",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Celecoxib"
+    ]
+  },
+  {
+    "ScientificName": "Aspirin",
+    "BrandName": "Aspirin 3",
+    "ChemicalName": "Acetylsalicylic Acid",
+    "Manufacturer": "Bayer",
+    "Ingredients": [
+      "Aspirin"
+    ]
+  },
+  {
+    "ScientificName": "Mefenamic Acid",
+    "BrandName": "Ponstan 3",
+    "ChemicalName": "Mefenamic Acid",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Mefenamic Acid"
+    ]
+  },
+  {
+    "ScientificName": "Tramadol",
+    "BrandName": "Tramal 3",
+    "ChemicalName": "Tramadol",
+    "Manufacturer": "Grunenthal",
+    "Ingredients": [
+      "Tramadol"
+    ]
+  },
+  {
+    "ScientificName": "Amoxicillin",
+    "BrandName": "Amoxil 3",
+    "ChemicalName": "Amoxicillin",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Amoxicillin"
+    ]
+  },
+  {
+    "ScientificName": "Amoxicillin + Clavulanic Acid",
+    "BrandName": "Augmentin 3",
+    "ChemicalName": "Amoxicillin/Clavulanate",
+    "Manufacturer": "GSK",
+    "Ingredients": [
+      "Amoxicillin",
+      "Clavulanic Acid"
+    ]
+  },
+  {
+    "ScientificName": "Amoxicillin + Clavulanic Acid",
+    "BrandName": "Curam 3",
+    "ChemicalName": "Amoxicillin/Clavulanate",
+    "Manufacturer": "Sandoz",
+    "Ingredients": [
+      "Amoxicillin",
+      "Clavulanic Acid"
+    ]
+  },
+  {
+    "ScientificName": "Azithromycin",
+    "BrandName": "Zithromax 3",
+    "ChemicalName": "Azithromycin",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Azithromycin"
+    ]
+  },
+  {
+    "ScientificName": "Azithromycin",
+    "BrandName": "Azomyne 3",
+    "ChemicalName": "Azithromycin",
+    "Manufacturer": "Shephaco",
+    "Ingredients": [
+      "Azithromycin"
+    ]
+  },
+  {
+    "ScientificName": "Ciprofloxacin",
+    "BrandName": "Cipro 3",
+    "ChemicalName": "Ciprofloxacin",
+    "Manufacturer": "Bayer",
+    "Ingredients": [
+      "Ciprofloxacin"
+    ]
+  },
+  {
+    "ScientificName": "Ciprofloxacin",
+    "BrandName": "Ciprodar 3",
+    "ChemicalName": "Ciprofloxacin",
+    "Manufacturer": "Dar Al Dawa",
+    "Ingredients": [
+      "Ciprofloxacin"
+    ]
+  },
+  {
+    "ScientificName": "Ceftriaxone",
+    "BrandName": "Rocephin 3",
+    "ChemicalName": "Ceftriaxone",
+    "Manufacturer": "Roche",
+    "Ingredients": [
+      "Ceftriaxone"
+    ]
+  },
+  {
+    "ScientificName": "Cefixime",
+    "BrandName": "Suprax 3",
+    "ChemicalName": "Cefixime",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Cefixime"
+    ]
+  },
+  {
+    "ScientificName": "Clarithromycin",
+    "BrandName": "Klacid 3",
+    "ChemicalName": "Clarithromycin",
+    "Manufacturer": "Abbott",
+    "Ingredients": [
+      "Clarithromycin"
+    ]
+  },
+  {
+    "ScientificName": "Doxycycline",
+    "BrandName": "Vibramycin 3",
+    "ChemicalName": "Doxycycline",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Doxycycline"
+    ]
+  },
+  {
+    "ScientificName": "Metronidazole",
+    "BrandName": "Flagyl 3",
+    "ChemicalName": "Metronidazole",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Metronidazole"
+    ]
+  },
+  {
+    "ScientificName": "Metronidazole",
+    "BrandName": "Metrolag 3",
+    "ChemicalName": "Metronidazole",
+    "Manufacturer": "Lagap",
+    "Ingredients": [
+      "Metronidazole"
+    ]
+  },
+  {
+    "ScientificName": "Amlodipine",
+    "BrandName": "Norvasc 3",
+    "ChemicalName": "Amlodipine",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Amlodipine"
+    ]
+  },
+  {
+    "ScientificName": "Amlodipine",
+    "BrandName": "Amlocard 3",
+    "ChemicalName": "Amlodipine",
+    "Manufacturer": "Modern Pharma",
+    "Ingredients": [
+      "Amlodipine"
+    ]
+  },
+  {
+    "ScientificName": "Lisinopril",
+    "BrandName": "Zestril 3",
+    "ChemicalName": "Lisinopril",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Lisinopril"
+    ]
+  },
+  {
+    "ScientificName": "Enalapril",
+    "BrandName": "Renitec 3",
+    "ChemicalName": "Enalapril",
+    "Manufacturer": "MSD",
+    "Ingredients": [
+      "Enalapril"
+    ]
+  },
+  {
+    "ScientificName": "Valsartan",
+    "BrandName": "Diovan 3",
+    "ChemicalName": "Valsartan",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Valsartan"
+    ]
+  },
+  {
+    "ScientificName": "Atorvastatin",
+    "BrandName": "Lipitor 3",
+    "ChemicalName": "Atorvastatin",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Atorvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Atorvastatin",
+    "BrandName": "Atorva 3",
+    "ChemicalName": "Atorvastatin",
+    "Manufacturer": "Shephaco",
+    "Ingredients": [
+      "Atorvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Rosuvastatin",
+    "BrandName": "Crestor 3",
+    "ChemicalName": "Rosuvastatin",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Rosuvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Simvastatin",
+    "BrandName": "Zocor 3",
+    "ChemicalName": "Simvastatin",
+    "Manufacturer": "MSD",
+    "Ingredients": [
+      "Simvastatin"
+    ]
+  },
+  {
+    "ScientificName": "Furosemide",
+    "BrandName": "Lasix 3",
+    "ChemicalName": "Furosemide",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Furosemide"
+    ]
+  },
+  {
+    "ScientificName": "Spironolactone",
+    "BrandName": "Aldactone 3",
+    "ChemicalName": "Spironolactone",
+    "Manufacturer": "Pfizer",
+    "Ingredients": [
+      "Spironolactone"
+    ]
+  },
+  {
+    "ScientificName": "Bisoprolol",
+    "BrandName": "Concor 3",
+    "ChemicalName": "Bisoprolol",
+    "Manufacturer": "Merck",
+    "Ingredients": [
+      "Bisoprolol"
+    ]
+  },
+  {
+    "ScientificName": "Atenolol",
+    "BrandName": "Tenormin 3",
+    "ChemicalName": "Atenolol",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Atenolol"
+    ]
+  },
+  {
+    "ScientificName": "Clopidogrel",
+    "BrandName": "Plavix 3",
+    "ChemicalName": "Clopidogrel",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Clopidogrel"
+    ]
+  },
+  {
+    "ScientificName": "Warfarin",
+    "BrandName": "Coumadin 3",
+    "ChemicalName": "Warfarin",
+    "Manufacturer": "BMS",
+    "Ingredients": [
+      "Warfarin"
+    ]
+  },
+  {
+    "ScientificName": "Metformin",
+    "BrandName": "Glucophage 3",
+    "ChemicalName": "Metformin",
+    "Manufacturer": "Merck",
+    "Ingredients": [
+      "Metformin"
+    ]
+  },
+  {
+    "ScientificName": "Metformin",
+    "BrandName": "Metfor 3",
+    "ChemicalName": "Metformin",
+    "Manufacturer": "Yemen Pharma",
+    "Ingredients": [
+      "Metformin"
+    ]
+  },
+  {
+    "ScientificName": "Glibenclamide",
+    "BrandName": "Daonil 3",
+    "ChemicalName": "Glibenclamide",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Glibenclamide"
+    ]
+  },
+  {
+    "ScientificName": "Gliclazide",
+    "BrandName": "Diamicron 3",
+    "ChemicalName": "Gliclazide",
+    "Manufacturer": "Servier",
+    "Ingredients": [
+      "Gliclazide"
+    ]
+  },
+  {
+    "ScientificName": "Sitagliptin",
+    "BrandName": "Januvia 3",
+    "ChemicalName": "Sitagliptin",
+    "Manufacturer": "MSD",
+    "Ingredients": [
+      "Sitagliptin"
+    ]
+  },
+  {
+    "ScientificName": "Vildagliptin",
+    "BrandName": "Galvus 3",
+    "ChemicalName": "Vildagliptin",
+    "Manufacturer": "Novartis",
+    "Ingredients": [
+      "Vildagliptin"
+    ]
+  },
+  {
+    "ScientificName": "Glimepiride",
+    "BrandName": "Amaryl 3",
+    "ChemicalName": "Glimepiride",
+    "Manufacturer": "Sanofi",
+    "Ingredients": [
+      "Glimepiride"
+    ]
+  },
+  {
+    "ScientificName": "Omeprazole",
+    "BrandName": "Losec 3",
+    "ChemicalName": "Omeprazole",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Omeprazole"
+    ]
+  },
+  {
+    "ScientificName": "Omeprazole",
+    "BrandName": "Omiz 3",
+    "ChemicalName": "Omeprazole",
+    "Manufacturer": "Shephaco",
+    "Ingredients": [
+      "Omeprazole"
+    ]
+  },
+  {
+    "ScientificName": "Esomeprazole",
+    "BrandName": "Nexium 3",
+    "ChemicalName": "Esomeprazole",
+    "Manufacturer": "AstraZeneca",
+    "Ingredients": [
+      "Esomeprazole"
+    ]
+  },
+  {
+    "ScientificName": "Lansoprazole",
+    "BrandName": "Prevacid 3",
+    "ChemicalName": "Lansoprazole",
+    "Manufacturer": "Takeda",
+    "Ingredients": [
+      "Lansoprazole"
+    ]
+  },
+  {
+    "ScientificName": "Pantoprazole",
+    "BrandName": "Controloc 3",
+    "ChemicalName": "Pantoprazole",
+    "Manufacturer": "Takeda",
+    "Ingredients": [
+      "Pantoprazole"
+    ]
+  },
+  {
+    "ScientificName": "Domperidone",
+    "BrandName": "Motilium 3",
+    "ChemicalName": "Domperidone",
+    "Manufacturer": "Janssen",
+    "Ingredients": [
+      "Domperidone"
+    ]
+  }
+]

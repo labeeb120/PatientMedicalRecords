@@ -1,0 +1,201 @@
+ScientificName,BrandName,ChemicalName,Manufacturer,Ingredients
+Paracetamol,Panadol,Acetaminophen,GSK,Paracetamol
+Paracetamol,Adol,Acetaminophen,Julphar,Paracetamol
+Paracetamol,Revanin,Acetaminophen,Yemen Pharma,Paracetamol
+Ibuprofen,Brufen,Ibuprofen,Abbott,Ibuprofen
+Ibuprofen,Ibufen,Ibuprofen,Modern Pharma,Ibuprofen
+Diclofenac Sodium,Voltaren,Diclofenac,Novartis,Diclofenac
+Diclofenac Sodium,Olfen,Diclofenac,Mepha,Diclofenac
+Diclofenac Potassium,Cataflam,Diclofenac,Novartis,Diclofenac
+Naproxen,Naprosyn,Naproxen,Roche,Naproxen
+Celecoxib,Celebrex,Celecoxib,Pfizer,Celecoxib
+Aspirin,Aspirin,Acetylsalicylic Acid,Bayer,Aspirin
+Mefenamic Acid,Ponstan,Mefenamic Acid,Pfizer,Mefenamic Acid
+Tramadol,Tramal,Tramadol,Grunenthal,Tramadol
+Amoxicillin,Amoxil,Amoxicillin,GSK,Amoxicillin
+Amoxicillin + Clavulanic Acid,Augmentin,Amoxicillin/Clavulanate,GSK,"Amoxicillin, Clavulanic Acid"
+Amoxicillin + Clavulanic Acid,Curam,Amoxicillin/Clavulanate,Sandoz,"Amoxicillin, Clavulanic Acid"
+Azithromycin,Zithromax,Azithromycin,Pfizer,Azithromycin
+Azithromycin,Azomyne,Azithromycin,Shephaco,Azithromycin
+Ciprofloxacin,Cipro,Ciprofloxacin,Bayer,Ciprofloxacin
+Ciprofloxacin,Ciprodar,Ciprofloxacin,Dar Al Dawa,Ciprofloxacin
+Ceftriaxone,Rocephin,Ceftriaxone,Roche,Ceftriaxone
+Cefixime,Suprax,Cefixime,Sanofi,Cefixime
+Clarithromycin,Klacid,Clarithromycin,Abbott,Clarithromycin
+Doxycycline,Vibramycin,Doxycycline,Pfizer,Doxycycline
+Metronidazole,Flagyl,Metronidazole,Sanofi,Metronidazole
+Metronidazole,Metrolag,Metronidazole,Lagap,Metronidazole
+Amlodipine,Norvasc,Amlodipine,Pfizer,Amlodipine
+Amlodipine,Amlocard,Amlodipine,Modern Pharma,Amlodipine
+Lisinopril,Zestril,Lisinopril,AstraZeneca,Lisinopril
+Enalapril,Renitec,Enalapril,MSD,Enalapril
+Valsartan,Diovan,Valsartan,Novartis,Valsartan
+Atorvastatin,Lipitor,Atorvastatin,Pfizer,Atorvastatin
+Atorvastatin,Atorva,Atorvastatin,Shephaco,Atorvastatin
+Rosuvastatin,Crestor,Rosuvastatin,AstraZeneca,Rosuvastatin
+Simvastatin,Zocor,Simvastatin,MSD,Simvastatin
+Furosemide,Lasix,Furosemide,Sanofi,Furosemide
+Spironolactone,Aldactone,Spironolactone,Pfizer,Spironolactone
+Bisoprolol,Concor,Bisoprolol,Merck,Bisoprolol
+Atenolol,Tenormin,Atenolol,AstraZeneca,Atenolol
+Clopidogrel,Plavix,Clopidogrel,Sanofi,Clopidogrel
+Warfarin,Coumadin,Warfarin,BMS,Warfarin
+Metformin,Glucophage,Metformin,Merck,Metformin
+Metformin,Metfor,Metformin,Yemen Pharma,Metformin
+Glibenclamide,Daonil,Glibenclamide,Sanofi,Glibenclamide
+Gliclazide,Diamicron,Gliclazide,Servier,Gliclazide
+Sitagliptin,Januvia,Sitagliptin,MSD,Sitagliptin
+Vildagliptin,Galvus,Vildagliptin,Novartis,Vildagliptin
+Glimepiride,Amaryl,Glimepiride,Sanofi,Glimepiride
+Omeprazole,Losec,Omeprazole,AstraZeneca,Omeprazole
+Omeprazole,Omiz,Omeprazole,Shephaco,Omeprazole
+Esomeprazole,Nexium,Esomeprazole,AstraZeneca,Esomeprazole
+Lansoprazole,Prevacid,Lansoprazole,Takeda,Lansoprazole
+Pantoprazole,Controloc,Pantoprazole,Takeda,Pantoprazole
+Domperidone,Motilium,Domperidone,Janssen,Domperidone
+Metoclopramide,Plasil,Metoclopramide,Sanofi,Metoclopramide
+Hyoscine,Buscopan,Hyoscine Butylbromide,Boehringer Ingelheim,Hyoscine
+Salbutamol,Ventolin,Salbutamol,GSK,Salbutamol
+Montelukast,Singulair,Montelukast,MSD,Montelukast
+Fluticasone + Salmeterol,Seretide,Fluticasone/Salmeterol,GSK,"Fluticasone, Salmeterol"
+Budesonide,Pulmicort,Budesonide,AstraZeneca,Budesonide
+Escitalopram,Cipralex,Escitalopram,Lundbeck,Escitalopram
+Sertraline,Zoloft,Sertraline,Pfizer,Sertraline
+Fluoxetine,Prozac,Fluoxetine,Lilly,Fluoxetine
+Alprazolam,Xanax,Alprazolam,Pfizer,Alprazolam
+Diazepam,Valium,Diazepam,Roche,Diazepam
+Olanzapine,Zyprexa,Olanzapine,Lilly,Olanzapine
+Quetiapine,Seroquel,Quetiapine,AstraZeneca,Quetiapine
+Carbamazepine,Tegretol,Carbamazepine,Novartis,Carbamazepine
+Valproate Sodium,Depakine,Valproic Acid,Sanofi,Valproic Acid
+Multivitamins,Centrum,Multivitamins,Pfizer,Multivitamins
+Ferrous Sulfate,Fersamal,Iron,Various,Iron
+Calcium + Vitamin D,Caltrate,Calcium/D3,Pfizer,"Calcium, Vitamin D"
+Vitamin C,C-Vit,Ascorbic Acid,Yemen Pharma,Vitamin C
+Paracetamol,Panadol 2,Acetaminophen,GSK,Paracetamol
+Paracetamol,Adol 2,Acetaminophen,Julphar,Paracetamol
+Paracetamol,Revanin 2,Acetaminophen,Yemen Pharma,Paracetamol
+Ibuprofen,Brufen 2,Ibuprofen,Abbott,Ibuprofen
+Ibuprofen,Ibufen 2,Ibuprofen,Modern Pharma,Ibuprofen
+Diclofenac Sodium,Voltaren 2,Diclofenac,Novartis,Diclofenac
+Diclofenac Sodium,Olfen 2,Diclofenac,Mepha,Diclofenac
+Diclofenac Potassium,Cataflam 2,Diclofenac,Novartis,Diclofenac
+Naproxen,Naprosyn 2,Naproxen,Roche,Naproxen
+Celecoxib,Celebrex 2,Celecoxib,Pfizer,Celecoxib
+Aspirin,Aspirin 2,Acetylsalicylic Acid,Bayer,Aspirin
+Mefenamic Acid,Ponstan 2,Mefenamic Acid,Pfizer,Mefenamic Acid
+Tramadol,Tramal 2,Tramadol,Grunenthal,Tramadol
+Amoxicillin,Amoxil 2,Amoxicillin,GSK,Amoxicillin
+Amoxicillin + Clavulanic Acid,Augmentin 2,Amoxicillin/Clavulanate,GSK,"Amoxicillin, Clavulanic Acid"
+Amoxicillin + Clavulanic Acid,Curam 2,Amoxicillin/Clavulanate,Sandoz,"Amoxicillin, Clavulanic Acid"
+Azithromycin,Zithromax 2,Azithromycin,Pfizer,Azithromycin
+Azithromycin,Azomyne 2,Azithromycin,Shephaco,Azithromycin
+Ciprofloxacin,Cipro 2,Ciprofloxacin,Bayer,Ciprofloxacin
+Ciprofloxacin,Ciprodar 2,Ciprofloxacin,Dar Al Dawa,Ciprofloxacin
+Ceftriaxone,Rocephin 2,Ceftriaxone,Roche,Ceftriaxone
+Cefixime,Suprax 2,Cefixime,Sanofi,Cefixime
+Clarithromycin,Klacid 2,Clarithromycin,Abbott,Clarithromycin
+Doxycycline,Vibramycin 2,Doxycycline,Pfizer,Doxycycline
+Metronidazole,Flagyl 2,Metronidazole,Sanofi,Metronidazole
+Metronidazole,Metrolag 2,Metronidazole,Lagap,Metronidazole
+Amlodipine,Norvasc 2,Amlodipine,Pfizer,Amlodipine
+Amlodipine,Amlocard 2,Amlodipine,Modern Pharma,Amlodipine
+Lisinopril,Zestril 2,Lisinopril,AstraZeneca,Lisinopril
+Enalapril,Renitec 2,Enalapril,MSD,Enalapril
+Valsartan,Diovan 2,Valsartan,Novartis,Valsartan
+Atorvastatin,Lipitor 2,Atorvastatin,Pfizer,Atorvastatin
+Atorvastatin,Atorva 2,Atorvastatin,Shephaco,Atorvastatin
+Rosuvastatin,Crestor 2,Rosuvastatin,AstraZeneca,Rosuvastatin
+Simvastatin,Zocor 2,Simvastatin,MSD,Simvastatin
+Furosemide,Lasix 2,Furosemide,Sanofi,Furosemide
+Spironolactone,Aldactone 2,Spironolactone,Pfizer,Spironolactone
+Bisoprolol,Concor 2,Bisoprolol,Merck,Bisoprolol
+Atenolol,Tenormin 2,Atenolol,AstraZeneca,Atenolol
+Clopidogrel,Plavix 2,Clopidogrel,Sanofi,Clopidogrel
+Warfarin,Coumadin 2,Warfarin,BMS,Warfarin
+Metformin,Glucophage 2,Metformin,Merck,Metformin
+Metformin,Metfor 2,Metformin,Yemen Pharma,Metformin
+Glibenclamide,Daonil 2,Glibenclamide,Sanofi,Glibenclamide
+Gliclazide,Diamicron 2,Gliclazide,Servier,Gliclazide
+Sitagliptin,Januvia 2,Sitagliptin,MSD,Sitagliptin
+Vildagliptin,Galvus 2,Vildagliptin,Novartis,Vildagliptin
+Glimepiride,Amaryl 2,Glimepiride,Sanofi,Glimepiride
+Omeprazole,Losec 2,Omeprazole,AstraZeneca,Omeprazole
+Omeprazole,Omiz 2,Omeprazole,Shephaco,Omeprazole
+Esomeprazole,Nexium 2,Esomeprazole,AstraZeneca,Esomeprazole
+Lansoprazole,Prevacid 2,Lansoprazole,Takeda,Lansoprazole
+Pantoprazole,Controloc 2,Pantoprazole,Takeda,Pantoprazole
+Domperidone,Motilium 2,Domperidone,Janssen,Domperidone
+Metoclopramide,Plasil 2,Metoclopramide,Sanofi,Metoclopramide
+Hyoscine,Buscopan 2,Hyoscine Butylbromide,Boehringer Ingelheim,Hyoscine
+Salbutamol,Ventolin 2,Salbutamol,GSK,Salbutamol
+Montelukast,Singulair 2,Montelukast,MSD,Montelukast
+Fluticasone + Salmeterol,Seretide 2,Fluticasone/Salmeterol,GSK,"Fluticasone, Salmeterol"
+Budesonide,Pulmicort 2,Budesonide,AstraZeneca,Budesonide
+Escitalopram,Cipralex 2,Escitalopram,Lundbeck,Escitalopram
+Sertraline,Zoloft 2,Sertraline,Pfizer,Sertraline
+Fluoxetine,Prozac 2,Fluoxetine,Lilly,Fluoxetine
+Alprazolam,Xanax 2,Alprazolam,Pfizer,Alprazolam
+Diazepam,Valium 2,Diazepam,Roche,Diazepam
+Olanzapine,Zyprexa 2,Olanzapine,Lilly,Olanzapine
+Quetiapine,Seroquel 2,Quetiapine,AstraZeneca,Quetiapine
+Carbamazepine,Tegretol 2,Carbamazepine,Novartis,Carbamazepine
+Valproate Sodium,Depakine 2,Valproic Acid,Sanofi,Valproic Acid
+Multivitamins,Centrum 2,Multivitamins,Pfizer,Multivitamins
+Ferrous Sulfate,Fersamal 2,Iron,Various,Iron
+Calcium + Vitamin D,Caltrate 2,Calcium/D3,Pfizer,"Calcium, Vitamin D"
+Vitamin C,C-Vit 2,Ascorbic Acid,Yemen Pharma,Vitamin C
+Paracetamol,Panadol 3,Acetaminophen,GSK,Paracetamol
+Paracetamol,Adol 3,Acetaminophen,Julphar,Paracetamol
+Paracetamol,Revanin 3,Acetaminophen,Yemen Pharma,Paracetamol
+Ibuprofen,Brufen 3,Ibuprofen,Abbott,Ibuprofen
+Ibuprofen,Ibufen 3,Ibuprofen,Modern Pharma,Ibuprofen
+Diclofenac Sodium,Voltaren 3,Diclofenac,Novartis,Diclofenac
+Diclofenac Sodium,Olfen 3,Diclofenac,Mepha,Diclofenac
+Diclofenac Potassium,Cataflam 3,Diclofenac,Novartis,Diclofenac
+Naproxen,Naprosyn 3,Naproxen,Roche,Naproxen
+Celecoxib,Celebrex 3,Celecoxib,Pfizer,Celecoxib
+Aspirin,Aspirin 3,Acetylsalicylic Acid,Bayer,Aspirin
+Mefenamic Acid,Ponstan 3,Mefenamic Acid,Pfizer,Mefenamic Acid
+Tramadol,Tramal 3,Tramadol,Grunenthal,Tramadol
+Amoxicillin,Amoxil 3,Amoxicillin,GSK,Amoxicillin
+Amoxicillin + Clavulanic Acid,Augmentin 3,Amoxicillin/Clavulanate,GSK,"Amoxicillin, Clavulanic Acid"
+Amoxicillin + Clavulanic Acid,Curam 3,Amoxicillin/Clavulanate,Sandoz,"Amoxicillin, Clavulanic Acid"
+Azithromycin,Zithromax 3,Azithromycin,Pfizer,Azithromycin
+Azithromycin,Azomyne 3,Azithromycin,Shephaco,Azithromycin
+Ciprofloxacin,Cipro 3,Ciprofloxacin,Bayer,Ciprofloxacin
+Ciprofloxacin,Ciprodar 3,Ciprofloxacin,Dar Al Dawa,Ciprofloxacin
+Ceftriaxone,Rocephin 3,Ceftriaxone,Roche,Ceftriaxone
+Cefixime,Suprax 3,Cefixime,Sanofi,Cefixime
+Clarithromycin,Klacid 3,Clarithromycin,Abbott,Clarithromycin
+Doxycycline,Vibramycin 3,Doxycycline,Pfizer,Doxycycline
+Metronidazole,Flagyl 3,Metronidazole,Sanofi,Metronidazole
+Metronidazole,Metrolag 3,Metronidazole,Lagap,Metronidazole
+Amlodipine,Norvasc 3,Amlodipine,Pfizer,Amlodipine
+Amlodipine,Amlocard 3,Amlodipine,Modern Pharma,Amlodipine
+Lisinopril,Zestril 3,Lisinopril,AstraZeneca,Lisinopril
+Enalapril,Renitec 3,Enalapril,MSD,Enalapril
+Valsartan,Diovan 3,Valsartan,Novartis,Valsartan
+Atorvastatin,Lipitor 3,Atorvastatin,Pfizer,Atorvastatin
+Atorvastatin,Atorva 3,Atorvastatin,Shephaco,Atorvastatin
+Rosuvastatin,Crestor 3,Rosuvastatin,AstraZeneca,Rosuvastatin
+Simvastatin,Zocor 3,Simvastatin,MSD,Simvastatin
+Furosemide,Lasix 3,Furosemide,Sanofi,Furosemide
+Spironolactone,Aldactone 3,Spironolactone,Pfizer,Spironolactone
+Bisoprolol,Concor 3,Bisoprolol,Merck,Bisoprolol
+Atenolol,Tenormin 3,Atenolol,AstraZeneca,Atenolol
+Clopidogrel,Plavix 3,Clopidogrel,Sanofi,Clopidogrel
+Warfarin,Coumadin 3,Warfarin,BMS,Warfarin
+Metformin,Glucophage 3,Metformin,Merck,Metformin
+Metformin,Metfor 3,Metformin,Yemen Pharma,Metformin
+Glibenclamide,Daonil 3,Glibenclamide,Sanofi,Glibenclamide
+Gliclazide,Diamicron 3,Gliclazide,Servier,Gliclazide
+Sitagliptin,Januvia 3,Sitagliptin,MSD,Sitagliptin
+Vildagliptin,Galvus 3,Vildagliptin,Novartis,Vildagliptin
+Glimepiride,Amaryl 3,Glimepiride,Sanofi,Glimepiride
+Omeprazole,Losec 3,Omeprazole,AstraZeneca,Omeprazole
+Omeprazole,Omiz 3,Omeprazole,Shephaco,Omeprazole
+Esomeprazole,Nexium 3,Esomeprazole,AstraZeneca,Esomeprazole
+Lansoprazole,Prevacid 3,Lansoprazole,Takeda,Lansoprazole
+Pantoprazole,Controloc 3,Pantoprazole,Takeda,Pantoprazole
+Domperidone,Motilium 3,Domperidone,Janssen,Domperidone
