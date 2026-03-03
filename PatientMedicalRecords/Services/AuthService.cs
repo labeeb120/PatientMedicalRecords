@@ -379,7 +379,7 @@ namespace PatientMedicalRecords.Services
             {
                 UserId = user.Id,
                 Token = refreshTokenString,
-                ExpiresAt = DateTime.UtcNow.AddDays(30),
+                ExpiresAt = DateTime.UtcNow.AddMinutes(1),
                 CreatedAt = DateTime.UtcNow,
             };
 
@@ -442,7 +442,7 @@ namespace PatientMedicalRecords.Services
             {
                 UserId = user.Id,
                 Token = GenerateSecureToken(),
-                ExpiresAt = DateTime.UtcNow.AddDays(30),
+                ExpiresAt = DateTime.UtcNow.AddMinutes(1),
                 CreatedAt = DateTime.UtcNow
             };
             _context.RefreshTokens.Add(newRefresh);

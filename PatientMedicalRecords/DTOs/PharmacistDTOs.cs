@@ -174,10 +174,10 @@ namespace PatientMedicalRecords.DTOs
     // DTO لإضافة وصفة جديدة
     public class PrescriptionCreateRequest
     {
-        [Required]
+        //[Required]
         public int PatientId { get; set; }
 
-        [Required]
+        //[Required]
         public int DoctorId { get; set; }
 
         [Required]
@@ -192,6 +192,8 @@ namespace PatientMedicalRecords.DTOs
     {
         [Required]
         public int DrugId { get; set; }
+        public string DrugName { get; set; }
+
         [Required] public int Quantity { get; set; }
 
     [Required]
@@ -267,7 +269,25 @@ namespace PatientMedicalRecords.DTOs
         public string Message { get; set; } = string.Empty;
         public PrescriptionStatus NewStatus { get; set; }
     }
+        public class LookupItem
+        {
+            public int Id { get; set; }
+            public string Name { get; set; } = string.Empty;
+        }
 
+        public class PatientLookupResponse
+        {
+            public bool Success { get; set; }
+            public string Message { get; set; } = string.Empty;
+            public List<LookupItem> Patients { get; set; } = new List<LookupItem>();
+        }
+
+        public class DoctorLookupResponse
+        {
+            public bool Success { get; set; }
+            public string Message { get; set; } = string.Empty;
+            public List<LookupItem> Doctors { get; set; } = new List<LookupItem>();
+        }
 
 
 

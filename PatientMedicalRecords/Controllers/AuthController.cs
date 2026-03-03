@@ -61,7 +61,7 @@ namespace PatientMedicalRecords.Controllers
                 HttpOnly = true,
                 Secure = true, // ensure HTTPS in production
                 SameSite = SameSiteMode.Strict,
-                Expires = DateTime.UtcNow.AddDays(30)
+                Expires = DateTime.UtcNow.AddMinutes(1)
             };
             Response.Cookies.Append("refreshToken", result.RefreshToken!, cookieOptions);
 
@@ -104,7 +104,7 @@ namespace PatientMedicalRecords.Controllers
                     HttpOnly = true,
                     Secure = true,
                     SameSite = SameSiteMode.Strict,
-                    Expires = DateTime.UtcNow.AddDays(30)
+                    Expires = DateTime.UtcNow.AddMinutes(1)
                 };
                 Response.Cookies.Append("refreshToken", res.NewRefreshToken, cookieOptions);
             }

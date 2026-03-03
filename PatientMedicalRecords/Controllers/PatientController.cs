@@ -29,7 +29,102 @@ namespace PatientMedicalRecords.Controllers
             _logger = logger;
         }
 
+        //***********************************************************************************
 
+        [HttpGet("dashboard-summary")]
+        public async Task<ActionResult<PatientDashboardSummaryResponse>> GetDashboardSummary()
+        {
+            try
+            {
+                var userId = GetCurrentUserId();
+                if (userId == null) return Unauthorized();
+
+                var patient = await _context.Patients
+                    .FirstOrDefaultAsync(p => p.UserId == userId);
+
+                if (patient == null)
+                {
+                    return NotFound(new PatientDashboardSummaryResponse
+                    {
+                        Success = false,
+                        Message = "لم يتم العثور على ملف المريض"
+                    });
+                }
+
+                // 1. Get Latest Prescription
+                var latestPrescription = await _context.Prescriptions
+                    .Include(p => p.Doctor)
+                    .Include(p => p.PrescriptionItems)
+                    .Where(p => p.PatientId == patient.UserId)
+                    .OrderByDescending(p => p.PrescriptionDate)
+                    .Select(p => new LatestPrescriptionSummary
+                    {
+                        Date = p.PrescriptionDate,
+                        DoctorName = p.Doctor.FullName,
+                        Status = p.Status,
+                        MedicationCount = p.PrescriptionItems.Count
+                    })
+                    .FirstOrDefaultAsync();
+
+                // 2. Get Latest Diagnosis (Medical Record)
+                var latestDiagnosis = await _context.MedicalRecords
+                    .Include(mr => mr.Doctor)
+                    .Where(mr => mr.PatientId == patient.UserId)
+                    .OrderByDescending(mr => mr.RecordDate)
+                    .Select(mr => new LatestDiagnosisSummary
+                    {
+                        Diagnosis = mr.Diagnosis,
+                        Date = mr.RecordDate,
+                        DoctorName = mr.Doctor.FullName
+                    })
+                    .FirstOrDefaultAsync();
+
+                // 3. Get Statistics
+                var totalVisits = await _context.MedicalRecords.CountAsync(mr => mr.PatientId == patient.UserId);
+                var totalPrescriptions = await _context.Prescriptions.CountAsync(p => p.PatientId == patient.UserId);
+                var pendingPrescriptions = await _context.Prescriptions.CountAsync(p => p.PatientId == patient.UserId && p.Status == PrescriptionStatus.Pending);
+                var uniqueDoctorsCount = await _context.MedicalRecords
+                    .Where(mr => mr.PatientId == patient.UserId)
+                    .Select(mr => mr.DoctorId)
+                    .Distinct()
+                    .CountAsync();
+
+                var dashboardData = new PatientDashboardData
+                {
+                    LatestPrescription = latestPrescription,
+                    LatestDiagnosis = latestDiagnosis,
+                    Statistics = new PatientStatistics
+                    {
+                        TotalVisits = totalVisits,
+                        TotalPrescriptions = totalPrescriptions,
+                        PendingPrescriptions = pendingPrescriptions,
+                        UniqueDoctors = uniqueDoctorsCount
+                    },
+                    ProfileStatus = new PatientProfileStatus
+                    {
+                        IsInitialized = patient.IsProfileInitialized,
+                        BloodType = patient.BloodType
+                    }
+                };
+
+                return Ok(new PatientDashboardSummaryResponse
+                {
+                    Success = true,
+                    Message = "تم جلب ملخص لوحة التحكم بنجاح",
+                    Data = dashboardData
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting patient dashboard summary");
+                return StatusCode(500, new PatientDashboardSummaryResponse
+                {
+                    Success = false,
+                    Message = "حدث خطأ في الخادم"
+                });
+            }
+        }
+        //***********************************************************************************
 
         [HttpPost("initialize-profile")]
         public async Task<ActionResult<InitializePatientProfileResponse>> InitializeProfile([FromBody] InitializePatientProfileRequest request)
@@ -662,5 +757,9 @@ namespace PatientMedicalRecords.Controllers
                 _logger.LogError(ex, "Error logging user action {Action} for user {UserId}", action, userId);
             }
         }
+
+
+
+
     }
 }

@@ -358,6 +358,50 @@ public class EmergencyInfo
 }
 
 
+    // Patient Dashboard Summary DTOs
+    public class PatientDashboardSummaryResponse
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public PatientDashboardData Data { get; set; } = new();
+    }
+
+    public class PatientDashboardData
+    {
+        public LatestPrescriptionSummary? LatestPrescription { get; set; }
+        public LatestDiagnosisSummary? LatestDiagnosis { get; set; }
+        public PatientStatistics Statistics { get; set; } = new();
+        public PatientProfileStatus ProfileStatus { get; set; } = new();
+    }
+
+    public class LatestPrescriptionSummary
+    {
+        public DateTime Date { get; set; }
+        public string? DoctorName { get; set; }
+        public PrescriptionStatus Status { get; set; }
+        public int MedicationCount { get; set; }
+    }
+
+    public class LatestDiagnosisSummary
+    {
+        public string? Diagnosis { get; set; }
+        public DateTime Date { get; set; }
+        public string? DoctorName { get; set; }
+    }
+
+    public class PatientStatistics
+    {
+        public int TotalVisits { get; set; }
+        public int TotalPrescriptions { get; set; }
+        public int PendingPrescriptions { get; set; }
+        public int UniqueDoctors { get; set; }
+    }
+
+    public class PatientProfileStatus
+    {
+        public bool IsInitialized { get; set; }
+        public BloodType? BloodType { get; set; }
+    }
 
 
 
