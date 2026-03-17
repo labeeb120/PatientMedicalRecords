@@ -536,6 +536,58 @@ namespace PatientMedicalRecords.Controllers
             await LogUserAction(GetCurrentUserId()!.Value, "IMPORT_INTERACTIONS", $"تم استيراد {interactions.Count} تفاعل");
             return Ok(result);
         }
+
+        [HttpPost("reset-password")]
+        public async Task<ActionResult<ResetPasswordResponse>> ResetUserPassword([FromBody] ResetPasswordRequest request)
+        {
+            try
+            {
+                if (!IsAdmin()) return Forbid();
+
+                var user = await _context.Users.FindAsync(request.UserId);
+                if (user == null)
+                {
+                    return NotFound(new ResetPasswordResponse
+                    {
+                        Success = false,
+                        Message = "المستخدم غير موجود"
+                    });
+                }
+
+                // Generate a random password if not provided
+                var newPassword = request.NewPassword;
+                if (string.IsNullOrEmpty(newPassword))
+                {
+                    newPassword = Guid.NewGuid().ToString("N").Substring(0, 10);
+                }
+
+                // Update password
+                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
+                user.UpdatedAt = DateTime.UtcNow;
+
+                await _context.SaveChangesAsync();
+
+                // Log the action
+                await LogUserAction(GetCurrentUserId()!.Value, "RESET_USER_PASSWORD",
+                    $"تم إعادة تعيين كلمة المرور للمستخدم {user.NationalId}");
+
+                return Ok(new ResetPasswordResponse
+                {
+                    Success = true,
+                    Message = "تم إعادة تعيين كلمة المرور بنجاح",
+                    GeneratedPassword = newPassword
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error resetting password for user {UserId}", request.UserId);
+                return StatusCode(500, new ResetPasswordResponse
+                {
+                    Success = false,
+                    Message = "حدث خطأ في الخادم"
+                });
+            }
+        }
     }
 }
 

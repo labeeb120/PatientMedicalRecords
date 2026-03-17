@@ -55,6 +55,9 @@ namespace AdminPortal.Controllers
                         var accessToken = jsonObj.TryGetProperty("accessToken", out var tokenProp) 
                             ? tokenProp.GetString() 
                             : null;
+                        var refreshToken = jsonObj.TryGetProperty("refreshToken", out var refreshProp)
+                            ? refreshProp.GetString()
+                            : null;
                         var role = jsonObj.TryGetProperty("role", out var roleProp) 
                             ? roleProp.GetString() 
                             : null;
@@ -72,7 +75,7 @@ namespace AdminPortal.Controllers
                             return View(model);
                         }
 
-                        // Store token in cookie
+                        // Store access token in cookie
                         var cookieOptions = new CookieOptions
                         {
                             HttpOnly = true,
@@ -81,6 +84,19 @@ namespace AdminPortal.Controllers
                             Expires = DateTime.UtcNow.AddDays(1)
                         };
                         Response.Cookies.Append("AuthToken", accessToken!, cookieOptions);
+
+                        // Store refresh token in cookie
+                        if (!string.IsNullOrEmpty(refreshToken))
+                        {
+                            var refreshCookieOptions = new CookieOptions
+                            {
+                                HttpOnly = true,
+                                Secure = true,
+                                SameSite = SameSiteMode.Strict,
+                                Expires = DateTime.UtcNow.AddDays(7)
+                            };
+                            Response.Cookies.Append("RefreshToken", refreshToken, refreshCookieOptions);
+                        }
 
                         // Also store in session as backup
                         HttpContext.Session.SetString("AuthToken", accessToken!);
@@ -111,9 +127,20 @@ namespace AdminPortal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
+            try
+            {
+                // Optional: Call the backend logout to revoke refresh token
+                await _apiService.PostAsync<object>("api/Auth/logout");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Failed to call backend logout during AdminPortal logout");
+            }
+
             Response.Cookies.Delete("AuthToken");
+            Response.Cookies.Delete("RefreshToken");
             HttpContext.Session.Clear();
             return RedirectToAction("Login");
         }
