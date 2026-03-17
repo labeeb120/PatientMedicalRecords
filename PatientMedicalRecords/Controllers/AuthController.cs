@@ -76,10 +76,6 @@ namespace PatientMedicalRecords.Controllers
         }
 
         [HttpPost("refresh")]
-        //public async Task<IActionResult> Refresh()
-        //{
-        //    if (!Request.Cookies.TryGetValue("refreshToken", out var existingRefresh))
-        //        return Unauthorized(new { success = false });
         public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest? request)
         {
             // Try to get token from Cookie or Body
@@ -127,7 +123,11 @@ namespace PatientMedicalRecords.Controllers
             return Ok(new { success = true, message = "Logged out" });
         }
 
-      
+        //public async Task<IActionResult> Refresh()
+        //{
+        //    if (!Request.Cookies.TryGetValue("refreshToken", out var existingRefresh))
+        //        return Unauthorized(new { success = false });
+
         [HttpPost("change-password")]
         public async Task<ActionResult<ChangePasswordResponse>> ChangePassword([FromBody] ChangePasswordRequest request)
         {

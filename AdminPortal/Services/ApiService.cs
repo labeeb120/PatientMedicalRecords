@@ -25,7 +25,7 @@ namespace AdminPortal.Services
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor;
             
-            var apiBaseUrl = _configuration["ApiSettings:BaseUrl"] ?? "https://localhost:7164";
+            var apiBaseUrl = _configuration["ApiSettings:BaseUrl"] ?? "http://192.168.1.101:5137";
             _httpClient.BaseAddress = new Uri(apiBaseUrl);
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }

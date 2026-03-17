@@ -160,7 +160,7 @@ namespace PatientMedicalRecords.DTOs
         public int Id { get; set; }
         public int PrescriptionId { get; set; }
         public int DrugId { get; set; }
-        public string MedicationName { get; set; } = string.Empty;
+        public string? MedicationName { get; set; } = string.Empty;
         public string? Dosage { get; set; }
         public string? Frequency { get; set; }
         public string? Duration { get; set; }

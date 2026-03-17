@@ -207,7 +207,7 @@ namespace PatientMedicalRecords.DTOs
         public string Email { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
         public string LicenseNumber { get; set; } = string.Empty;
-        public string? PharmacyName { get; set; }    
+        public string? PharmacyName { get; set; }
         //[Required(ErrorMessage = "شهادة الترخيص مطلوبة")]
         //public IFormFile? LicenseDocument { get; set; }
 

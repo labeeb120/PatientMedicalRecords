@@ -212,12 +212,12 @@ namespace PatientMedicalRecords.Services
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
                 LicenseNumber = request.LicenseNumber,
-                //LicenseDocumentUrl = request.LicenseDocumentUrl,
                 Hospital = request.Hospital,
                 Specialization = request.Specialization
             };
+                //LicenseDocument = request.LicenseDocument,
 
-            _context.Doctors.Add(doctor);
+                _context.Doctors.Add(doctor);
             await _context.SaveChangesAsync();
 
 
@@ -379,7 +379,7 @@ namespace PatientMedicalRecords.Services
             {
                 UserId = user.Id,
                 Token = refreshTokenString,
-                ExpiresAt = DateTime.UtcNow.AddMinutes(1),
+                ExpiresAt = DateTime.UtcNow.AddMinutes(120),
                 CreatedAt = DateTime.UtcNow,
             };
 
