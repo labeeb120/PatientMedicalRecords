@@ -27,12 +27,7 @@ namespace PatientMedicalRecords.Models
         public string? Recommendation { get; set; } // الإجراء الموصى به
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-        //[ForeignKey("IngredientAId")]
-        //public virtual Ingredient IngredientA { get; set; } = null!;
-
-        //[ForeignKey("IngredientBId")]
-        //public virtual Ingredient IngredientB { get; set; } = null!;
+        
         [ForeignKey("IngredientAId")] // ربط الخاصية Navigation Property بالمفتاح الخارجي
         public virtual Ingredient IngredientA { get; set; } = null!;
 

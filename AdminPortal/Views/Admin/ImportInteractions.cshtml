@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "استيراد التفاعلات الدوائية";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+    <h2 class="mb-3">استيراد التفاعلات الدوائية من JSON</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form asp-action="ImportInteractions" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">اختيار ملف JSON</label>
+                    <input type="file" name="file" class="form-control" accept=".json" />
+                    <small class="text-muted">الملف يجب أن يحتوي على مصفوفة من الكائنات من نوع InteractionImportDto.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">أو لصق JSON مباشرة</label>
+                    <textarea name="jsonText" class="form-control" rows="8"
+                              placeholder='[{"ingredientAName":"ibuprofen","ingredientBName":"warfarin","severity":"Major","description":"..."}]'></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">استيراد التفاعلات</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

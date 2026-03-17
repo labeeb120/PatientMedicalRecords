@@ -204,6 +204,162 @@ namespace AdminPortal.Controllers
                 return View(request);
             }
         }
+
+        // ==================== Bulk Import: Drugs ====================
+        [HttpGet]
+        public IActionResult ImportDrugs()
+        {
+            CheckAuthentication();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ImportDrugs(IFormFile? file, string? jsonText)
+        {
+            CheckAuthentication();
+
+            if ((file == null || file.Length == 0) && string.IsNullOrWhiteSpace(jsonText))
+            {
+                TempData["ErrorMessage"] = "يرجى اختيار ملف JSON أو لصق محتوى JSON.";
+                return View();
+            }
+
+            try
+            {
+                List<DrugImportDto> drugs;
+
+                if (file != null && file.Length > 0)
+                {
+                    using var stream = file.OpenReadStream();
+                    using var reader = new StreamReader(stream);
+                    var content = await reader.ReadToEndAsync();
+                    drugs = JsonSerializer.Deserialize<List<DrugImportDto>>(content,
+                        new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<DrugImportDto>();
+                }
+                else
+                {
+                    drugs = JsonSerializer.Deserialize<List<DrugImportDto>>(jsonText!,
+                        new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<DrugImportDto>();
+                }
+
+                var result = await _apiService.PostAsync<ServiceResult>("api/Admin/import-drugs", drugs);
+                if (result?.Success == true)
+                {
+                    TempData["SuccessMessage"] = result.Message;
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = result?.Message ?? "فشل في استيراد الأدوية.";
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error importing drugs from AdminPortal");
+                TempData["ErrorMessage"] = "حدث خطأ أثناء استيراد الأدوية: " + ex.Message;
+            }
+
+            return View();
+        }
+
+        // ==================== Bulk Import: Interactions ====================
+        [HttpGet]
+        public IActionResult ImportInteractions()
+        {
+            CheckAuthentication();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ImportInteractions(IFormFile? file, string? jsonText)
+        {
+            CheckAuthentication();
+
+            if ((file == null || file.Length == 0) && string.IsNullOrWhiteSpace(jsonText))
+            {
+                TempData["ErrorMessage"] = "يرجى اختيار ملف JSON أو لصق محتوى JSON.";
+                return View();
+            }
+
+            try
+            {
+                List<InteractionImportDto> interactions;
+
+                if (file != null && file.Length > 0)
+                {
+                    using var stream = file.OpenReadStream();
+                    using var reader = new StreamReader(stream);
+                    var content = await reader.ReadToEndAsync();
+                    interactions = JsonSerializer.Deserialize<List<InteractionImportDto>>(content,
+                        new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<InteractionImportDto>();
+                }
+                else
+                {
+                    interactions = JsonSerializer.Deserialize<List<InteractionImportDto>>(jsonText!,
+                        new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<InteractionImportDto>();
+                }
+
+                var result = await _apiService.PostAsync<ServiceResult>("api/Admin/import-interactions", interactions);
+                if (result?.Success == true)
+                {
+                    TempData["SuccessMessage"] = result.Message;
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = result?.Message ?? "فشل في استيراد التفاعلات.";
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error importing interactions from AdminPortal");
+                TempData["ErrorMessage"] = "حدث خطأ أثناء استيراد التفاعلات: " + ex.Message;
+            }
+
+            return View();
+        }
+
+        // ==================== Reset User Password ====================
+        [HttpGet]
+        public IActionResult ResetUserPassword()
+        {
+            CheckAuthentication();
+            return View(new ResetPasswordRequest());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetUserPassword(ResetPasswordRequest model)
+        {
+            CheckAuthentication();
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                var response = await _apiService.PostAsync<ResetPasswordResponse>("api/Admin/reset-password", model);
+
+                if (response?.Success == true)
+                {
+                    TempData["SuccessMessage"] = response.Message;
+                    ViewBag.GeneratedPassword = response.GeneratedPassword;
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = response?.Message ?? "فشل في إعادة تعيين كلمة المرور.";
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error resetting password for user {UserId}", model.UserId);
+                TempData["ErrorMessage"] = "حدث خطأ أثناء إعادة تعيين كلمة المرور: " + ex.Message;
+            }
+
+            return View(model);
+        }
     }
 }
 

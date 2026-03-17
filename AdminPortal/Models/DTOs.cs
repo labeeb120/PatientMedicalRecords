@@ -208,5 +208,50 @@ namespace AdminPortal.Models
         public int SentCount { get; set; }
         public int FailedCount { get; set; }
     }
+
+    // خدمة نتائج عامة (مطابقة لـ ServiceResult في الـ API)
+    public class ServiceResult
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public object? Data { get; set; }
+    }
+
+    // استيراد الأدوية والتفاعلات
+    public class DrugImportDto
+    {
+        public string? BrandName { get; set; }
+        public string? Manufacturer { get; set; }
+        public string ScientificName { get; set; } = string.Empty;
+        public string? ChemicalName { get; set; } = string.Empty;
+        public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
+        public string? NormalizedName { get; set; }
+        public List<string> Ingredients { get; set; } = new();
+    }
+
+    public class InteractionImportDto
+    {
+        public string IngredientAName { get; set; } = string.Empty;
+        public string IngredientBName { get; set; } = string.Empty;
+        public string Severity { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string? Recommendation { get; set; }
+    }
+
+    // إعادة تعيين كلمة المرور من لوحة التحكم
+    public class ResetPasswordRequest
+    {
+        [Required]
+        public int UserId { get; set; }
+
+        public string? NewPassword { get; set; }
+    }
+
+    public class ResetPasswordResponse
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public string? GeneratedPassword { get; set; }
+    }
 }
 

@@ -198,6 +198,8 @@ namespace PatientMedicalRecords.Controllers
                    .Include(p => p.MedicalRecords)
                        .ThenInclude(mr => mr.Doctor)
                    .Include(p => p.Prescriptions)
+                   .ThenInclude(pr => pr.Doctor)
+                   .Include(p => p.Prescriptions)
                        .ThenInclude(pr => pr.PrescriptionItems)
                    .FirstOrDefaultAsync(p => p.User.NationalId == request.Identifier
                                           || p.PatientCode == request.Identifier);
