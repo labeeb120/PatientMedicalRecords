@@ -41,7 +41,19 @@ namespace PatientMedicalRecords.Controllers
                     DoctorName = p.Doctor.FullName,
                     PrescriptionDate = p.PrescriptionDate,
                     ItemCount = p.PrescriptionItems.Count,
-                    Status = p.Status
+                    Status = p.Status,
+                    Items = p.PrescriptionItems.Select(i => new PrescriptionItemInfoDto
+                    {
+                        Id = i.Id,
+                        DrugId = i.DrugId,
+                        MedicationName = i.MedicationName,
+                        Dosage = i.Dosage,
+                        Frequency = i.Frequency,
+                        Duration = i.Duration,
+                        Instructions = i.Instructions,
+                        Quantity = i.Quantity,
+                        IsDispensed = i.IsDispensed
+                    }).ToList()
                 })
                 .ToListAsync();
 
