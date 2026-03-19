@@ -49,16 +49,19 @@ namespace AdminPortal.Controllers
                 {
                     var jsonObj = response;
                     var success = jsonObj.TryGetProperty("success", out var successProp) && successProp.GetBoolean();
-                    
+
                     if (success)
                     {
-                        var accessToken = jsonObj.TryGetProperty("accessToken", out var tokenProp) 
-                            ? tokenProp.GetString() 
+                        var accessToken = jsonObj.TryGetProperty("accessToken", out var tokenProp)
+                            ? tokenProp.GetString()
                             : null;
-                        var role = jsonObj.TryGetProperty("role", out var roleProp) 
-                            ? roleProp.GetString() 
+                        var refreshToken = jsonObj.TryGetProperty("refreshToken", out var refreshProp)
+                            ? refreshProp.GetString()
                             : null;
-                        
+                        var role = jsonObj.TryGetProperty("role", out var roleProp)
+                            ? roleProp.GetString()
+                            : null;
+
                         if (string.IsNullOrEmpty(accessToken))
                         {
                             ModelState.AddModelError("", "Invalid response from server");
@@ -72,7 +75,7 @@ namespace AdminPortal.Controllers
                             return View(model);
                         }
 
-                        // Store token in cookie
+                        // Store access token in cookie
                         var cookieOptions = new CookieOptions
                         {
                             HttpOnly = true,
@@ -82,6 +85,19 @@ namespace AdminPortal.Controllers
                         };
                         Response.Cookies.Append("AuthToken", accessToken!, cookieOptions);
 
+                        // Store refresh token in cookie
+                        if (!string.IsNullOrEmpty(refreshToken))
+                        {
+                            var refreshCookieOptions = new CookieOptions
+                            {
+                                HttpOnly = true,
+                                Secure = true,
+                                SameSite = SameSiteMode.Strict,
+                                Expires = DateTime.UtcNow.AddDays(7)
+                            };
+                            Response.Cookies.Append("RefreshToken", refreshToken, refreshCookieOptions);
+                        }
+
                         // Also store in session as backup
                         HttpContext.Session.SetString("AuthToken", accessToken!);
                         HttpContext.Session.SetString("UserRole", role!);
@@ -90,8 +106,8 @@ namespace AdminPortal.Controllers
                     }
                     else
                     {
-                        var message = response.TryGetProperty("message", out var msgProp) 
-                            ? msgProp.GetString() 
+                        var message = response.TryGetProperty("message", out var msgProp)
+                            ? msgProp.GetString()
                             : "Invalid credentials";
                         ModelState.AddModelError("", message ?? "Invalid credentials");
                     }
@@ -111,9 +127,20 @@ namespace AdminPortal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
+            try
+            {
+                // Optional: Call the backend logout to revoke refresh token
+                await _apiService.PostAsync<object>("api/Auth/logout");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Failed to call backend logout during AdminPortal logout");
+            }
+
             Response.Cookies.Delete("AuthToken");
+            Response.Cookies.Delete("RefreshToken");
             HttpContext.Session.Clear();
             return RedirectToAction("Login");
         }

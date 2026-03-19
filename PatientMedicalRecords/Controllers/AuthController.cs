@@ -53,7 +53,7 @@ namespace PatientMedicalRecords.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var result = await _authService.LoginAsync(request);
-            if (!result.Success) return Unauthorized(new { success = false, message = "not not not not"});
+            if (!result.Success) return Unauthorized(new { success = false, message = "كلمة السر او رقم المعرف غير صحيح!"});
 
             // set refresh token cookie
             var cookieOptions = new CookieOptions
@@ -105,7 +105,7 @@ namespace PatientMedicalRecords.Controllers
                 Response.Cookies.Append("refreshToken", res.NewRefreshToken, cookieOptions);
             }
 
-            return Ok(new { success = true, accessToken = res.AccessToken });
+            return Ok(new { success = true, accessToken = res.AccessToken, newRefreshToken = res.NewRefreshToken });
         }
 
         [HttpPost("logout")]

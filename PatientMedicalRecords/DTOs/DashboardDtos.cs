@@ -30,5 +30,19 @@ namespace PatientMedicalRecords.DTOs
         public DateTime PrescriptionDate { get; set; }
         public int ItemCount { get; set; }
         public PrescriptionStatus Status { get; set; }
+        public List<PrescriptionItemInfoDto> Items { get; set; } = new();
+    }
+
+    public class PrescriptionItemInfoDto
+    {
+        public int Id { get; set; }
+        public int DrugId { get; set; }
+        public string MedicationName { get; set; } = string.Empty;
+        public string? Dosage { get; set; }
+        public string? Frequency { get; set; }
+        public string? Duration { get; set; }
+        public string? Instructions { get; set; }
+        public int Quantity { get; set; }
+        public bool IsDispensed { get; set; }
     }
 }

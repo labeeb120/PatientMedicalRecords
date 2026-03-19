@@ -269,4 +269,20 @@ namespace PatientMedicalRecords.DTOs
         public string Description { get; set; } = string.Empty;
         public string? Recommendation { get; set; }
     }
+
+    public class ResetPasswordRequest
+    {
+        [Required]
+        public int UserId { get; set; }
+
+        public string? NewPassword { get; set; }
+    }
+
+    public class ResetPasswordResponse
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public string? GeneratedPassword { get; set; }
+    }
+
 }
