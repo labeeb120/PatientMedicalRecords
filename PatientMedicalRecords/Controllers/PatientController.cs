@@ -390,6 +390,272 @@ namespace PatientMedicalRecords.Controllers
         }
 
         /// <summary>
+        /// الحصول على الملف الطبي الشامل للمريض
+        /// </summary>
+        [HttpGet("full-profile")]
+        public async Task<ActionResult<FullMedicalProfileResponse>> GetFullMedicalProfile()
+        {
+            try
+            {
+                var userId = GetCurrentUserId();
+                if (userId == null) return Unauthorized();
+
+                var patient = await _context.Patients
+                    .Include(p => p.Allergies)
+                    .Include(p => p.ChronicDiseases)
+                    .Include(p => p.Surgeries)
+                    .Include(p => p.Prescriptions)
+                        .ThenInclude(pr => pr.PrescriptionItems)
+                    .FirstOrDefaultAsync(p => p.UserId == userId);
+
+                if (patient == null)
+                {
+                    return NotFound(new FullMedicalProfileResponse
+                    {
+                        Success = false,
+                        Message = "لم يتم العثور على ملف المريض"
+                    });
+                }
+
+                var response = new FullMedicalProfileResponse
+                {
+                    Success = true,
+                    Message = "تم جلب الملف الطبي الشامل بنجاح",
+                    Patient = new PatientInfo
+                    {
+                        Id = patient.UserId,
+                        UserId = patient.UserId,
+                        FullName = patient.FullName,
+                        DateOfBirth = patient.DateOfBirth,
+                        Gender = patient.Gender,
+                        PhoneNumber = patient.PhoneNumber,
+                        Email = patient.Email,
+                        Address = patient.Address,
+                        BloodType = patient.BloodType,
+                        Weight = patient.Weight,
+                        Height = patient.Height,
+                        EmergencyContact = patient.EmergencyContact,
+                        EmergencyPhone = patient.EmergencyPhone,
+                        IsProfileInitialized = patient.IsProfileInitialized,
+                        CreatedAt = patient.CreatedAt,
+                        UpdatedAt = patient.UpdatedAt
+                    },
+                    Allergies = patient.Allergies.Select(a => new AllergyInfo
+                    {
+                        Id = a.Id,
+                        PatientId = a.PatientId,
+                        AllergenName = a.AllergenName,
+                        Reaction = a.Reaction,
+                        Severity = a.Severity,
+                        CreatedAt = a.CreatedAt
+                    }).ToList(),
+                    ChronicDiseases = patient.ChronicDiseases.Select(cd => new ChronicDiseaseInfo
+                    {
+                        Id = cd.Id,
+                        PatientId = cd.PatientId,
+                        DiseaseName = cd.DiseaseName,
+                        Description = cd.Description,
+                        DiagnosisDate = cd.DiagnosisDate,
+                        CreatedAt = cd.CreatedAt
+                    }).ToList(),
+                    Surgeries = patient.Surgeries.Select(s => new SurgeryInfo
+                    {
+                        Id = s.Id,
+                        PatientId = s.PatientId,
+                        SurgeryName = s.SurgeryName,
+                        Description = s.Description,
+                        SurgeryDate = s.SurgeryDate,
+                        Hospital = s.Hospital,
+                        Surgeon = s.Surgeon,
+                        CreatedAt = s.CreatedAt
+                    }).ToList(),
+                    CurrentMedications = patient.Prescriptions
+                        .Where(p => p.Diagnosis == "Current Medications (Patient Provided)" || p.Diagnosis == "Initial Medical Profile")
+                        .SelectMany(p => p.PrescriptionItems)
+                        .Select(pi => new CurrentMedicationInfoDto
+                        {
+                            Id = pi.Id,
+                            MedicationName = pi.MedicationName,
+                            Dosage = pi.Dosage,
+                            Frequency = pi.Frequency,
+                            Duration = pi.Duration,
+                            Instructions = pi.Instructions
+                        }).ToList()
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting full medical profile");
+                return StatusCode(500, new FullMedicalProfileResponse
+                {
+                    Success = false,
+                    Message = "حدث خطأ في الخادم"
+                });
+            }
+        }
+
+        /// <summary>
+        /// تحديث الملف الطبي الشامل للمريض
+        /// </summary>
+        [HttpPut("full-profile")]
+        public async Task<ActionResult<ServiceResult>> UpdateFullMedicalProfile([FromBody] UpdateMedicalProfileRequest request)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ServiceResult.Fail("البيانات المدخلة غير صحيحة"));
+
+                var userId = GetCurrentUserId();
+                if (userId == null) return Unauthorized();
+
+                var patient = await _context.Patients
+                    .Include(p => p.Allergies)
+                    .Include(p => p.ChronicDiseases)
+                    .Include(p => p.Surgeries)
+                    .Include(p => p.Prescriptions)
+                        .ThenInclude(pr => pr.PrescriptionItems)
+                    .FirstOrDefaultAsync(p => p.UserId == userId);
+
+                if (patient == null) return NotFound(ServiceResult.Fail("الملف غير موجود"));
+
+                using var trx = await _context.Database.BeginTransactionAsync();
+                try
+                {
+                    // Update basic info
+                    patient.FullName = request.FullName;
+                    patient.DateOfBirth = request.DateOfBirth;
+                    patient.Gender = request.Gender;
+                    patient.PhoneNumber = request.PhoneNumber;
+                    patient.Email = request.Email;
+                    patient.Address = request.Address;
+                    patient.BloodType = request.BloodType;
+                    patient.Weight = request.Weight;
+                    patient.Height = request.Height;
+                    patient.EmergencyContact = request.EmergencyContact;
+                    patient.EmergencyPhone = request.EmergencyPhone;
+                    patient.UpdatedAt = DateTime.UtcNow;
+
+                    // Update Allergies (Sync)
+                    _context.Allergies.RemoveRange(patient.Allergies);
+                    foreach (var a in request.Allergies)
+                    {
+                        _context.Allergies.Add(new Allergy
+                        {
+                            PatientId = patient.UserId,
+                            AllergenName = a.AllergenName,
+                            Reaction = a.Reaction,
+                            Severity = a.Severity,
+                            CreatedAt = DateTime.UtcNow
+                        });
+                    }
+
+                    // Update Chronic Diseases (Sync)
+                    _context.ChronicDiseases.RemoveRange(patient.ChronicDiseases);
+                    foreach (var d in request.ChronicDiseases)
+                    {
+                        _context.ChronicDiseases.Add(new ChronicDisease
+                        {
+                            PatientId = patient.UserId,
+                            DiseaseName = d.DiseaseName,
+                            Description = d.Description,
+                            DiagnosisDate = d.DiagnosisDate,
+                            CreatedAt = DateTime.UtcNow
+                        });
+                    }
+
+                    // Update Surgeries (Sync)
+                    _context.Surgeries.RemoveRange(patient.Surgeries);
+                    foreach (var s in request.Surgeries)
+                    {
+                        _context.Surgeries.Add(new Surgery
+                        {
+                            PatientId = patient.UserId,
+                            SurgeryName = s.SurgeryName,
+                            Description = s.Description,
+                            SurgeryDate = s.SurgeryDate,
+                            Hospital = s.Hospital,
+                            Surgeon = s.Surgeon,
+                            CreatedAt = DateTime.UtcNow
+                        });
+                    }
+
+                    // Update Current Medications (Sync within special prescriptions)
+                    var existingInitPrescriptions = patient.Prescriptions
+                        .Where(p => p.Diagnosis == "Current Medications (Patient Provided)" || p.Diagnosis == "Initial Medical Profile")
+                        .ToList();
+
+                    if (request.CurrentMedications.Any())
+                    {
+                        // Remove old items
+                        foreach (var p in existingInitPrescriptions)
+                        {
+                            _context.PrescriptionItems.RemoveRange(p.PrescriptionItems);
+                        }
+
+                        // Create/Reuse a prescription for new items
+                        var targetPrescription = existingInitPrescriptions.FirstOrDefault();
+                        if (targetPrescription == null)
+                        {
+                            var firstDoctor = await _context.Doctors.FirstOrDefaultAsync();
+                            targetPrescription = new Prescription
+                            {
+                                PatientId = patient.UserId,
+                                DoctorId = firstDoctor?.UserId,
+                                Diagnosis = "Current Medications (Patient Provided)",
+                                Notes = "Updated from patient profile",
+                                Status = PrescriptionStatus.Dispensed,
+                                PrescriptionDate = DateTime.UtcNow,
+                                CreatedAt = DateTime.UtcNow
+                            };
+                            _context.Prescriptions.Add(targetPrescription);
+                            await _context.SaveChangesAsync();
+                        }
+
+                        foreach (var m in request.CurrentMedications)
+                        {
+                            _context.PrescriptionItems.Add(new PrescriptionItem
+                            {
+                                PrescriptionId = targetPrescription.Id,
+                                MedicationName = m.MedicationName,
+                                Dosage = m.Dosage,
+                                Frequency = m.Frequency,
+                                Duration = m.Duration,
+                                Instructions = m.Instructions,
+                                Quantity = 0,
+                                IsDispensed = true,
+                                CreatedAt = DateTime.UtcNow
+                            });
+                        }
+                    }
+                    else
+                    {
+                         // If no medications, optionally keep the prescriptions but empty
+                    }
+
+                    await _context.SaveChangesAsync();
+                    await trx.CommitAsync();
+
+                    await LogUserAction(userId.Value, "UPDATE_FULL_PROFILE", "تم تحديث الملف الطبي الشامل");
+
+                    return Ok(ServiceResult.Ok("تم تحديث الملف الطبي الشامل بنجاح"));
+                }
+                catch (Exception exIn)
+                {
+                    await trx.RollbackAsync();
+                    _logger.LogError(exIn, "Error updating full patient profile");
+                    return StatusCode(500, ServiceResult.Fail("حدث خطأ أثناء تحديث الملف الطبي"));
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in update full profile endpoint");
+                return StatusCode(500, ServiceResult.Fail("حدث خطأ في الخادم"));
+            }
+        }
+
+        /// <summary>
         /// تحديث ملف المريض الشخصي
         /// </summary>
         [HttpPut("profile")]

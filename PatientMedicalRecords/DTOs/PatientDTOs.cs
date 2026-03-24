@@ -165,6 +165,48 @@ public class PatientProfileResponse
     public PatientInfo? Patient { get; set; }
 }
 
+    public class FullMedicalProfileResponse
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public PatientInfo Patient { get; set; } = null!;
+        public List<AllergyInfo> Allergies { get; set; } = new();
+        public List<ChronicDiseaseInfo> ChronicDiseases { get; set; } = new();
+        public List<SurgeryInfo> Surgeries { get; set; } = new();
+        public List<CurrentMedicationInfoDto> CurrentMedications { get; set; } = new();
+    }
+
+    public class CurrentMedicationInfoDto
+    {
+        public int Id { get; set; }
+        public string MedicationName { get; set; } = string.Empty;
+        public string? Dosage { get; set; }
+        public string? Frequency { get; set; }
+        public string? Duration { get; set; }
+        public string? Instructions { get; set; }
+    }
+
+    public class UpdateMedicalProfileRequest
+    {
+        [Required(ErrorMessage = "الاسم الكامل مطلوب")]
+        public string FullName { get; set; } = string.Empty;
+        public DateTime DateOfBirth { get; set; }
+        public Gender Gender { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? Email { get; set; }
+        public string? Address { get; set; }
+        public BloodType? BloodType { get; set; }
+        public decimal? Weight { get; set; }
+        public decimal? Height { get; set; }
+        public string? EmergencyContact { get; set; }
+        public string? EmergencyPhone { get; set; }
+
+        public List<AllergyInput> Allergies { get; set; } = new();
+        public List<ChronicDiseaseInput> ChronicDiseases { get; set; } = new();
+        public List<SurgeryInput> Surgeries { get; set; } = new();
+        public List<CurrentMedicationInput> CurrentMedications { get; set; } = new();
+    }
+
 public class PatientInfo
 {
     public int Id { get; set; }
