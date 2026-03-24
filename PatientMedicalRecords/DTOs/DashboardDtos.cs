@@ -24,25 +24,17 @@ namespace PatientMedicalRecords.DTOs
     // DTOs for Pharmacist's Dashboard
     public class PrescriptionQueueDto
     {
-        public int PrescriptionId { get; set; }
-        public string PatientName { get; set; } = string.Empty;
-        public string DoctorName { get; set; } = string.Empty;
-        public DateTime PrescriptionDate { get; set; }
-        public int ItemCount { get; set; }
-        public PrescriptionStatus Status { get; set; }
-        public List<PrescriptionItemInfoDto> Items { get; set; } = new();
-    }
-
-    public class PrescriptionItemInfoDto
-    {
         public int Id { get; set; }
-        public int DrugId { get; set; }
-        public string MedicationName { get; set; } = string.Empty;
-        public string? Dosage { get; set; }
-        public string? Frequency { get; set; }
-        public string? Duration { get; set; }
-        public string? Instructions { get; set; }
-        public int Quantity { get; set; }
-        public bool IsDispensed { get; set; }
+        public int PatientId { get; set; }
+        public int? DoctorId { get; set; }
+        public string? Diagnosis { get; set; }
+        public string? Notes { get; set; }
+        public PrescriptionStatus Status { get; set; }
+        public DateTime PrescriptionDate { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string? DoctorName { get; set; }
+        public string? PatientName { get; set; }
+        public int ItemCount { get; set; }
+        public List<PrescriptionItemInfo> Items { get; set; } = new List<PrescriptionItemInfo>();
     }
 }

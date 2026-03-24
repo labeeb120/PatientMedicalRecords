@@ -36,15 +36,21 @@ namespace PatientMedicalRecords.Controllers
                 .OrderBy(p => p.PrescriptionDate) // Oldest first
                 .Select(p => new PrescriptionQueueDto
                 {
-                    PrescriptionId = p.Id,
-                    PatientName = p.Patient.FullName,
-                    DoctorName = p.Doctor.FullName,
-                    PrescriptionDate = p.PrescriptionDate,
-                    ItemCount = p.PrescriptionItems.Count,
+                    Id = p.Id,
+                    PatientId = p.PatientId,
+                    DoctorId = p.DoctorId,
+                    Diagnosis = p.Diagnosis,
+                    Notes = p.Notes,
                     Status = p.Status,
-                    Items = p.PrescriptionItems.Select(i => new PrescriptionItemInfoDto
+                    PrescriptionDate = p.PrescriptionDate,
+                    CreatedAt = p.CreatedAt,
+                    DoctorName = p.Doctor.FullName,
+                    PatientName = p.Patient.FullName,
+                    ItemCount = p.PrescriptionItems.Count,
+                    Items = p.PrescriptionItems.Select(i => new PrescriptionItemInfo
                     {
                         Id = i.Id,
+                        PrescriptionId = i.PrescriptionId,
                         DrugId = i.DrugId,
                         MedicationName = i.MedicationName,
                         Dosage = i.Dosage,
@@ -52,7 +58,8 @@ namespace PatientMedicalRecords.Controllers
                         Duration = i.Duration,
                         Instructions = i.Instructions,
                         Quantity = i.Quantity,
-                        IsDispensed = i.IsDispensed
+                        IsDispensed = i.IsDispensed,
+                        CreatedAt = i.CreatedAt
                     }).ToList()
                 })
                 .ToListAsync();
