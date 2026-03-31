@@ -1,0 +1,124 @@
+{
+  "Patients": [
+    {
+      "Registration": { "NationalId": "1010101011", "Password": "Password123!", "FullName": "أحمد محمد العطاس", "DateOfBirth": "1985-05-15", "PhoneNumber": "771234567", "Email": "ahmed.attas@example.com" },
+      "MedicalProfile": {
+        "Gender": 0, "Address": "صنعاء، حي حدة", "BloodType": 0, "Weight": 75.5, "Height": 178, "EmergencyContact": "محمد العطاس", "EmergencyPhone": "770000001",
+        "Allergies": [{ "AllergenName": "Penicillin", "Reaction": "Skin Rash", "Severity": "High" }],
+        "ChronicDiseases": [{ "DiseaseName": "Hypertension", "Description": "Controlled with meds", "DiagnosisDate": "2020-01-10" }],
+        "Surgeries": [{ "SurgeryName": "Appendectomy", "SurgeryDate": "2015-06-20", "Hospital": "Republican Hospital" }],
+        "CurrentMedications": [{ "MedicationName": "Amlodipine", "Dosage": "5mg", "Frequency": "Once daily" }]
+      }
+    },
+    {
+      "Registration": { "NationalId": "1010101012", "Password": "Password123!", "FullName": "سارة علي الكبسي", "DateOfBirth": "1992-08-22", "PhoneNumber": "772234567", "Email": "sara.kabsi@example.com" },
+      "MedicalProfile": {
+        "Gender": 1, "Address": "عدن، المنصورة", "BloodType": 2, "Weight": 62.0, "Height": 165, "EmergencyContact": "علي الكبسي", "EmergencyPhone": "770000002",
+        "Allergies": [{ "AllergenName": "Aspirin", "Reaction": "Asthma attack", "Severity": "Severe" }],
+        "ChronicDiseases": [{ "DiseaseName": "Type 2 Diabetes", "Description": "Insulin dependent", "DiagnosisDate": "2018-11-05" }],
+        "Surgeries": [],
+        "CurrentMedications": [{ "MedicationName": "Metformin", "Dosage": "850mg", "Frequency": "Twice daily" }]
+      }
+    },
+    {
+      "Registration": { "NationalId": "1010101013", "Password": "Password123!", "FullName": "خالد وليد باوزير", "DateOfBirth": "1978-12-01", "PhoneNumber": "773234567", "Email": "khaled.bawazir@example.com" },
+      "MedicalProfile": {
+        "Gender": 0, "Address": "المكلا، الشرج", "BloodType": 4, "Weight": 88.0, "Height": 182, "EmergencyContact": "وليد باوزير", "EmergencyPhone": "770000003",
+        "Allergies": [], "ChronicDiseases": [{ "DiseaseName": "Asthma", "Description": "Seasonal triggers", "DiagnosisDate": "2010-05-15" }],
+        "Surgeries": [{ "SurgeryName": "Hernia Repair", "SurgeryDate": "2021-03-12", "Hospital": "Modern Medical Center" }],
+        "CurrentMedications": [{ "MedicationName": "Salbutamol Inhaler", "Dosage": "100mcg", "Frequency": "As needed" }]
+      }
+    },
+    {
+      "Registration": { "NationalId": "1010101014", "Password": "Password123!", "FullName": "فاطمة حسن المؤيد", "DateOfBirth": "1995-03-10", "PhoneNumber": "774234567", "Email": "fatima.muayyad@example.com" },
+      "MedicalProfile": {
+        "Gender": 1, "Address": "تعز، حي الروضة", "BloodType": 1, "Weight": 58.5, "Height": 160, "EmergencyContact": "حسن المؤيد", "EmergencyPhone": "770000004",
+        "Allergies": [{ "AllergenName": "Nuts", "Reaction": "Anaphylaxis", "Severity": "Severe" }],
+        "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": []
+      }
+    },
+    {
+      "Registration": { "NationalId": "1010101015", "Password": "Password123!", "FullName": "يحيى ناصر الارياني", "DateOfBirth": "1965-07-25", "PhoneNumber": "775234567", "Email": "yahya.eryani@example.com" },
+      "MedicalProfile": {
+        "Gender": 0, "Address": "صنعاء، الحصبة", "BloodType": 6, "Weight": 82.0, "Height": 175, "EmergencyContact": "ناصر الارياني", "EmergencyPhone": "770000005",
+        "Allergies": [], "ChronicDiseases": [{ "DiseaseName": "Osteoarthritis", "Description": "Knee pain", "DiagnosisDate": "2022-09-30" }],
+        "Surgeries": [{ "SurgeryName": "Gallbladder Removal", "SurgeryDate": "2019-11-20", "Hospital": "Al-Thawra Hospital" }],
+        "CurrentMedications": [{ "MedicationName": "Celecoxib", "Dosage": "200mg", "Frequency": "Once daily" }]
+      }
+    },
+    {
+      "Registration": { "NationalId": "1010101016", "Password": "Password123!", "FullName": "ليلى مصلح الحميري", "DateOfBirth": "1988-10-05", "PhoneNumber": "776234567", "Email": "laila.himiary@example.com" },
+      "MedicalProfile": { "Gender": 1, "Address": "ذمار، وسط المدينة", "BloodType": 0, "Weight": 65.0, "Height": 168, "EmergencyContact": "مصلح الحميري", "EmergencyPhone": "770000006", "Allergies": [], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] }
+    },
+    {
+      "Registration": { "NationalId": "1010101017", "Password": "Password123!", "FullName": "عمر عبدالله المحضار", "DateOfBirth": "1990-01-30", "PhoneNumber": "731234567", "Email": "omar.mahdar@example.com" },
+      "MedicalProfile": { "Gender": 0, "Address": "شبوة، عتق", "BloodType": 3, "Weight": 70.0, "Height": 180, "EmergencyContact": "عبدالله المحضار", "EmergencyPhone": "730000001", "Allergies": [], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] }
+    },
+    {
+      "Registration": { "NationalId": "1010101018", "Password": "Password123!", "FullName": "ريم صقر الشيباني", "DateOfBirth": "2000-11-12", "PhoneNumber": "732234567", "Email": "reem.shaibani@example.com" },
+      "MedicalProfile": { "Gender": 1, "Address": "إب، حي الجامعة", "BloodType": 2, "Weight": 54.0, "Height": 162, "EmergencyContact": "صقر الشيباني", "EmergencyPhone": "730000002", "Allergies": [{ "AllergenName": "Lactose", "Reaction": "Bloating", "Severity": "Mild" }], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] }
+    },
+    {
+      "Registration": { "NationalId": "1010101019", "Password": "Password123!", "FullName": "منصور قايد الرداعي", "DateOfBirth": "1955-04-18", "PhoneNumber": "733234567", "Email": "mansour.radae@example.com" },
+      "MedicalProfile": { "Gender": 0, "Address": "البيضاء، رداع", "BloodType": 5, "Weight": 95.0, "Height": 170, "EmergencyContact": "قايد الرداعي", "EmergencyPhone": "730000003", "Allergies": [], "ChronicDiseases": [{ "DiseaseName": "COPD", "Description": "Smoker history", "DiagnosisDate": "2015-02-14" }], "Surgeries": [], "CurrentMedications": [{ "MedicationName": "Tiotropium", "Dosage": "18mcg", "Frequency": "Inhalation daily" }] }
+    },
+    {
+      "Registration": { "NationalId": "1010101020", "Password": "Password123!", "FullName": "منى سعيد الغزالي", "DateOfBirth": "1998-06-28", "PhoneNumber": "734234567", "Email": "muna.ghazali@example.com" },
+      "MedicalProfile": { "Gender": 1, "Address": "الحديدة، حي الميناء", "BloodType": 7, "Weight": 60.0, "Height": 163, "EmergencyContact": "سعيد الغزالي", "EmergencyPhone": "730000004", "Allergies": [], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] }
+    },
+    { "Registration": { "NationalId": "1010101021", "Password": "Password123!", "FullName": "صالح عبده الوصابي", "DateOfBirth": "1982-09-09", "PhoneNumber": "735234567", "Email": "saleh.wasabi@example.com" }, "MedicalProfile": { "Gender": 0, "Address": "ريمة، الجبين", "BloodType": 0, "Weight": 72.0, "Height": 172, "EmergencyContact": "عبده الوصابي", "EmergencyPhone": "730000005", "Allergies": [], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] } },
+    { "Registration": { "NationalId": "1010101022", "Password": "Password123!", "FullName": "زينب طه المتوكل", "DateOfBirth": "1970-02-14", "PhoneNumber": "711234567", "Email": "zeinab.mutawakel@example.com" }, "MedicalProfile": { "Gender": 1, "Address": "صنعاء، المدينة القديمة", "BloodType": 1, "Weight": 68.0, "Height": 158, "EmergencyContact": "طه المتوكل", "EmergencyPhone": "710000001", "Allergies": [], "ChronicDiseases": [{ "DiseaseName": "Hypothyroidism", "Description": "TSH stable", "DiagnosisDate": "2012-08-20" }], "Surgeries": [], "CurrentMedications": [{ "MedicationName": "Levothyroxine", "Dosage": "50mcg", "Frequency": "Once daily" }] } },
+    { "Registration": { "NationalId": "1010101023", "Password": "Password123!", "FullName": "باسم رشيد اليافعي", "DateOfBirth": "1994-07-07", "PhoneNumber": "712234567", "Email": "basem.yafei@example.com" }, "MedicalProfile": { "Gender": 0, "Address": "لحج، يافع", "BloodType": 4, "Weight": 77.0, "Height": 179, "EmergencyContact": "رشيد اليافعي", "EmergencyPhone": "710000002", "Allergies": [], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] } },
+    { "Registration": { "NationalId": "1010101024", "Password": "Password123!", "FullName": "هناء جميل المقالح", "DateOfBirth": "1980-12-25", "PhoneNumber": "713234567", "Email": "hana.maqaleh@example.com" }, "MedicalProfile": { "Gender": 1, "Address": "صنعاء، حي الزراعة", "BloodType": 2, "Weight": 63.0, "Height": 164, "EmergencyContact": "جميل المقالح", "EmergencyPhone": "710000003", "Allergies": [], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] } },
+    { "Registration": { "NationalId": "1010101025", "Password": "Password123!", "FullName": "عبدالرحمن فضل العمودي", "DateOfBirth": "1960-05-01", "PhoneNumber": "714234567", "Email": "abdulrahman.amoudi@example.com" }, "MedicalProfile": { "Gender": 0, "Address": "حضرموت، سيئون", "BloodType": 6, "Weight": 85.0, "Height": 173, "EmergencyContact": "فضل العمودي", "EmergencyPhone": "710000004", "Allergies": [], "ChronicDiseases": [{ "DiseaseName": "Hyperlipidemia", "Description": "High cholesterol", "DiagnosisDate": "2017-04-12" }], "Surgeries": [], "CurrentMedications": [{ "MedicationName": "Atorvastatin", "Dosage": "20mg", "Frequency": "At bedtime" }] } },
+    { "Registration": { "NationalId": "1010101026", "Password": "Password123!", "FullName": "مريم نبيل الذبحاني", "DateOfBirth": "1993-02-28", "PhoneNumber": "715234567", "Email": "mariam.dhabhani@example.com" }, "MedicalProfile": { "Gender": 1, "Address": "تعز، التربة", "BloodType": 0, "Weight": 56.0, "Height": 161, "EmergencyContact": "نبيل الذبحاني", "EmergencyPhone": "710000005", "Allergies": [], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] } },
+    { "Registration": { "NationalId": "1010101027", "Password": "Password123!", "FullName": "توفيق حمود الصبري", "DateOfBirth": "1986-11-15", "PhoneNumber": "701234567", "Email": "tawfiq.sabri@example.com" }, "MedicalProfile": { "Gender": 0, "Address": "تعز، صبر", "BloodType": 3, "Weight": 80.0, "Height": 177, "EmergencyContact": "حمود الصبري", "EmergencyPhone": "700000001", "Allergies": [], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] } },
+    { "Registration": { "NationalId": "1010101028", "Password": "Password123!", "FullName": "أماني عارف القدسي", "DateOfBirth": "1996-09-20", "PhoneNumber": "702234567", "Email": "amani.qudsi@example.com" }, "MedicalProfile": { "Gender": 1, "Address": "تعز، المظفر", "BloodType": 1, "Weight": 59.0, "Height": 166, "EmergencyContact": "عارف القدسي", "EmergencyPhone": "700000002", "Allergies": [], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] } },
+    { "Registration": { "NationalId": "1010101029", "Password": "Password123!", "FullName": "عادل مروان الحزمي", "DateOfBirth": "1975-01-01", "PhoneNumber": "703234567", "Email": "adel.hazmi@example.com" }, "MedicalProfile": { "Gender": 0, "Address": "صنعاء، سنحان", "BloodType": 5, "Weight": 92.0, "Height": 181, "EmergencyContact": "مروان الحزمي", "EmergencyPhone": "700000003", "Allergies": [], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] } },
+    { "Registration": { "NationalId": "1010101030", "Password": "Password123!", "FullName": "خلود فيصل الصنعاني", "DateOfBirth": "1984-04-14", "PhoneNumber": "704234567", "Email": "khulood.sanaani@example.com" }, "MedicalProfile": { "Gender": 1, "Address": "صنعاء، الصافية", "BloodType": 7, "Weight": 67.0, "Height": 159, "EmergencyContact": "فيصل الصنعاني", "EmergencyPhone": "700000004", "Allergies": [], "ChronicDiseases": [], "Surgeries": [], "CurrentMedications": [] } }
+  ],
+  "Doctors": [
+    { "Registration": { "NationalId": "2020202021", "Password": "DoctorPassword!", "FullName": "د. إبراهيم يوسف الكبسي", "Email": "dr.ibrahim@hospital.com", "PhoneNumber": "771000101", "LicenseNumber": "DOC-YE-1001", "Specialization": "Cardiology", "Hospital": "Sana'a University Hospital" }, "Activity": { "LatestDiagnoses": ["Ischemic Heart Disease", "Hypertension"], "SamplePrescription": { "Diagnosis": "Post-MI stable angina", "Medications": [{ "DrugId": 1, "MedicationName": "Aspirin", "Dosage": "75mg", "Frequency": "Once daily", "Duration": "Indefinite", "Instructions": "After breakfast", "Quantity": 30 }] } },
+    { "Registration": { "NationalId": "2020202022", "Password": "DoctorPassword!", "FullName": "د. نادية محمود الشرفي", "Email": "dr.nadia@hospital.com", "PhoneNumber": "771000102", "LicenseNumber": "DOC-YE-1002", "Specialization": "Endocrinology", "Hospital": "Al-Amal Medical Center" }, "Activity": { "LatestDiagnoses": ["Type 1 Diabetes", "Graves Disease"], "SamplePrescription": { "Diagnosis": "Newly diagnosed T1DM", "Medications": [{ "DrugId": 5, "MedicationName": "Insulin Glargine", "Dosage": "10 units", "Frequency": "At bedtime", "Duration": "Continuous", "Instructions": "Subcutaneous injection", "Quantity": 5 }] } },
+    { "Registration": { "NationalId": "2020202023", "Password": "DoctorPassword!", "FullName": "د. فؤاد قاسم الوادعي", "Email": "dr.fouad@hospital.com", "PhoneNumber": "771000103", "LicenseNumber": "DOC-YE-1003", "Specialization": "Internal Medicine", "Hospital": "Republican Hospital" }, "Activity": { "LatestDiagnoses": ["Peptic Ulcer", "Gastroenteritis"], "SamplePrescription": { "Diagnosis": "H. Pylori Infection", "Medications": [{ "DrugId": 12, "MedicationName": "Omeprazole", "Dosage": "20mg", "Frequency": "Twice daily", "Duration": "14 days", "Instructions": "Before food", "Quantity": 28 }] } },
+    { "Registration": { "NationalId": "2020202024", "Password": "DoctorPassword!", "FullName": "د. ميساء عبدالله الحيمي", "Email": "dr.maysa@hospital.com", "PhoneNumber": "771000104", "LicenseNumber": "DOC-YE-1004", "Specialization": "Pediatrics", "Hospital": "Mother & Child Center" }, "Activity": { "LatestDiagnoses": ["Tonsillitis", "Chickenpox"], "SamplePrescription": { "Diagnosis": "Acute Bacterial Tonsillitis", "Medications": [{ "DrugId": 20, "MedicationName": "Amoxicillin Syrup", "Dosage": "250mg/5ml", "Frequency": "8 hours", "Duration": "7 days", "Instructions": "Finish course", "Quantity": 1 }] } },
+    { "Registration": { "NationalId": "2020202025", "Password": "DoctorPassword!", "FullName": "د. هشام منير باحاج", "Email": "dr.hisham@hospital.com", "PhoneNumber": "771000105", "LicenseNumber": "DOC-YE-1005", "Specialization": "Orthopedics", "Hospital": "Aden Specialists Hospital" }, "Activity": { "LatestDiagnoses": ["Lumbar Disc Prolapse", "Fracture Tibia"], "SamplePrescription": { "Diagnosis": "Acute Low Back Pain", "Medications": [{ "DrugId": 35, "MedicationName": "Diclofenac Sodium", "Dosage": "50mg", "Frequency": "Twice daily", "Duration": "5 days", "Instructions": "After meals", "Quantity": 10 }] } },
+    { "Registration": { "NationalId": "2020202026", "Password": "DoctorPassword!", "FullName": "د. ريم فاروق الوجيه", "Email": "dr.reem@hospital.com", "PhoneNumber": "771000106", "LicenseNumber": "DOC-YE-1006", "Specialization": "Dermatology", "Hospital": "Modern Skin Clinic" } },
+    { "Registration": { "NationalId": "2020202027", "Password": "DoctorPassword!", "FullName": "د. طارق نبيل القاضي", "Email": "dr.tariq@hospital.com", "PhoneNumber": "771000107", "LicenseNumber": "DOC-YE-1007", "Specialization": "Ophthalmology", "Hospital": "Noor Eye Center" } },
+    { "Registration": { "NationalId": "2020202028", "Password": "DoctorPassword!", "FullName": "د. لمياء عادل المؤيد", "Email": "dr.lamia@hospital.com", "PhoneNumber": "771000108", "LicenseNumber": "DOC-YE-1008", "Specialization": "Obstetrics & Gynecology", "Hospital": "Saba Hospital" } },
+    { "Registration": { "NationalId": "2020202029", "Password": "DoctorPassword!", "FullName": "د. وليد محسن الجوفي", "Email": "dr.walid@hospital.com", "PhoneNumber": "771000109", "LicenseNumber": "DOC-YE-1009", "Specialization": "Neurology", "Hospital": "Neuroscience Center" } },
+    { "Registration": { "NationalId": "2020202030", "Password": "DoctorPassword!", "FullName": "د. سلوى عبدربه منصور", "Email": "dr.salwa@hospital.com", "PhoneNumber": "771000110", "LicenseNumber": "DOC-YE-1010", "Specialization": "Psychiatry", "Hospital": "Mental Health Institute" } },
+    { "Registration": { "NationalId": "2020202031", "Password": "DoctorPassword!", "FullName": "د. علاء فوزي السياني", "Email": "dr.alaa@hospital.com", "PhoneNumber": "771000111", "LicenseNumber": "DOC-YE-1011", "Specialization": "General Surgery", "Hospital": "Republican Hospital" } },
+    { "Registration": { "NationalId": "2020202032", "Password": "DoctorPassword!", "FullName": "د. منيرة حسن الوزير", "Email": "dr.munira@hospital.com", "PhoneNumber": "771000112", "LicenseNumber": "DOC-YE-1012", "Specialization": "Urology", "Hospital": "Ibn Sina Center" } },
+    { "Registration": { "NationalId": "2020202033", "Password": "DoctorPassword!", "FullName": "د. كمال توفيق المحويتي", "Email": "dr.kamal@hospital.com", "PhoneNumber": "771000113", "LicenseNumber": "DOC-YE-1013", "Specialization": "Gastroenterology", "Hospital": "Modern Medical Center" } },
+    { "Registration": { "NationalId": "2020202034", "Password": "DoctorPassword!", "FullName": "د. نجوى رشاد الذبحاني", "Email": "dr.najwa@hospital.com", "PhoneNumber": "771000114", "LicenseNumber": "DOC-YE-1014", "Specialization": "Pulmonology", "Hospital": "Chest Hospital" } },
+    { "Registration": { "NationalId": "2020202035", "Password": "DoctorPassword!", "FullName": "د. عمار طه الذباني", "Email": "dr.ammar@hospital.com", "PhoneNumber": "771000115", "LicenseNumber": "DOC-YE-1015", "Specialization": "Nephrology", "Hospital": "Kidney Center" } },
+    { "Registration": { "NationalId": "2020202036", "Password": "DoctorPassword!", "FullName": "د. دينا فيصل حجر", "Email": "dr.dina@hospital.com", "PhoneNumber": "771000116", "LicenseNumber": "DOC-YE-1016", "Specialization": "Rheumatology", "Hospital": "Joint Clinic" } },
+    { "Registration": { "NationalId": "2020202037", "Password": "DoctorPassword!", "FullName": "د. باسل خليل الحاشدي", "Email": "dr.basel@hospital.com", "PhoneNumber": "771000117", "LicenseNumber": "DOC-YE-1017", "Specialization": "Otolaryngology (ENT)", "Hospital": "ENT Specialists" } },
+    { "Registration": { "NationalId": "2020202038", "Password": "DoctorPassword!", "FullName": "د. ريم ياسر المقالح", "Email": "dr.reemy@hospital.com", "PhoneNumber": "771000118", "LicenseNumber": "DOC-YE-1018", "Specialization": "Hematology", "Hospital": "Blood Center" } },
+    { "Registration": { "NationalId": "2020202039", "Password": "DoctorPassword!", "FullName": "د. سمير علي العولقي", "Email": "dr.samir@hospital.com", "PhoneNumber": "771000119", "LicenseNumber": "DOC-YE-1019", "Specialization": "Infectious Diseases", "Hospital": "Fever Hospital" } },
+    { "Registration": { "NationalId": "2020202040", "Password": "DoctorPassword!", "FullName": "د. هدى منصور اليافعي", "Email": "dr.huda@hospital.com", "PhoneNumber": "771000120", "LicenseNumber": "DOC-YE-1020", "Specialization": "Oncology", "Hospital": "Cancer Center" } }
+  ],
+  "Pharmacists": [
+    { "Registration": { "NationalId": "3030303031", "Password": "PharmPassword!", "FullName": "ص. مروان عبدالغني الحداد", "Email": "pharm.marwan@pharmacy.com", "PhoneNumber": "772000201", "LicenseNumber": "PHM-YE-2001", "PharmacyName": "Al-Hikma Pharmacy" } },
+    { "Registration": { "NationalId": "3030303032", "Password": "PharmPassword!", "FullName": "ص. أروى صقر المقطري", "Email": "pharm.arwa@pharmacy.com", "PhoneNumber": "772000202", "LicenseNumber": "PHM-YE-2002", "PharmacyName": "Life Care Pharmacy" } },
+    { "Registration": { "NationalId": "3030303033", "Password": "PharmPassword!", "FullName": "ص. سامي نبيل باوزير", "Email": "pharm.sami@pharmacy.com", "PhoneNumber": "772000203", "LicenseNumber": "PHM-YE-2003", "PharmacyName": "Modern Pharma" } },
+    { "Registration": { "NationalId": "3030303034", "Password": "PharmPassword!", "FullName": "ص. خديجة طه الصبري", "Email": "pharm.khadija@pharmacy.com", "PhoneNumber": "772000204", "LicenseNumber": "PHM-YE-2004", "PharmacyName": "Al-Shafa Pharmacy" } },
+    { "Registration": { "NationalId": "3030303035", "Password": "PharmPassword!", "FullName": "ص. وضاح رشيد المهدي", "Email": "pharm.wadah@pharmacy.com", "PhoneNumber": "772000205", "LicenseNumber": "PHM-YE-2005", "PharmacyName": "Family Pharmacy" } },
+    { "Registration": { "NationalId": "3030303036", "Password": "PharmPassword!", "FullName": "ص. سوسن علي الذبحاني", "Email": "pharm.sawsan@pharmacy.com", "PhoneNumber": "772000206", "LicenseNumber": "PHM-YE-2006", "PharmacyName": "Central Pharmacy" } },
+    { "Registration": { "NationalId": "3030303037", "Password": "PharmPassword!", "FullName": "ص. هيثم جلال القادري", "Email": "pharm.haitham@pharmacy.com", "PhoneNumber": "772000207", "LicenseNumber": "PHM-YE-2007", "PharmacyName": "Hope Pharmacy" } },
+    { "Registration": { "NationalId": "3030303038", "Password": "PharmPassword!", "FullName": "ص. رنا محمد الحزمي", "Email": "pharm.rana@pharmacy.com", "PhoneNumber": "772000208", "LicenseNumber": "PHM-YE-2008", "PharmacyName": "Quality Pharmacy" } },
+    { "Registration": { "NationalId": "3030303039", "Password": "PharmPassword!", "FullName": "ص. عدنان مصلح الشامي", "Email": "pharm.adnan@pharmacy.com", "PhoneNumber": "772000209", "LicenseNumber": "PHM-YE-2009", "PharmacyName": "Trust Pharmacy" } },
+    { "Registration": { "NationalId": "3030303040", "Password": "PharmPassword!", "FullName": "ص. منى عارف القدسي", "Email": "pharm.muna@pharmacy.com", "PhoneNumber": "772000210", "LicenseNumber": "PHM-YE-2010", "PharmacyName": "Global Pharmacy" } },
+    { "Registration": { "NationalId": "3030303041", "Password": "PharmPassword!", "FullName": "ص. باسم رشيد المتوكل", "Email": "pharm.basem@pharmacy.com", "PhoneNumber": "772000211", "LicenseNumber": "PHM-YE-2011", "PharmacyName": "City Pharmacy" } },
+    { "Registration": { "NationalId": "3030303042", "Password": "PharmPassword!", "FullName": "ص. هناء جميل المقالح", "Email": "pharm.hana@pharmacy.com", "PhoneNumber": "772000212", "LicenseNumber": "PHM-YE-2012", "PharmacyName": "Royal Pharmacy" } },
+    { "Registration": { "NationalId": "3030303043", "Password": "PharmPassword!", "FullName": "ص. عبدالرحمن فضل العمودي", "Email": "pharm.abdul@pharmacy.com", "PhoneNumber": "772000213", "LicenseNumber": "PHM-YE-2013", "PharmacyName": "Safe Care Pharmacy" } },
+    { "Registration": { "NationalId": "3030303044", "Password": "PharmPassword!", "FullName": "ص. مريم نبيل الذبحاني", "Email": "pharm.mariam@pharmacy.com", "PhoneNumber": "772000214", "LicenseNumber": "PHM-YE-2014", "PharmacyName": "Care Pharmacy" } },
+    { "Registration": { "NationalId": "3030303045", "Password": "PharmPassword!", "FullName": "ص. توفيق حمود الصبري", "Email": "pharm.tawfiq@pharmacy.com", "PhoneNumber": "772000215", "LicenseNumber": "PHM-YE-2015", "PharmacyName": "MedPlus Pharmacy" } },
+    { "Registration": { "NationalId": "3030303046", "Password": "PharmPassword!", "FullName": "ص. أماني عارف القدسي", "Email": "pharm.amani@pharmacy.com", "PhoneNumber": "772000216", "LicenseNumber": "PHM-YE-2016", "PharmacyName": "Sun Pharmacy" } },
+    { "Registration": { "NationalId": "3030303047", "Password": "PharmPassword!", "FullName": "ص. عادل مروان الحزمي", "Email": "pharm.adel@pharmacy.com", "PhoneNumber": "772000217", "LicenseNumber": "PHM-YE-2017", "PharmacyName": "Diamond Pharmacy" } },
+    { "Registration": { "NationalId": "3030303048", "Password": "PharmPassword!", "FullName": "ص. خلود فيصل الصنعاني", "Email": "pharm.khulood@pharmacy.com", "PhoneNumber": "772000218", "LicenseNumber": "PHM-YE-2018", "PharmacyName": "Emerald Pharmacy" } },
+    { "Registration": { "NationalId": "3030303049", "Password": "PharmPassword!", "FullName": "ص. يحيى ناصر الارياني", "Email": "pharm.yahya@pharmacy.com", "PhoneNumber": "772000219", "LicenseNumber": "PHM-YE-2019", "PharmacyName": "Pearl Pharmacy" } },
+    { "Registration": { "NationalId": "3030303050", "Password": "PharmPassword!", "FullName": "ص. ليلى مصلح الحميري", "Email": "pharm.laila@pharmacy.com", "PhoneNumber": "772000220", "LicenseNumber": "PHM-YE-2020", "PharmacyName": "Ruby Pharmacy" } }
+  ]
+}
